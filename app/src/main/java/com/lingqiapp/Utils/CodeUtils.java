@@ -56,6 +56,7 @@ public class CodeUtils {
         Canvas canvas = new Canvas(bitmap);
         code = createCode();
         canvas.drawARGB(0, 0, 0, 0);
+
         Paint paint = new Paint();
         paint.setTextSize(DEFAULT_FONT_SIZE);
 
@@ -101,7 +102,8 @@ public class CodeUtils {
         int stopX = mRandom.nextInt(DEFAULT_WIDTH);
         int stopY = mRandom.nextInt(DEFAULT_HEIGHT);
         paint.setStrokeWidth(1);
-        paint.setColor(Color.rgb(255, 255, 255));
+        //paint.setColor(Color.rgb(255, 255, 255));
+        paint.setColor(color);
         canvas.drawLine(startX, startY, stopX, stopY, paint);
     }
 
@@ -125,13 +127,13 @@ public class CodeUtils {
     //随机文本样式
     private void randomTextStyle(Paint paint) {
         int color = randomColor();
-        paint.setColor(Color.rgb(255, 255, 255));
+        paint.setColor(color);
         paint.setFakeBoldText(mRandom.nextBoolean());  //true为粗体，false为非粗体
         float skewX = mRandom.nextInt(11) / 10;
         skewX = mRandom.nextBoolean() ? skewX : -skewX;
         paint.setTextSkewX(skewX); //float类型参数，负数表示右斜，整数左斜
-//        paint.setUnderlineText(true); //true为下划线，false为非下划线
-//        paint.setStrikeThruText(true); //true为删除线，false为非删除线
+        paint.setUnderlineText(true); //true为下划线，false为非下划线
+        paint.setStrikeThruText(true); //true为删除线，false为非删除线
     }
 
     //随机间距
