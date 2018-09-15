@@ -16,9 +16,9 @@
     <application
         android:name=".App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:name">
@@ -41,7 +41,8 @@
         <activity android:name=".Activity.YiJianFanKuiActivity"></activity>
         <activity android:name=".Activity.TiXianActivity"></activity>
         <activity android:name=".Activity.TiXianJiLuListActivity"></activity>
-
+        <activity android:name=".Activity.ShopListActivity"></activity>
+        <activity android:name=".Activity.NewsListActivity"></activity>
 
         <!--====================================功能需要==========================================-->
 

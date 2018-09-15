@@ -3,7 +3,6 @@ package com.lingqiapp.Activity;
 import android.Manifest;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -14,8 +13,9 @@ import android.widget.Toast;
 
 import com.lingqiapp.Base.BaseActivity;
 import com.lingqiapp.Fragment.HomeFragment;
+import com.lingqiapp.Fragment.KeFuFragment;
+import com.lingqiapp.Fragment.NewsFragment;
 import com.lingqiapp.R;
-import com.lingqiapp.Utils.EasyToast;
 import com.lingqiapp.Utils.SpUtil;
 import com.lingqiapp.View.CustomViewPager;
 import com.mylhyl.acp.Acp;
@@ -72,9 +72,9 @@ public class MainActivity extends BaseActivity {
                 });
         final ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(new HomeFragment());
+        fragments.add(new NewsFragment());
         fragments.add(new HomeFragment());
-        fragments.add(new HomeFragment());
-        fragments.add(new HomeFragment());
+        fragments.add(new KeFuFragment());
         fragments.add(new HomeFragment());
         CustomViewPager viewpager = (CustomViewPager) findViewById(R.id.fl_content);
         viewpager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
@@ -107,9 +107,9 @@ public class MainActivity extends BaseActivity {
                     public void onTabChange(int position, View view) {
                         if (position == 3 || position == 4) {
                             if (TextUtils.isEmpty((String) SpUtil.get(MainActivity.this, "uid", ""))) {
-                                EasyToast.showShort(MainActivity.this, "请先登录");
-                                finish();
-                                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                               // EasyToast.showShort(MainActivity.this, "请先登录");
+                               // finish();
+                               // startActivity(new Intent(MainActivity.this, LoginActivity.class));
                             }
                         }
                         if (!TextUtils.isEmpty((String) SpUtil.get(MainActivity.this, "uid", ""))) {

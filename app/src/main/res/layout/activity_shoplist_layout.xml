@@ -11,17 +11,33 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y35"
+            android:layout_height="@dimen/y42"
             android:layout_gravity="center"
             android:background="@color/bgfff"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
+            <FrameLayout
+                android:id="@+id/rl_back"
+                android:layout_width="@dimen/x30"
+                android:layout_height="@dimen/x30"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x5">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:background="@mipmap/back" />
+
+            </FrameLayout>
+
             <LinearLayout
+                android:layout_marginLeft="@dimen/x5"
                 android:id="@+id/ll_search"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x15"
                 android:layout_marginRight="@dimen/x15"
                 android:layout_weight="1"
                 android:background="@drawable/bg_search"
@@ -52,6 +68,7 @@
             </LinearLayout>
 
         </LinearLayout>
+
 
         <com.lingqiapp.View.WenguoyiRecycleView
             android:id="@+id/rv_homelist"

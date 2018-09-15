@@ -1,6 +1,7 @@
 package com.lingqiapp.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -12,6 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.volley.VolleyError;
+import com.lingqiapp.Activity.MainActivity;
+import com.lingqiapp.Activity.ShopListActivity;
+import com.lingqiapp.Adapter.HomeListAdapter;
 import com.lingqiapp.App;
 import com.lingqiapp.R;
 import com.lingqiapp.Utils.EasyToast;
@@ -23,6 +27,7 @@ import com.lingqiapp.View.SakuraLinearLayoutManager;
 import com.lingqiapp.View.WenguoyiRecycleView;
 import com.lingqiapp.Volley.VolleyInterface;
 import com.lingqiapp.Volley.VolleyRequest;
+
 import java.util.HashMap;
 
 /**
@@ -54,9 +59,6 @@ public class HomeFragment extends BaseLazyFragment {
             //getData();
 
 
-
-
-
         } else {
             EasyToast.showShort(context, getResources().getString(R.string.Networkexception));
         }
@@ -81,12 +83,24 @@ public class HomeFragment extends BaseLazyFragment {
         progressView.setIndicatorColor(getResources().getColor(R.color.colorAccent));
         rv_homelist.setFootLoadingView(progressView);
 
+        HomeListAdapter adapter = new HomeListAdapter((MainActivity) getActivity());
+        rv_homelist.setAdapter(adapter);
+
         String homeFragment = (String) SpUtil.get(context, "HomeFragment", "");
         if (!TextUtils.isEmpty(homeFragment)) {
-          //  HomeBean homeBean = new Gson().fromJson(homeFragment, HomeBean.class);
-           // HomeListAdapter adapter = new HomeListAdapter((MainActivity) getActivity(), homeBean);
-           // rv_homelist.setAdapter(adapter);
+            //  HomeBean homeBean = new Gson().fromJson(homeFragment, HomeBean.class);
+            //    HomeListAdapter adapter = new HomeListAdapter((MainActivity) getActivity());
+            //   rv_homelist.setAdapter(adapter);
         }
+
+
+        view.findViewById(R.id.ll_search).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, ShopListActivity.class));
+            }
+        });
+
     }
 
     //数据获取
@@ -100,10 +114,10 @@ public class HomeFragment extends BaseLazyFragment {
             public void onMySuccess(String result) {
                 Log.e("HomeFragment", result);
                 try {
-                 //   HomeBean homeBean = new Gson().fromJson(result, HomeBean.class);
-                 //   HomeListAdapter adapter = new HomeListAdapter((MainActivity) getActivity(), homeBean);
-                 //   rv_homelist.setAdapter(adapter);
-                 //   homeBean = null;
+                    //   HomeBean homeBean = new Gson().fromJson(result, HomeBean.class);
+                    //   HomeListAdapter adapter = new HomeListAdapter((MainActivity) getActivity(), homeBean);
+                    //   rv_homelist.setAdapter(adapter);
+                    //   homeBean = null;
                     result = null;
                 } catch (Exception e) {
                     e.printStackTrace();
