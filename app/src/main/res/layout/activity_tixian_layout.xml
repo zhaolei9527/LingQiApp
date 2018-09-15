@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bgea"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x37"
+        android:background="@color/bgfff"
+        android:visibility="visible">
+
+        <FrameLayout
+            android:id="@+id/rl_back"
+            android:layout_width="@dimen/x30"
+            android:layout_height="@dimen/x30"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x10">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:background="@mipmap/back" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="银行卡管理"
+            android:textColor="@color/text333"
+            android:textSize="@dimen/x13" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y1"
+        android:background="@color/bgea"></View>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x45"
+        android:background="@color/bgfff">
+
+        <TextView
+            android:id="@+id/tv_bank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x20"
+            android:text="中国邮政储蓄银行  尾号(2456)"
+            android:textColor="@color/text333" />
+
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y5"
+        android:background="@color/bgea"></View>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bgfff"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginTop="@dimen/x10"
+            android:text="提现金额"
+            android:textColor="@color/text333" />
+
+        <EditText
+            android:id="@+id/et_money"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginRight="@dimen/x20"
+            android:layout_marginTop="@dimen/x10"
+            android:background="@color/bgea"
+            android:hint="请输入提现金额"
+            android:inputType="number"
+            android:padding="@dimen/x5" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_yue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/x20"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginTop="@dimen/x10"
+                android:layout_weight="1"
+                android:text="当前账户最多可提现余额：2000.00"
+                android:textColor="@color/text666"
+                android:textSize="@dimen/x11" />
+
+
+            <TextView
+                android:id="@+id/tv_tixianjilu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/x20"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginRight="@dimen/x20"
+                android:layout_marginTop="@dimen/x10"
+                android:text="提现记录"
+                android:textColor="@color/bgtitle"
+                android:textSize="@dimen/x11" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x20"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginTop="@dimen/x10"
+            android:text="温馨提示：单次提现金额不低于"
+            android:textColor="@color/text666"
+            android:textSize="@dimen/x10" />
+
+        <TextView
+            android:id="@+id/tv_tixianmin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x20"
+            android:layout_marginTop="@dimen/x10"
+            android:text="100.00"
+            android:textColor="#0b7de7"
+            android:textSize="@dimen/x10" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x10"
+            android:text="，提现手续费为"
+            android:textColor="@color/text666"
+            android:textSize="@dimen/x10" />
+
+        <TextView
+            android:id="@+id/tv_feilv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x20"
+            android:layout_marginRight="@dimen/x20"
+            android:layout_marginTop="@dimen/x10"
+            android:text="2%"
+            android:textColor="#0b7de7"
+            android:textSize="@dimen/x10" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="@dimen/x262"
+        android:layout_height="@dimen/y33"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/x15"
+        android:background="@mipmap/btn_login"
+        android:text="确认提现"
+        android:textAllCaps="false"
+        android:textColor="@color/bgfff"
+        android:textSize="@dimen/x15"
+        android:visibility="visible" />
+
+</LinearLayout>

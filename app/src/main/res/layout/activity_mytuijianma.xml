@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x37"
+            android:background="@color/bgfff"
+            android:visibility="visible">
+
+            <FrameLayout
+                android:id="@+id/rl_back"
+                android:layout_width="@dimen/x30"
+                android:layout_height="@dimen/x30"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x10">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:background="@mipmap/back" />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tv_Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="我的推荐码"
+                android:textColor="@color/text333"
+                android:textSize="@dimen/x13" />
+
+        </RelativeLayout>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/mytuijianma_bg">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:id="@+id/rl_img"
+                    android:layout_width="@dimen/x134"
+                    android:layout_height="@dimen/x134"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/y200"
+                    android:background="@color/bgfff">
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/img_tuijianma"
+                        android:layout_width="@dimen/x114"
+                        android:layout_height="@dimen/x114"
+                        android:layout_centerInParent="true"
+                        android:background="#000" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tv_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/rl_img"
+                    android:layout_marginLeft="@dimen/x40"
+                    android:layout_marginTop="@dimen/x8"
+                    android:text="奖励规则"
+                    android:textColor="@color/textred"
+                    android:textSize="@dimen/x13" />
+
+                <TextView
+                    android:layout_marginBottom="@dimen/x20"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/tv_msg"
+                    android:layout_marginLeft="@dimen/x40"
+                    android:layout_marginRight="@dimen/x40"
+                    android:layout_marginTop="@dimen/x10"
+                    android:text="被推荐人使用您的推荐码详情描述被推荐人，使用您的推荐码详情描述被推荐人。使用您的推荐码详情描述。被推荐人使用您的推荐码详情描述被推荐人，使用您的推荐码详情描述被推荐人。" />
+
+            </RelativeLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</RelativeLayout>
