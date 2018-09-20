@@ -65,8 +65,7 @@
                         android:id="@+id/img_tuijianma"
                         android:layout_width="@dimen/x114"
                         android:layout_height="@dimen/x114"
-                        android:layout_centerInParent="true"
-                        android:background="#000" />
+                        android:layout_centerInParent="true" />
 
                 </RelativeLayout>
 
@@ -82,14 +81,15 @@
                     android:textSize="@dimen/x13" />
 
                 <TextView
-                    android:layout_marginBottom="@dimen/x20"
+                    android:id="@+id/tv_msg_content"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@id/tv_msg"
+                    android:layout_marginBottom="@dimen/x20"
                     android:layout_marginLeft="@dimen/x40"
                     android:layout_marginRight="@dimen/x40"
                     android:layout_marginTop="@dimen/x10"
-                    android:text="被推荐人使用您的推荐码详情描述被推荐人，使用您的推荐码详情描述被推荐人。使用您的推荐码详情描述。被推荐人使用您的推荐码详情描述被推荐人，使用您的推荐码详情描述被推荐人。" />
+                    android:text="" />
 
             </RelativeLayout>
 

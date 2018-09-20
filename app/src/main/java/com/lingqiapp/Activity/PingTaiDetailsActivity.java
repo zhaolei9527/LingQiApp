@@ -3,7 +3,6 @@ package com.lingqiapp.Activity;
 import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -14,7 +13,6 @@ import com.android.volley.VolleyError;
 import com.lingqiapp.App;
 import com.lingqiapp.Base.BaseActivity;
 import com.lingqiapp.R;
-import com.lingqiapp.Utils.EasyToast;
 import com.lingqiapp.Utils.UrlUtils;
 import com.lingqiapp.Utils.Utils;
 import com.lingqiapp.Volley.VolleyInterface;
@@ -41,8 +39,6 @@ import butterknife.ButterKnife;
 public class PingTaiDetailsActivity extends BaseActivity {
     @BindView(R.id.rl_back)
     FrameLayout rlBack;
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
     @BindView(R.id.forum_context)
     WebView forumContext;
     private Dialog dialog;
@@ -56,21 +52,18 @@ public class PingTaiDetailsActivity extends BaseActivity {
     @Override
     protected void initview() {
 
-        id = getIntent().getStringExtra("id");
-
-        if (TextUtils.isEmpty(id)) {
-            EasyToast.showShort(context, getString(R.string.hasError));
-            finish();
-        }
-
         dialog = Utils.showLoadingDialog(context);
+
         if (!dialog.isShowing()) {
             dialog.show();
         }
+
         IX5WebViewExtension ix5 = forumContext.getX5WebViewExtension();
+
         if (null != ix5) {
             ix5.setScrollBarFadingEnabled(false);
         }
+
         // 开启 localStorage
         forumContext.getSettings().setDomStorageEnabled(true);
         // 设置支持javascript
@@ -113,7 +106,8 @@ public class PingTaiDetailsActivity extends BaseActivity {
 
             }
         });
-        forumContext.loadUrl(UrlUtils.BASE_URL + "danye/news/id/" + id);
+
+        forumContext.loadUrl(UrlUtils.BASE_URL + "danye/banquan?id=3");
 
     }
 
@@ -148,11 +142,14 @@ public class PingTaiDetailsActivity extends BaseActivity {
 
 
 
+
+
                     result = null;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
+
             @Override
             public void onMyError(VolleyError error) {
                 error.printStackTrace();

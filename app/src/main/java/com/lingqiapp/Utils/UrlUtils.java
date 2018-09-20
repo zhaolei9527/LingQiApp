@@ -12,17 +12,17 @@ public class UrlUtils {
     /**
      * url连接头
      */
-    public static final String URL = "http://dgy.mxinkang.com/";
+    public static final String URL = "http://192.168.1.212/";
 
     /**
      * api连接头
      */
-    public static final String BASE_URL = "http://dgy.mxinkang.com/wgy.php/";
+    public static final String BASE_URL = "http://192.168.1.212/api.php/";
 
     /**
      * 接口连接key
      */
-    public static final String KEY = "dd6573891ec1834ebbc889255f731a02";
+    public static final String KEY = "lingqi20180920";
 
 
 }

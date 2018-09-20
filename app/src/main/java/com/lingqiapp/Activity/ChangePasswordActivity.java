@@ -36,7 +36,7 @@ import java.util.TimerTask;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ForgetActivity extends AppCompatActivity implements View.OnClickListener {
+public class ChangePasswordActivity extends AppCompatActivity implements View.OnClickListener {
 
     @BindView(R.id.rl_back)
     FrameLayout rlBack;
@@ -87,9 +87,9 @@ public class ForgetActivity extends AppCompatActivity implements View.OnClickLis
        /*set it to be full screen*/
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_forget);
+        setContentView(R.layout.activity_changepwd);
         ButterKnife.bind(this);
-        context = ForgetActivity.this;
+        context = ChangePasswordActivity.this;
         initView();
         initData();
     }
@@ -226,7 +226,7 @@ public class ForgetActivity extends AppCompatActivity implements View.OnClickLis
                 Log.e("RegisterActivity", decode);
                 try {
                     CodeBean codeBean = new Gson().fromJson(decode, CodeBean.class);
-                    Toast.makeText(ForgetActivity.this, codeBean.getMsg(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChangePasswordActivity.this, codeBean.getMsg(), Toast.LENGTH_SHORT).show();
                     if ("1".equals(String.valueOf(codeBean.getStatus()))) {
 
                     } else {
@@ -309,10 +309,10 @@ public class ForgetActivity extends AppCompatActivity implements View.OnClickLis
                 try {
                     CodeBean codeBean = new Gson().fromJson(decode, CodeBean.class);
                     if (1 == codeBean.getStatus()) {
-                        Toast.makeText(ForgetActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ChangePasswordActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
                         finish();
                     } else {
-                        Toast.makeText(ForgetActivity.this, codeBean.getMsg(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ChangePasswordActivity.this, codeBean.getMsg(), Toast.LENGTH_SHORT).show();
                     }
                     decode = null;
                     codeBean = null;

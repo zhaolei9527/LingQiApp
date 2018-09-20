@@ -96,7 +96,6 @@ public class NewsListActivity extends BaseActivity {
 
     public void getData() {
         //getNewsList();
-
         adapter = new NewsListAdapter(context);
         mRecyclerView.setAdapter(adapter);
         refresh.setRefreshing(false);
@@ -146,7 +145,6 @@ public class NewsListActivity extends BaseActivity {
         textView.setText("-暂无更多-");
         mRecyclerView.setFootEndView(textView);
         refresh.setRefreshing(true);
-
     }
 
     @Override

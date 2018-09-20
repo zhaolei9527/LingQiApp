@@ -71,6 +71,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     LinearLayout rl5;
     @BindView(R.id.rl6)
     LinearLayout rl6;
+    @BindView(R.id.tv_register)
+    TextView tvRegister;
     private Dialog dialog;
     private int pswminlen = 6;
     private String account;
@@ -102,7 +104,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         btnLogin.setOnClickListener(this);
         tvForgetpassworld.setOnClickListener(this);
         btnWeixin.setOnClickListener(this);
+        tvRegister.setOnClickListener(this);
         dialog = Utils.showLoadingDialog(context);
+        rlBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                startActivity(new Intent(context, MainActivity.class));
+            }
+        });
     }
 
     @Override
@@ -134,6 +144,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.tv_register:
+                startActivity(new Intent(context, RegisterActivity.class));
+                break;
             case R.id.btn_login:
                 submit();
                 break;
@@ -218,6 +231,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         // TODO validate success, do something
         dialog.show();
         getLogin(account, password, openid);
+
     }
 
     /**
@@ -225,12 +239,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
      */
     private void getLogin(final String tel, final String password, final String openid) {
         HashMap<String, String> params = new HashMap<>(1);
-        params.put("pwd", UrlUtils.KEY);
         params.put("tel", tel);
-        params.put("password", Utils.md5(password));
-        params.put("uuid", openid);
+        params.put("password", password);
+        params.put("openid", openid);
         Log.e("LoginActivity", params.toString());
-        VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "login/login", "login/login", params, new VolleyInterface(context) {
+        VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "login/dologin", "login/dologin", params, new VolleyInterface(context) {
             @Override
             public void onMySuccess(String result) {
                 dialog.dismiss();
@@ -239,13 +252,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 try {
                     LoginBean loginBean = new Gson().fromJson(decode, LoginBean.class);
                     EasyToast.showShort(context, loginBean.getMsg().toString());
-                    if (1 == loginBean.getStatus()) {
-                        SpUtil.putAndApply(context, "uid", loginBean.getUser().getId());
-                        SpUtil.putAndApply(context, "username", loginBean.getUser().getNickname());
-                        SpUtil.putAndApply(context, "password", Utils.md5(password));
+                    if ("1".equals(loginBean.getStatus())) {
+                        SpUtil.putAndApply(context, "uid", loginBean.getUser().getId().toString());
+                        SpUtil.putAndApply(context, "username", loginBean.getUser().getNi_name());
+                        SpUtil.putAndApply(context, "money", loginBean.getUser().getMoney());
+                        SpUtil.putAndApply(context, "img", loginBean.getUser().getImg());
+                        SpUtil.putAndApply(context, "password", password);
                         SpUtil.putAndApply(context, "tel", loginBean.getUser().getTel());
                         gotoMain();
-                    } else if (2 == loginBean.getStatus()) {
+                    } else if ("2".equals(loginBean.getStatus())) {
                         EasyToast.showShort(context, loginBean.getMsg().toString());
                         startActivity(new Intent(context, RegisterActivity.class).putExtra("msg", mesg));
                     } else {

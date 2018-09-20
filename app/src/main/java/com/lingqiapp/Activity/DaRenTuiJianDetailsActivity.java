@@ -113,6 +113,7 @@ public class DaRenTuiJianDetailsActivity extends BaseActivity {
 
             }
         });
+
         forumContext.loadUrl(UrlUtils.BASE_URL + "danye/news/id/" + id);
 
     }
@@ -144,15 +145,12 @@ public class DaRenTuiJianDetailsActivity extends BaseActivity {
             public void onMySuccess(String result) {
                 Log.e("NewsDetailsActivity", result);
                 try {
-
-
-                    
-
                     result = null;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
+
             @Override
             public void onMyError(VolleyError error) {
                 error.printStackTrace();

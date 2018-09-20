@@ -49,7 +49,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:text="会员注册"
+                        android:text="修改密码"
                         android:textColor="@color/text333"
                         android:textSize="@dimen/x16" />
 
@@ -107,12 +107,14 @@
                         android:textColor="@color/text333"
                         android:textColorHint="@color/text999"
                         android:textSize="@dimen/x13" />
+
                 </LinearLayout>
+
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/y1"
-                    android:background="@color/bgea"></View>
+                    android:background="@color/bgddd"></View>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -164,7 +166,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/y1"
-                    android:background="@color/bgea"></View>
+                    android:background="@color/bgddd"></View>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -203,7 +205,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/x10"
                         android:layout_marginRight="@dimen/x10"
-                        android:background="@color/bgea"></View>
+                        android:background="@color/text999"></View>
 
                     <TextView
                         android:id="@+id/btn_getSMScode"
@@ -221,7 +223,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/y1"
-                    android:background="@color/bgea"></View>
+                    android:background="@color/bgddd"></View>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -257,7 +259,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/y1"
-                    android:background="@color/bgea"></View>
+                    android:background="@color/bgddd"></View>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -293,51 +295,16 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/y1"
-                    android:background="@color/bgea"></View>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/y37"
-                    android:background="@color/bgfff"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="@dimen/x12"
-                    android:paddingRight="@dimen/x12">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="推荐码"
-                        android:textColor="@color/text333"
-                        android:textSize="@dimen/x13" />
-
-                    <EditText
-                        android:id="@+id/et_tuijiangma"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/y30"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/x5"
-                        android:background="@null"
-                        android:hint="请输入推荐码"
-                        android:maxLength="18"
-                        android:singleLine="true"
-                        android:textColor="@color/text333"
-                        android:textColorHint="@color/text999"
-                        android:textSize="@dimen/x13" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/y1"
-                    android:background="@color/bgea"></View>
+                    android:background="@color/bgddd"></View>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/x20"
+                    android:layout_marginTop="@dimen/x5"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="invisible">
 
                     <CheckBox
                         android:id="@+id/cb_check"
@@ -356,7 +323,7 @@
                         android:id="@+id/tv_xieyi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="《领七商城会员注册协议》"
+                        android:text="《靓蒂女神用户注册协议》"
                         android:textColor="#0b7de7"
                         android:textSize="@dimen/x10" />
 
@@ -369,11 +336,39 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/x15"
                     android:background="@mipmap/btn_login"
-                    android:text="注册"
+                    android:text="重置密码"
                     android:textAllCaps="false"
                     android:textColor="@color/bgfff"
                     android:textSize="@dimen/x15"
                     android:visibility="visible" />
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/x15"
+                    android:gravity="right"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="想起密码？"
+                        android:textColor="@color/text333"
+                        android:textSize="@dimen/x10" />
+
+                    <Button
+                        android:id="@+id/tv_login"
+                        android:layout_width="@dimen/x38"
+                        android:layout_height="@dimen/y20"
+                        android:layout_marginRight="@dimen/x10"
+                        android:background="@color/bgtitle"
+                        android:text="登录"
+                        android:textColor="@color/bgfff"
+                        android:textSize="@dimen/x10" />
+
+                </LinearLayout>
 
             </LinearLayout>
 

@@ -43,6 +43,11 @@
         <activity android:name=".Activity.TiXianJiLuListActivity"></activity>
         <activity android:name=".Activity.ShopListActivity"></activity>
         <activity android:name=".Activity.NewsListActivity"></activity>
+        <activity android:name=".Activity.LianXiWoMenActivity"></activity>
+        <activity android:name=".Activity.HuiYuanShengJiActivity"></activity>
+        <activity android:name=".Activity.ChangePasswordActivity"></activity>
+        <activity android:name=".Activity.MyMessageActivity"></activity>
+        <activity android:name=".Activity.MYTuiJianMaActivity"></activity>
 
         <!--====================================功能需要==========================================-->
 

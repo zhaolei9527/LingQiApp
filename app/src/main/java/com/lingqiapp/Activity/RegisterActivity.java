@@ -2,6 +2,7 @@ package com.lingqiapp.Activity;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -64,6 +65,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     TextView tvXieyi;
     @BindView(R.id.btn_register)
     Button btnRegister;
+    @BindView(R.id.et_tuijiangma)
+    EditText etTuijiangma;
     private Timer timer;
     private TimerTask task;
     private int time = 100;
@@ -125,11 +128,25 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         code = codeUtils.getCode();
         image.setImageBitmap(bitmap);
         dialog = Utils.showLoadingDialog(context);
+        imgChangecode.setOnClickListener(this);
+        btnGetSMScode.setOnClickListener(this);
+        btnRegister.setOnClickListener(this);
+        tvXieyi.setOnClickListener(this);
+        rlBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.tv_xieyi:
+                startActivity(new Intent(context, ZhuCeXieYiDetailsActivity.class));
+                break;
             case R.id.img_changecode:
                 bitmap = codeUtils.createBitmap();
                 code = codeUtils.getCode();
@@ -147,6 +164,18 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                 if (!Utils.isCellphone(account)) {
                     Toast.makeText(this, "请输入正确手机号", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                String incode = etCode.getText().toString().trim();
+                if (TextUtils.isEmpty(incode)) {
+                    Toast.makeText(this, "请输入图形验证码", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
+                if (!incode.equals(code)) {
+                    Toast.makeText(this, "图形验证码错误", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -193,9 +222,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
      */
     private void getUserPlace(String phone) {
         HashMap<String, String> params = new HashMap<>(2);
-        params.put("pwd", UrlUtils.KEY);
         params.put("tel", phone);
-        VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "login/codesend", "login/codesend", params, new VolleyInterface(context) {
+        params.put("type", "1");
+        VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "login/tel", "login/tel", params, new VolleyInterface(context) {
             @Override
             public void onMySuccess(String result) {
                 String decode = result;
@@ -271,12 +300,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
      */
     private void getRegister(String phone, String code, String password) {
         HashMap<String, String> params = new HashMap<>(1);
-        params.put("pwd", UrlUtils.KEY);
         params.put("tel", phone);
-        params.put("phone_code", code);
-        params.put("password", Utils.md5(password));
-        params.put("cfmpwd", Utils.md5(password));
-        VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "login/regist", "login/regist", params, new VolleyInterface(context) {
+        params.put("code", code);
+        params.put("password", password);
+        params.put("fpassword", password);
+        params.put("tel2", etTuijiangma.getText().toString());
+        VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "login/register", "login/register", params, new VolleyInterface(context) {
             @Override
             public void onMySuccess(String result) {
                 dialog.dismiss();
