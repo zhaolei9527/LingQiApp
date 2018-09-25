@@ -3,20 +3,26 @@ package com.lingqiapp.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.google.gson.Gson;
 import com.lingqiapp.Base.BaseActivity;
+import com.lingqiapp.Bean.AboutPersonalBean;
 import com.lingqiapp.R;
 import com.lingqiapp.Utils.EasyToast;
 import com.lingqiapp.Utils.SpUtil;
 import com.lingqiapp.Utils.UrlUtils;
 import com.lingqiapp.Utils.Utils;
+import com.lingqiapp.View.ChangeNameDialog;
 import com.lingqiapp.Volley.VolleyInterface;
 import com.lingqiapp.Volley.VolleyRequest;
 
@@ -87,9 +93,67 @@ public class MyMessageActivity extends BaseActivity {
         });
 
 
+        rChangeName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new ChangeNameDialog(context, R.style.dialog, "", new ChangeNameDialog.OnCloseListener() {
+                    @Override
+                    public void onClick(Dialog dialog, boolean confirm) {
+                        if (confirm) {
+                            EditText contentTxt = (EditText) dialog.findViewById(R.id.content);
+                            if (TextUtils.isEmpty(contentTxt.getText().toString())) {
+                                EasyToast.showShort(context, contentTxt.getHint().toString());
+                                return;
+                            }
+                            if (contentTxt.getText().toString().length() > 12) {
+                                EasyToast.showShort(context, "用户名过长");
+                                return;
+                            }
+                            tvNicheng.setText(contentTxt.getText().toString());
+                            SpUtil.putAndApply(context, "username", tvNicheng.getText());
+                            aboutEditname();
+                            dialog.dismiss();
+                        } else {
+
+                            dialog.dismiss();
+                        }
+                    }
+                }).setTitle("修改昵称").show();
+
+            }
+        });
 
     }
 
+    /**
+     * 修改用户名
+     */
+    private void aboutEditname() {
+        HashMap<String, String> params = new HashMap<>(1);
+        params.put("uid", String.valueOf(SpUtil.get(context, "uid", "")));
+        params.put("name", tvNicheng.getText().toString());
+        VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "about/sav_name", "about/sav_name", params, new VolleyInterface(context) {
+            @Override
+            public void onMySuccess(String result) {
+                Log.e("RegisterActivity", result);
+                try {
+
+
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(context, getString(R.string.Abnormalserver), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onMyError(VolleyError error) {
+                error.printStackTrace();
+                Toast.makeText(context, getString(R.string.Abnormalserver), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
     @Override
     protected void onResume() {
@@ -116,9 +180,12 @@ public class MyMessageActivity extends BaseActivity {
                 Log.e("RegisterActivity", result);
                 try {
                     dialog.dismiss();
-
-
-
+                    AboutPersonalBean aboutPersonalBean = new Gson().fromJson(result, AboutPersonalBean.class);
+                    if (1 == aboutPersonalBean.getStatus()) {
+                        SimpleDraweeView.setImageURI(UrlUtils.URL + aboutPersonalBean.getUdate().getImg());
+                        tvNicheng.setText(aboutPersonalBean.getUdate().getNi_name());
+                        tvPhone.setText(aboutPersonalBean.getUdate().getTel());
+                    }
                 } catch (Exception e) {
                     dialog.dismiss();
                     e.printStackTrace();
@@ -131,7 +198,6 @@ public class MyMessageActivity extends BaseActivity {
             }
         });
     }
-
 
 
     @Override

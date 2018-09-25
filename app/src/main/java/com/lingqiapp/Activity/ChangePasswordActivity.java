@@ -2,6 +2,7 @@ package com.lingqiapp.Activity;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +25,7 @@ import com.google.gson.Gson;
 import com.lingqiapp.Bean.CodeBean;
 import com.lingqiapp.R;
 import com.lingqiapp.Utils.CodeUtils;
+import com.lingqiapp.Utils.SpUtil;
 import com.lingqiapp.Utils.UrlUtils;
 import com.lingqiapp.Utils.Utils;
 import com.lingqiapp.Volley.VolleyInterface;
@@ -218,7 +220,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
     private void getUserPlace(String phone) {
         HashMap<String, String> params = new HashMap<>(2);
         params.put("tel", phone);
-        params.put("type", "2");
+        params.put("type", "4");
         VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "login/tel", "login/tel", params, new VolleyInterface(context) {
             @Override
             public void onMySuccess(String result) {
@@ -295,11 +297,12 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
      */
     private void getRegister(String phone, String code, String password) {
         HashMap<String, String> params = new HashMap<>(1);
+        params.put("uid", String.valueOf(SpUtil.get(context,"uid","")));
         params.put("tel", phone);
         params.put("code", code);
         params.put("password", password);
         params.put("fpassword", password);
-        VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "login/forget", "login/forget", params, new VolleyInterface(context) {
+        VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "about/sav_pwd", "about/sav_pwd", params, new VolleyInterface(context) {
             @Override
             public void onMySuccess(String result) {
                 dialog.dismiss();
@@ -309,8 +312,11 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
                 try {
                     CodeBean codeBean = new Gson().fromJson(decode, CodeBean.class);
                     if (1 == codeBean.getStatus()) {
-                        Toast.makeText(ChangePasswordActivity.this, "修改成功", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ChangePasswordActivity.this, "修改成功,请重新登录", Toast.LENGTH_SHORT).show();
                         finish();
+                        Intent intent = new Intent(context, LoginActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
                     } else {
                         Toast.makeText(ChangePasswordActivity.this, codeBean.getMsg(), Toast.LENGTH_SHORT).show();
                     }

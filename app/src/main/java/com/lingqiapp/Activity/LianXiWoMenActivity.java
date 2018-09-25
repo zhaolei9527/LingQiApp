@@ -47,7 +47,6 @@ public class LianXiWoMenActivity extends BaseActivity {
      */
     private void getNews(final String id) {
         HashMap<String, String> params = new HashMap<>(1);
-        params.put("pwd", UrlUtils.KEY);
         params.put("id", id);
         VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "news/detail", "news/detail", params, new VolleyInterface(context) {
             @Override

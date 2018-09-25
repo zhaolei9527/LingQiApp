@@ -48,6 +48,8 @@
         <activity android:name=".Activity.ChangePasswordActivity"></activity>
         <activity android:name=".Activity.MyMessageActivity"></activity>
         <activity android:name=".Activity.MYTuiJianMaActivity"></activity>
+        <activity android:name=".Activity.AddressActivitry"></activity>
+        <activity android:name=".Activity.AddAdressActivity"></activity>
 
         <!--====================================功能需要==========================================-->
 

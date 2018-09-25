@@ -258,7 +258,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         SpUtil.putAndApply(context, "money", loginBean.getUser().getMoney());
                         SpUtil.putAndApply(context, "img", loginBean.getUser().getImg());
                         SpUtil.putAndApply(context, "password", password);
-                        SpUtil.putAndApply(context, "tel", loginBean.getUser().getTel());
+                        SpUtil.putAndApply(context, "tel", ""+loginBean.getUser().getTel());
                         gotoMain();
                     } else if ("2".equals(loginBean.getStatus())) {
                         EasyToast.showShort(context, loginBean.getMsg().toString());

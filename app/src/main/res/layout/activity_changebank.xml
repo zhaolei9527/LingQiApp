@@ -341,7 +341,7 @@
                     android:background="@color/bgea"></View>
 
                 <Button
-                    android:id="@+id/btn_register"
+                    android:id="@+id/btn_submit"
                     android:layout_width="@dimen/x262"
                     android:layout_height="@dimen/y33"
                     android:layout_centerHorizontal="true"

@@ -13,11 +13,14 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.lingqiapp.Activity.AddressActivitry;
 import com.lingqiapp.Activity.BanQuanDetailsActivity;
+import com.lingqiapp.Activity.BankMessageActivity;
 import com.lingqiapp.Activity.LoginActivity;
 import com.lingqiapp.Activity.MYTuiJianMaActivity;
 import com.lingqiapp.Activity.MyMessageActivity;
 import com.lingqiapp.Activity.PingTaiDetailsActivity;
+import com.lingqiapp.Activity.TiXianActivity;
 import com.lingqiapp.Activity.YiJianFanKuiActivity;
 import com.lingqiapp.R;
 import com.lingqiapp.Utils.SpUtil;
@@ -110,6 +113,9 @@ public class MeFragment extends BaseLazyFragment implements View.OnClickListener
         llBanquanxinxi.setOnClickListener(this);
         flMymessage.setOnClickListener(this);
         llErweima.setOnClickListener(this);
+        llShouhuodizhi.setOnClickListener(this);
+        llYinhangkaguanli.setOnClickListener(this);
+        llShenqingtixian.setOnClickListener(this);
         btnExit.setOnClickListener(this);
     }
 
@@ -136,6 +142,15 @@ public class MeFragment extends BaseLazyFragment implements View.OnClickListener
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.ll_shenqingtixian:
+                startActivity(new Intent(mContext, TiXianActivity.class));
+                break;
+            case R.id.ll_yinhangkaguanli:
+                startActivity(new Intent(mContext, BankMessageActivity.class));
+                break;
+            case R.id.ll_shouhuodizhi:
+                startActivity(new Intent(mContext, AddressActivitry.class));
+                break;
             case R.id.ll_erweima:
                 startActivity(new Intent(mContext, MYTuiJianMaActivity.class));
                 break;
