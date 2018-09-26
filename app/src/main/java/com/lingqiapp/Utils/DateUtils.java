@@ -416,25 +416,25 @@ public class DateUtils {
 
         switch (weekIndex) {
             case 1:
-                week = "星期日";
+                week = "7";
                 break;
             case 2:
-                week = "星期一";
+                week = "1";
                 break;
             case 3:
-                week = "星期二";
+                week = "2";
                 break;
             case 4:
-                week = "星期三";
+                week = "3";
                 break;
             case 5:
-                week = "星期四";
+                week = "4";
                 break;
             case 6:
-                week = "星期五";
+                week = "5";
                 break;
             case 7:
-                week = "星期六";
+                week = "6";
                 break;
         }
         return week;

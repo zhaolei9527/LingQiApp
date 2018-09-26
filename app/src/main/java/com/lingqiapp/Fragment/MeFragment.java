@@ -16,12 +16,17 @@ import android.widget.TextView;
 import com.lingqiapp.Activity.AddressActivitry;
 import com.lingqiapp.Activity.BanQuanDetailsActivity;
 import com.lingqiapp.Activity.BankMessageActivity;
+import com.lingqiapp.Activity.CaiWuMingXiActiivity;
+import com.lingqiapp.Activity.LianXiWoMenActivity;
 import com.lingqiapp.Activity.LoginActivity;
 import com.lingqiapp.Activity.MYTuiJianMaActivity;
 import com.lingqiapp.Activity.MyMessageActivity;
+import com.lingqiapp.Activity.MyTuiJianRenActivity;
 import com.lingqiapp.Activity.PingTaiDetailsActivity;
 import com.lingqiapp.Activity.TiXianActivity;
+import com.lingqiapp.Activity.TiXianJiLuListActivity;
 import com.lingqiapp.Activity.YiJianFanKuiActivity;
+import com.lingqiapp.Activity.ZhanNeiXiaoXiListActivity;
 import com.lingqiapp.R;
 import com.lingqiapp.Utils.SpUtil;
 import com.lingqiapp.Utils.UrlUtils;
@@ -116,6 +121,11 @@ public class MeFragment extends BaseLazyFragment implements View.OnClickListener
         llShouhuodizhi.setOnClickListener(this);
         llYinhangkaguanli.setOnClickListener(this);
         llShenqingtixian.setOnClickListener(this);
+        llTixianjilu.setOnClickListener(this);
+        llCaiwumingxi.setOnClickListener(this);
+        llZhanneixiaoxi.setOnClickListener(this);
+        llYaoqingliebiao.setOnClickListener(this);
+        llLianxiwomen.setOnClickListener(this);
         btnExit.setOnClickListener(this);
     }
 
@@ -142,6 +152,21 @@ public class MeFragment extends BaseLazyFragment implements View.OnClickListener
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.ll_lianxiwomen:
+                startActivity(new Intent(mContext, LianXiWoMenActivity.class));
+                break;
+            case R.id.ll_yaoqingliebiao:
+                startActivity(new Intent(mContext, MyTuiJianRenActivity.class));
+                break;
+            case R.id.ll_zhanneixiaoxi:
+                startActivity(new Intent(mContext, ZhanNeiXiaoXiListActivity.class));
+                break;
+            case R.id.ll_caiwumingxi:
+                startActivity(new Intent(mContext, CaiWuMingXiActiivity.class));
+                break;
+            case R.id.ll_tixianjilu:
+                startActivity(new Intent(mContext, TiXianJiLuListActivity.class));
+                break;
             case R.id.ll_shenqingtixian:
                 startActivity(new Intent(mContext, TiXianActivity.class));
                 break;

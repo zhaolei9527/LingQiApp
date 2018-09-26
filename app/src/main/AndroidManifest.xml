@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
@@ -50,7 +51,10 @@
         <activity android:name=".Activity.MYTuiJianMaActivity"></activity>
         <activity android:name=".Activity.AddressActivitry"></activity>
         <activity android:name=".Activity.AddAdressActivity"></activity>
-
+        <activity android:name=".Activity.CaiWuMingXiActiivity"></activity>
+        <activity android:name=".Activity.ZhanNeiXiaoXiListActivity"></activity>
+        <activity android:name=".Activity.MyTuiJianRenActivity"></activity>
+        <activity android:name=".Activity.NewsDetailsActivity"></activity>
         <!--====================================功能需要==========================================-->
 
         <activity

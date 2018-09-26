@@ -14,9 +14,9 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
-import com.lingqiapp.Adapter.TiXianListAdapter;
+import com.lingqiapp.Adapter.ZhanNeiListAdapter;
 import com.lingqiapp.Base.BaseActivity;
-import com.lingqiapp.Bean.TixianLogBean;
+import com.lingqiapp.Bean.ZhanNeiBean;
 import com.lingqiapp.R;
 import com.lingqiapp.Utils.EasyToast;
 import com.lingqiapp.Utils.SpUtil;
@@ -30,7 +30,6 @@ import com.lingqiapp.Volley.VolleyRequest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.function.IntToDoubleFunction;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,7 +42,7 @@ import me.fangx.haorefresh.LoadMoreListener;
  * @date 2018/9/14
  * 功能描述：
  */
-public class TiXianJiLuListActivity extends BaseActivity {
+public class ZhanNeiXiaoXiListActivity extends BaseActivity {
 
     @BindView(R.id.rl_back)
     FrameLayout rlBack;
@@ -53,12 +52,12 @@ public class TiXianJiLuListActivity extends BaseActivity {
     ImageView img;
     @BindView(R.id.LL_empty)
     RelativeLayout LLEmpty;
-    private TiXianListAdapter adapter;
+    private ZhanNeiListAdapter adapter;
     private Dialog dialog;
 
     @Override
     protected int setthislayout() {
-        return R.layout.activity_tixianjilu_list;
+        return R.layout.activity_zhanneixiaoxi_list;
     }
 
     @Override
@@ -99,15 +98,16 @@ public class TiXianJiLuListActivity extends BaseActivity {
     protected void initData() {
 
         if (Utils.isConnected(context)) {
-            if (dialog == null) {
-                dialog = Utils.showLoadingDialog(context);
-            }
+
+            dialog = Utils.showLoadingDialog(context);
+
             dialog.show();
             getNewsList();
+
         } else {
             EasyToast.showShort(context, R.string.Networkexception);
-
         }
+
 
     }
 
@@ -119,14 +119,14 @@ public class TiXianJiLuListActivity extends BaseActivity {
         params.put("page", String.valueOf(p));
         params.put("uid", String.valueOf(SpUtil.get(context, "uid", "")));
         Log.e("NewsListFragment", "params:" + params);
-        VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "about/tixian_log", "about/tixian_log", params, new VolleyInterface(context) {
+        VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "about/zhannei", "about/zhannei", params, new VolleyInterface(context) {
             @Override
             public void onMySuccess(String result) {
                 String decode = result;
                 try {
                     dialog.dismiss();
                     Log.e("NewsListFragment", decode.toString());
-                    TixianLogBean newsSearchBean = new Gson().fromJson(decode, TixianLogBean.class);
+                    ZhanNeiBean newsSearchBean = new Gson().fromJson(decode, ZhanNeiBean.class);
                     if ("1".equals(String.valueOf(newsSearchBean.getStatus()))) {
                         LLEmpty.setVisibility(View.GONE);
                         if (rvTxjlList != null) {
@@ -135,7 +135,7 @@ public class TiXianJiLuListActivity extends BaseActivity {
                             rvTxjlList.setCanloadMore(true);
                         }
                         if (p == 1) {
-                            adapter = new TiXianListAdapter(newsSearchBean.getList(), context);
+                            adapter = new ZhanNeiListAdapter(newsSearchBean.getList(), context);
                             rvTxjlList.setAdapter(adapter);
 
                             if (newsSearchBean.getList().size() < 10) {

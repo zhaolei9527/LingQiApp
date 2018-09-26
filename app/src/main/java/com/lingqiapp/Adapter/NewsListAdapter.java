@@ -1,15 +1,22 @@
 package com.lingqiapp.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.lingqiapp.Activity.NewsDetailsActivity;
+import com.lingqiapp.Bean.NewsListBean;
 import com.lingqiapp.R;
+import com.lingqiapp.Utils.DateUtils;
+import com.lingqiapp.Utils.UrlUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,13 +29,14 @@ import butterknife.ButterKnife;
 public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.ViewHolder> {
 
     Context mContext;
-    private ArrayList<String> datas = new ArrayList();
+    private ArrayList<NewsListBean.ResBean> datas = new ArrayList();
 
-    public ArrayList<String> getDatas() {
+    public ArrayList<NewsListBean.ResBean> getDatas() {
         return datas;
     }
 
-    public NewsListAdapter(Context context) {
+    public NewsListAdapter(List<NewsListBean.ResBean> list, Context context) {
+        this.datas = (ArrayList<NewsListBean.ResBean>) list;
         this.mContext = context;
     }
 
@@ -45,12 +53,24 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        holder.SimpleDraweeView.setImageURI("https://ss3.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=06023fafd82a28345ca6300b6bb4c92e/e61190ef76c6a7efa8408794f1faaf51f3de6619.jpg");
+        holder.SimpleDraweeView.setImageURI(UrlUtils.URL + datas.get(position).getImg());
+        holder.tvTitle.setText(datas.get(position).getTitle());
+        holder.tvTime.setText(DateUtils.getMillon(Long.parseLong(datas.get(position).getAdd_time()) * 1000));
+        holder.tvContent.setText("" + datas.get(position).getJianjie());
+
+
+        holder.flItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mContext.startActivity(new Intent(mContext, NewsDetailsActivity.class).putExtra("id",datas.get(position).getId()));
+            }
+        });
+
     }
 
     @Override
     public int getItemCount() {
-        return 11;
+        return datas.size();
     }
 
 
@@ -64,6 +84,9 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.ViewHo
         TextView tvTitle;
         @BindView(R.id.tv_content)
         TextView tvContent;
+        @BindView(R.id.fl_item)
+        FrameLayout flItem;
+
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

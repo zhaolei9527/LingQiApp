@@ -4,17 +4,24 @@ import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.jude.rollviewpager.hintview.IconHintView;
 import com.lingqiapp.Activity.MainActivity;
+import com.lingqiapp.Bean.HomeBean;
 import com.lingqiapp.R;
+import com.lingqiapp.Utils.DateUtils;
 import com.lingqiapp.Utils.DensityUtils;
+import com.lingqiapp.Utils.UrlUtils;
+
 import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -28,23 +35,20 @@ import butterknife.ButterKnife;
 public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHolder> {
 
     private MainActivity mContext;
-    // private HomeBean homeBean;
+    private HomeBean homeBean;
+    private ArrayList<HomeBean.ListBean> datas = new ArrayList();
 
-    private ArrayList<String> datas = new ArrayList();
-    private ArrayList<String> titleList = new ArrayList<String>();
-
-    public ArrayList<String> getDatas() {
+    public ArrayList<HomeBean.ListBean> getDatas() {
         return datas;
     }
 
-    public HomeListAdapter(MainActivity context
-                           //        , HomeBean homeBean
-    ) {
+    public HomeListAdapter(MainActivity context, HomeBean homeBean) {
         this.mContext = context;
-        //   this.homeBean = homeBean;
+        this.homeBean = homeBean;
+        datas.addAll(homeBean.getList());
     }
 
-    public void setDatas(ArrayList<String> datas) {
+    public void setDatas(ArrayList<HomeBean.ListBean> datas) {
         this.datas.addAll(datas);
     }
 
@@ -80,24 +84,151 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                 //轮播图设置
                 holder.RollPagerView.setHintView(new IconHintView(mContext, R.drawable.shape_selected, R.drawable.shape_noraml, DensityUtils.dp2px(mContext, mContext.getResources().getDimension(R.dimen.x7))));
                 holder.RollPagerView.setPlayDelay(3000);
-                holder.RollPagerView.setAdapter(new LoopAdapter(holder.RollPagerView));
-                holder.simNow.setImageURI("https://ss3.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=06023fafd82a28345ca6300b6bb4c92e/e61190ef76c6a7efa8408794f1faaf51f3de6619.jpg");
-                holder.sim1.setImageURI("https://ss3.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=06023fafd82a28345ca6300b6bb4c92e/e61190ef76c6a7efa8408794f1faaf51f3de6619.jpg");
-                holder.sim2.setImageURI("https://ss3.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=06023fafd82a28345ca6300b6bb4c92e/e61190ef76c6a7efa8408794f1faaf51f3de6619.jpg");
-                holder.sim3.setImageURI("https://ss3.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=06023fafd82a28345ca6300b6bb4c92e/e61190ef76c6a7efa8408794f1faaf51f3de6619.jpg");
-                holder.sim4.setImageURI("https://ss3.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=06023fafd82a28345ca6300b6bb4c92e/e61190ef76c6a7efa8408794f1faaf51f3de6619.jpg");
-                holder.sim5.setImageURI("https://ss3.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=06023fafd82a28345ca6300b6bb4c92e/e61190ef76c6a7efa8408794f1faaf51f3de6619.jpg");
-                holder.sim6.setImageURI("https://ss3.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=06023fafd82a28345ca6300b6bb4c92e/e61190ef76c6a7efa8408794f1faaf51f3de6619.jpg");
+                holder.RollPagerView.setAdapter(new LoopAdapter(holder.RollPagerView, homeBean.getLun_img()));
+
+                for (int i = 0; i < homeBean.getGoods_pai().size(); i++) {
+
+                    if (DateUtils.getWeekByDateStr(DateUtils.getMillon(System.currentTimeMillis())).equals(homeBean.getGoods_pai().get(i).getZhou()) && homeBean.getGoods_pai().get(i).getZhou().equals("1")) {
+
+                        holder.simNow.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(0).getImg_feng());
+                        holder.sim1.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(1).getImg_feng());
+                        holder.sim2.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(2).getImg_feng());
+                        holder.sim3.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(3).getImg_feng());
+                        holder.sim4.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(4).getImg_feng());
+                        holder.sim5.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(5).getImg_feng());
+                        holder.sim6.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(6).getImg_feng());
+
+                        holder.tv_day1.setText("未开始");
+                        holder.tv_day2.setText("未开始");
+                        holder.tv_day3.setText("未开始");
+                        holder.tv_day4.setText("未开始");
+                        holder.tv_day5.setText("未开始");
+                        holder.tv_day6.setText("未开始");
+
+
+                    } else if (DateUtils.getWeekByDateStr(DateUtils.getMillon(System.currentTimeMillis())).equals(homeBean.getGoods_pai().get(i).getZhou()) && homeBean.getGoods_pai().get(i).getZhou().equals("2")) {
+
+
+                        holder.simNow.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(1).getImg_feng());
+                        holder.sim1.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(0).getImg_feng());
+                        holder.sim2.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(2).getImg_feng());
+                        holder.sim3.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(3).getImg_feng());
+                        holder.sim4.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(4).getImg_feng());
+                        holder.sim5.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(5).getImg_feng());
+                        holder.sim6.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(6).getImg_feng());
+
+                        holder.tv_day1.setText("周一");
+                        holder.tv_day2.setText("未开始");
+                        holder.tv_day3.setText("未开始");
+                        holder.tv_day4.setText("未开始");
+                        holder.tv_day5.setText("未开始");
+                        holder.tv_day6.setText("未开始");
+
+                    } else if (DateUtils.getWeekByDateStr(DateUtils.getMillon(System.currentTimeMillis())).equals(homeBean.getGoods_pai().get(i).getZhou()) && homeBean.getGoods_pai().get(i).getZhou().equals("3")) {
+
+
+                        holder.simNow.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(2).getImg_feng());
+                        holder.sim1.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(0).getImg_feng());
+                        holder.sim2.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(1).getImg_feng());
+                        holder.sim3.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(3).getImg_feng());
+                        holder.sim4.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(4).getImg_feng());
+                        holder.sim5.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(5).getImg_feng());
+                        holder.sim6.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(6).getImg_feng());
+
+                        holder.tv_day1.setText("周一");
+                        holder.tv_day2.setText("周二");
+                        holder.tv_day3.setText("未开始");
+                        holder.tv_day4.setText("未开始");
+                        holder.tv_day5.setText("未开始");
+                        holder.tv_day6.setText("未开始");
+
+                    } else if (DateUtils.getWeekByDateStr(DateUtils.getMillon(System.currentTimeMillis())).equals(homeBean.getGoods_pai().get(i).getZhou()) && homeBean.getGoods_pai().get(i).getZhou().equals("4")) {
+
+
+                        holder.simNow.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(3).getImg_feng());
+                        holder.sim1.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(0).getImg_feng());
+                        holder.sim2.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(1).getImg_feng());
+                        holder.sim3.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(2).getImg_feng());
+                        holder.sim4.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(4).getImg_feng());
+                        holder.sim5.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(5).getImg_feng());
+                        holder.sim6.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(6).getImg_feng());
+
+                        holder.tv_day1.setText("周一");
+                        holder.tv_day2.setText("周二");
+                        holder.tv_day3.setText("周三");
+                        holder.tv_day4.setText("未开始");
+                        holder.tv_day5.setText("未开始");
+                        holder.tv_day6.setText("未开始");
+
+
+                    } else if (DateUtils.getWeekByDateStr(DateUtils.getMillon(System.currentTimeMillis())).equals(homeBean.getGoods_pai().get(i).getZhou()) && homeBean.getGoods_pai().get(i).getZhou().equals("5")) {
+
+                        holder.simNow.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(4).getImg_feng());
+                        holder.sim1.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(0).getImg_feng());
+                        holder.sim2.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(1).getImg_feng());
+                        holder.sim3.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(2).getImg_feng());
+                        holder.sim4.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(3).getImg_feng());
+                        holder.sim5.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(5).getImg_feng());
+                        holder.sim6.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(6).getImg_feng());
+
+                        holder.tv_day1.setText("周一");
+                        holder.tv_day2.setText("周二");
+                        holder.tv_day3.setText("周三");
+                        holder.tv_day4.setText("周四");
+                        holder.tv_day5.setText("未开始");
+                        holder.tv_day6.setText("未开始");
+
+                    } else if (DateUtils.getWeekByDateStr(DateUtils.getMillon(System.currentTimeMillis())).equals(homeBean.getGoods_pai().get(i).getZhou()) && homeBean.getGoods_pai().get(i).getZhou().equals("6")) {
+
+
+                        holder.simNow.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(5).getImg_feng());
+                        holder.sim1.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(0).getImg_feng());
+                        holder.sim2.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(1).getImg_feng());
+                        holder.sim3.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(2).getImg_feng());
+                        holder.sim4.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(3).getImg_feng());
+                        holder.sim5.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(4).getImg_feng());
+                        holder.sim6.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(6).getImg_feng());
+
+                        holder.tv_day1.setText("周一");
+                        holder.tv_day2.setText("周二");
+                        holder.tv_day3.setText("周三");
+                        holder.tv_day4.setText("周四");
+                        holder.tv_day5.setText("周五");
+                        holder.tv_day6.setText("未开始");
+
+                    } else if (DateUtils.getWeekByDateStr(DateUtils.getMillon(System.currentTimeMillis())).equals(homeBean.getGoods_pai().get(i).getZhou()) && homeBean.getGoods_pai().get(i).getZhou().equals("7")) {
+
+                        holder.simNow.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(6).getImg_feng());
+                        holder.sim1.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(0).getImg_feng());
+                        holder.sim2.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(1).getImg_feng());
+                        holder.sim3.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(2).getImg_feng());
+                        holder.sim4.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(3).getImg_feng());
+                        holder.sim5.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(4).getImg_feng());
+                        holder.sim6.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(5).getImg_feng());
+
+                        holder.tv_day1.setText("周一");
+                        holder.tv_day2.setText("周二");
+                        holder.tv_day3.setText("周三");
+                        holder.tv_day4.setText("周四");
+                        holder.tv_day5.setText("周五");
+                        holder.tv_day6.setText("周六");
+
+                    }
+                }
+
                 isfirst = !isfirst;
             }
         } else {
-            holder.simShopimg.setImageURI("https://ss3.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=06023fafd82a28345ca6300b6bb4c92e/e61190ef76c6a7efa8408794f1faaf51f3de6619.jpg");
+            holder.simShopimg.setImageURI(UrlUtils.URL + datas.get(position - 1).getImg_feng());
+            holder.tvShopmoney.setText(datas.get(position - 1).getPrice() + "元");
+            holder.tvShopnum.setText("已领：" + datas.get(position - 1).getXiaoliang() + "件");
+            holder.tvShoptitle.setText(datas.get(position - 1).getTitle());
         }
     }
 
     @Override
     public int getItemCount() {
-        return 11;
+        return datas.size() + 1;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -125,6 +256,25 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
         @Nullable
         @BindView(R.id.sim_6)
         SimpleDraweeView sim6;
+
+        @Nullable
+        @BindView(R.id.tv_day1)
+        TextView tv_day1;
+        @Nullable
+        @BindView(R.id.tv_day2)
+        TextView tv_day2;
+        @Nullable
+        @BindView(R.id.tv_day3)
+        TextView tv_day3;
+        @Nullable
+        @BindView(R.id.tv_day4)
+        TextView tv_day4;
+        @Nullable
+        @BindView(R.id.tv_day5)
+        TextView tv_day5;
+        @Nullable
+        @BindView(R.id.tv_day6)
+        TextView tv_day6;
 
         @Nullable
         @BindView(R.id.sim_shopimg)

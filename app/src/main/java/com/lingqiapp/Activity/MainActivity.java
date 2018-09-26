@@ -51,6 +51,7 @@ public class MainActivity extends BaseActivity {
         Acp.getInstance(this).request(new AcpOptions.Builder()
                         .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE
                                 , Manifest.permission.READ_EXTERNAL_STORAGE
+                                , Manifest.permission.READ_PHONE_STATE
                                 , Manifest.permission.CAMERA)
                         .setDeniedMessage(getString(R.string.requstPerminssions))
                         .build(),

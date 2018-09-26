@@ -3,6 +3,7 @@ package com.lingqiapp.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -55,6 +56,7 @@ public class TiXianActivity extends BaseActivity {
     @BindView(R.id.btn_submit)
     Button btnSubmit;
     private Dialog dialog;
+    private TiXianBean tiXianBean;
 
     @Override
     protected int setthislayout() {
@@ -68,6 +70,7 @@ public class TiXianActivity extends BaseActivity {
 
     @Override
     protected void initListener() {
+
         rlBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,11 +78,48 @@ public class TiXianActivity extends BaseActivity {
             }
         });
 
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String money = etMoney.getText().toString().trim();
+
+                if (TextUtils.isEmpty(money)) {
+                    EasyToast.showShort(context, etMoney.getHint().toString());
+                    return;
+                }
+
+                double v = Double.parseDouble(money);
+                String tx_min = tiXianBean.getTdata().getTx_min();
+                double v1 = Double.parseDouble(tx_min);
+
+                if (v < v1) {
+                    EasyToast.showShort(context, "温馨提示：单次提现金额不低于" + v1 + "元");
+                    return;
+                }
+
+                if (Utils.isConnected(context)) {
+                    dialog.show();
+                    doTx();
+                } else {
+                    EasyToast.showShort(context, R.string.Networkexception);
+                }
+
+            }
+        });
+
+        tvTixianjilu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, TiXianJiLuListActivity.class));
+            }
+        });
 
     }
 
     @Override
     protected void initData() {
+
         if (Utils.isConnected(context)) {
             dialog = Utils.showLoadingDialog(context);
             dialog.show();
@@ -106,13 +146,14 @@ public class TiXianActivity extends BaseActivity {
         params.put("uid", String.valueOf(SpUtil.get(context, "uid", "")));
         Log.e("LoginActivity", params.toString());
         VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "about/tixian", "about/tixian", params, new VolleyInterface(context) {
+
             @Override
             public void onMySuccess(String result) {
                 String decode = result;
                 Log.e("LoginActivity", decode);
                 try {
                     dialog.dismiss();
-                    TiXianBean tiXianBean = new Gson().fromJson(decode, TiXianBean.class);
+                    tiXianBean = new Gson().fromJson(decode, TiXianBean.class);
                     if (1 == tiXianBean.getStatus()) {
 
                         tvYue.setText("当前账户最多可提现余额：" + tiXianBean.getTdata().getMoney());
@@ -125,6 +166,36 @@ public class TiXianActivity extends BaseActivity {
                         startActivity(new Intent(context, BankMessageActivity.class));
                         finish();
                     }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onMyError(VolleyError error) {
+                dialog.dismiss();
+                error.printStackTrace();
+            }
+        });
+    }
+
+
+    private void doTx() {
+        HashMap<String, String> params = new HashMap<>(1);
+        params.put("uid", String.valueOf(SpUtil.get(context, "uid", "")));
+        params.put("bank", tiXianBean.getBank().getBank());
+        params.put("no", tiXianBean.getBank().getNo());
+        params.put("money", etMoney.getText().toString());
+        Log.e("LoginActivity", params.toString());
+        VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "about/do_tx", "about/do_tx", params, new VolleyInterface(context) {
+
+            @Override
+            public void onMySuccess(String result) {
+                String decode = result;
+                Log.e("LoginActivity", decode);
+                try {
+                    dialog.dismiss();
+                    EasyToast.showShort(context, new Gson().fromJson(decode, TiXianBean.class).getMsg());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

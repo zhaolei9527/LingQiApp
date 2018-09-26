@@ -71,10 +71,13 @@
                     android:orientation="vertical">
 
                     <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/SimpleDraweeView1"
                         android:layout_width="@dimen/x61"
                         android:layout_height="@dimen/x61" />
 
                     <TextView
+                        android:gravity="center"
+                        android:id="@+id/tv1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/x5"
@@ -101,10 +104,14 @@
                         android:orientation="vertical">
 
                         <com.facebook.drawee.view.SimpleDraweeView
+                            android:id="@+id/SimpleDraweeView2"
                             android:layout_width="@dimen/x61"
                             android:layout_height="@dimen/x61" />
 
                         <TextView
+                            android:gravity="center"
+
+                            android:id="@+id/tv2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/x5"
@@ -137,10 +144,14 @@
                     android:orientation="vertical">
 
                     <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/SimpleDraweeView3"
                         android:layout_width="@dimen/x61"
                         android:layout_height="@dimen/x61" />
 
                     <TextView
+                        android:gravity="center"
+
+                        android:id="@+id/tv3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/x5"
@@ -166,10 +177,14 @@
                         android:orientation="vertical">
 
                         <com.facebook.drawee.view.SimpleDraweeView
+                            android:id="@+id/SimpleDraweeView4"
                             android:layout_width="@dimen/x61"
                             android:layout_height="@dimen/x61" />
 
                         <TextView
+                            android:gravity="center"
+
+                            android:id="@+id/tv4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/x5"
@@ -201,6 +216,7 @@
                     android:orientation="horizontal">
 
                     <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/SimpleDraweeView5"
                         android:layout_width="@dimen/x61"
                         android:layout_height="@dimen/x61"
                         android:layout_gravity="center_vertical"
@@ -216,6 +232,7 @@
                         android:background="@color/bgea"></View>
 
                     <TextView
+                        android:id="@+id/tv5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"

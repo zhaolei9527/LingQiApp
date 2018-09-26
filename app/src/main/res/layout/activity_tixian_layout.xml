@@ -91,7 +91,7 @@
             android:layout_marginTop="@dimen/x10"
             android:background="@color/bgea"
             android:hint="请输入提现金额"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:padding="@dimen/x5" />
 
 

@@ -13,9 +13,11 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.android.volley.VolleyError;
+import com.google.gson.Gson;
 import com.lingqiapp.Activity.NewsListActivity;
 import com.lingqiapp.Adapter.NewsPageAdapter;
 import com.lingqiapp.App;
+import com.lingqiapp.Bean.NewsListBean;
 import com.lingqiapp.R;
 import com.lingqiapp.Utils.SpUtil;
 import com.lingqiapp.Utils.UrlUtils;
@@ -65,21 +67,6 @@ public class NewsFragment extends BaseLazyFragment {
 
     @Override
     protected void initData() {
-        titles.add("a");
-        titles.add("b");
-        titles.add("c");
-        titles.add("d");
-        titles.add("e");
-        titles.add("d");
-        titleid.add("a");
-        titleid.add("b");
-        titleid.add("c");
-        titleid.add("d");
-        titleid.add("e");
-        titleid.add("d");
-        adapter = new NewsPageAdapter(getChildFragmentManager(), getActivity(), titles, titleid);
-        VpNewsContext.setAdapter(adapter);
-        tabs.setViewPager(VpNewsContext);
         llSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,7 +79,7 @@ public class NewsFragment extends BaseLazyFragment {
     public void onResume() {
         super.onResume();
         p = 1;
-        //getIndex();
+        getIndex();
     }
 
     @Override
@@ -125,27 +112,27 @@ public class NewsFragment extends BaseLazyFragment {
                 String decode = result;
                 Log.e("NewsFragment", decode);
                 try {
-                    // NewsListBean newsListBean = new Gson().fromJson(decode, NewsListBean.class);
+                     NewsListBean newsListBean = new Gson().fromJson(decode, NewsListBean.class);
                     //新闻分类处理
-                    // List<NewsListBean.ListBean.CateBean> cate = newsListBean.getList().getCate();
-                    // titles.clear();
-                    // titleid.clear();
-//                    for (int i = 0; i < cate.size(); i++) {
-//                        titles.add(cate.get(i).getTitle());
-//                        titleid.add(cate.get(i).getId());
-//                    }
-                    // if (adapter == null) {
-                    //   adapter = new NewsPageAdapter(getChildFragmentManager(), getActivity(), titles, titleid);
-                    //  VpNewsContext.setAdapter(adapter);
-                    //  tabs.setViewPager(VpNewsContext);
-                    //} else {
-                    //  if (p != 1) {
-                    //       VpNewsContext.setAdapter(adapter);
-                    //  }
-                    // }
+                     List<NewsListBean.CateBean> cate = newsListBean.getCate();
+                     titles.clear();
+                     titleid.clear();
+                    for (int i = 0; i < cate.size(); i++) {
+                        titles.add(cate.get(i).getCate_name());
+                        titleid.add(cate.get(i).getId());
+                    }
+                     if (adapter == null) {
+                       adapter = new NewsPageAdapter(getChildFragmentManager(), getActivity(), titles, titleid);
+                      VpNewsContext.setAdapter(adapter);
+                      tabs.setViewPager(VpNewsContext);
+                    } else {
+                      if (p != 1) {
+                           VpNewsContext.setAdapter(adapter);
+                      }
+                     }
                     //缓存首页数据
                     SpUtil.putAndApply(getActivity(), "index", decode);
-                    // cate = null;
+                     cate = null;
                     decode = null;
                 } catch (Exception e) {
                     e.printStackTrace();

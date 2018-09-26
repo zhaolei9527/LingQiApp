@@ -30,7 +30,6 @@ import com.lingqiapp.Volley.VolleyRequest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.function.IntToDoubleFunction;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,15 +39,15 @@ import me.fangx.haorefresh.LoadMoreListener;
  * com.lingqiapp.Activity
  *
  * @author 赵磊
- * @date 2018/9/14
+ * @date 2018/9/26
  * 功能描述：
  */
-public class TiXianJiLuListActivity extends BaseActivity {
+public class MyTuiJianRenActivity extends BaseActivity {
 
     @BindView(R.id.rl_back)
     FrameLayout rlBack;
-    @BindView(R.id.rv_txjl_list)
-    WenguoyiRecycleView rvTxjlList;
+    @BindView(R.id.rv_tjr_list)
+    WenguoyiRecycleView rv_tjr_list;
     @BindView(R.id.img)
     ImageView img;
     @BindView(R.id.LL_empty)
@@ -58,20 +57,20 @@ public class TiXianJiLuListActivity extends BaseActivity {
 
     @Override
     protected int setthislayout() {
-        return R.layout.activity_tixianjilu_list;
+        return R.layout.activity_tuijianren_list;
     }
 
     @Override
     protected void initview() {
         line = new SakuraLinearLayoutManager(context);
         line.setOrientation(LinearLayoutManager.VERTICAL);
-        rvTxjlList.setLayoutManager(line);
-        rvTxjlList.setItemAnimator(new DefaultItemAnimator());
+        rv_tjr_list.setLayoutManager(line);
+        rv_tjr_list.setItemAnimator(new DefaultItemAnimator());
         ProgressView progressView = new ProgressView(context);
         progressView.setIndicatorId(ProgressView.BallRotate);
         progressView.setIndicatorColor(getResources().getColor(R.color.colorAccent));
-        rvTxjlList.setFootLoadingView(progressView);
-        rvTxjlList.setLoadMoreListener(new LoadMoreListener() {
+        rv_tjr_list.setFootLoadingView(progressView);
+        rv_tjr_list.setLoadMoreListener(new LoadMoreListener() {
             @Override
             public void onLoadMore() {
                 p = p + 1;
@@ -80,7 +79,7 @@ public class TiXianJiLuListActivity extends BaseActivity {
         });
         TextView textView = new TextView(context);
         textView.setText("-暂无更多-");
-        rvTxjlList.setFootEndView(textView);
+        rv_tjr_list.setFootEndView(textView);
     }
 
     @Override
@@ -119,7 +118,7 @@ public class TiXianJiLuListActivity extends BaseActivity {
         params.put("page", String.valueOf(p));
         params.put("uid", String.valueOf(SpUtil.get(context, "uid", "")));
         Log.e("NewsListFragment", "params:" + params);
-        VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "about/tixian_log", "about/tixian_log", params, new VolleyInterface(context) {
+        VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "about/tui", "about/tui", params, new VolleyInterface(context) {
             @Override
             public void onMySuccess(String result) {
                 String decode = result;
@@ -129,20 +128,20 @@ public class TiXianJiLuListActivity extends BaseActivity {
                     TixianLogBean newsSearchBean = new Gson().fromJson(decode, TixianLogBean.class);
                     if ("1".equals(String.valueOf(newsSearchBean.getStatus()))) {
                         LLEmpty.setVisibility(View.GONE);
-                        if (rvTxjlList != null) {
-                            rvTxjlList.setEnabled(true);
-                            rvTxjlList.loadMoreComplete();
-                            rvTxjlList.setCanloadMore(true);
+                        if (rv_tjr_list != null) {
+                            rv_tjr_list.setEnabled(true);
+                            rv_tjr_list.loadMoreComplete();
+                            rv_tjr_list.setCanloadMore(true);
                         }
                         if (p == 1) {
                             adapter = new TiXianListAdapter(newsSearchBean.getList(), context);
-                            rvTxjlList.setAdapter(adapter);
+                            rv_tjr_list.setAdapter(adapter);
 
                             if (newsSearchBean.getList().size() < 10) {
-                                rvTxjlList.setCanloadMore(false);
-                                rvTxjlList.loadMoreEnd();
+                                rv_tjr_list.setCanloadMore(false);
+                                rv_tjr_list.loadMoreEnd();
                             } else {
-                                rvTxjlList.setCanloadMore(true);
+                                rv_tjr_list.setCanloadMore(true);
                             }
                         } else {
                             adapter.setDatas((ArrayList) newsSearchBean.getList());
@@ -154,8 +153,8 @@ public class TiXianJiLuListActivity extends BaseActivity {
                         } else {
                             LLEmpty.setVisibility(View.VISIBLE);
                         }
-                        rvTxjlList.setCanloadMore(false);
-                        rvTxjlList.loadMoreEnd();
+                        rv_tjr_list.setCanloadMore(false);
+                        rv_tjr_list.loadMoreEnd();
                     }
                     newsSearchBean = null;
                     decode = null;

@@ -7,17 +7,28 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.volley.VolleyError;
+import com.google.gson.Gson;
 import com.lingqiapp.Adapter.NewsListAdapter;
+import com.lingqiapp.Bean.NewsListBean;
 import com.lingqiapp.R;
+import com.lingqiapp.Utils.SpUtil;
+import com.lingqiapp.Utils.UrlUtils;
 import com.lingqiapp.View.ProgressView;
 import com.lingqiapp.View.SakuraLinearLayoutManager;
 import com.lingqiapp.View.WenguoyiRecycleView;
+import com.lingqiapp.Volley.VolleyInterface;
+import com.lingqiapp.Volley.VolleyRequest;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import me.fangx.haorefresh.LoadMoreListener;
 
@@ -39,69 +50,68 @@ public class NewsListFragment extends BaseLazyFragment {
     /**
      * 新闻列表获取
      */
-//    private void getNewsList() {
-//        HashMap<String, String> params = new HashMap<>(1);
-//        params.put("page", String.valueOf(p));
-//        params.put("cid", String.valueOf(news_content_fragment_layout.getTag()));
-//        params.put("uid", String.valueOf(SpUtil.get(context, "uid", "")));
-//        Log.e("NewsListFragment", "params:" + params);
-//        VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "news/index", "news/index" + getTag(), params, new VolleyInterface(context) {
-//            @Override
-//            public void onMySuccess(String result) {
-//                String decode = result;
-//                try {
-//                    Log.e("NewsListFragment", decode.toString());
-//                    NewsListBean newsListBean = new Gson().fromJson(decode, NewsListBean.class);
-//                    if ("211".equals(String.valueOf(newsListBean.getStatus()))) {
-//                        LL_empty.setVisibility(View.GONE);
-//                        SpUtil.putAndApply(context, "index" + String.valueOf(news_content_fragment_layout.getTag()), decode);
-//                        if (mRecyclerView != null) {
-//                            mRecyclerView.setEnabled(true);
-//                            mRecyclerView.loadMoreComplete();
-//                            mRecyclerView.setCanloadMore(true);
-//                        }
-//                        if (refresh != null) {
-//                            refresh.setRefreshing(false);
-//                        }
-//                        if (p == 1) {
-//                            adapter = new NewsListAdapter(newsListBean.getList().getLists(), context);
-//                            mRecyclerView.setAdapter(adapter);
-//
-//                            if (newsListBean.getList().getLists().size() < 10) {
-//                                refresh.setRefreshing(false);
-//                            } else {
-//                                mRecyclerView.setCanloadMore(true);
-//                            }
-//                        } else {
-//                            adapter.setDatas((ArrayList) newsListBean.getList().getLists());
-//                        }
-//                    } else {
-//                        if (p != 1) {
-//                            p = p - 1;
-//                        } else {
-//                            LL_empty.setVisibility(View.VISIBLE);
-//                        }
-//                        mRecyclerView.loadMoreComplete();
-//                        refresh.setRefreshing(false);
-//                    }
-//                    newsListBean = null;
-//                    decode = null;
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                    refresh.setRefreshing(false);
-//                }
-//            }
-//
-//            @Override
-//            public void onMyError(VolleyError error) {
-//                error.printStackTrace();
-//            }
-//        });
-//    }
+    private void getNewsList() {
+        HashMap<String, String> params = new HashMap<>(1);
+        params.put("page", String.valueOf(p));
+        params.put("cid", String.valueOf(news_content_fragment_layout.getTag()));
+        params.put("uid", String.valueOf(SpUtil.get(context, "uid", "")));
+        Log.e("NewsListFragment", "params:" + params);
+        VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "news/index", "news/index" + getTag(), params, new VolleyInterface(context) {
+            @Override
+            public void onMySuccess(String result) {
+                String decode = result;
+                try {
+                    Log.e("NewsListFragment", decode.toString());
+                    NewsListBean newsListBean = new Gson().fromJson(decode, NewsListBean.class);
+                    if ("1".equals(String.valueOf(newsListBean.getStatus()))) {
+                        LL_empty.setVisibility(View.GONE);
+                        SpUtil.putAndApply(context, "index" + String.valueOf(news_content_fragment_layout.getTag()), decode);
+                        if (mRecyclerView != null) {
+                            mRecyclerView.setEnabled(true);
+                            mRecyclerView.loadMoreComplete();
+                            mRecyclerView.setCanloadMore(true);
+                        }
+                        if (refresh != null) {
+                            refresh.setRefreshing(false);
+                        }
+                        if (p == 1) {
+                            adapter = new NewsListAdapter(newsListBean.getRes(), context);
+                            mRecyclerView.setAdapter(adapter);
+
+                            if (newsListBean.getRes().size() < 10) {
+                                refresh.setRefreshing(false);
+                            } else {
+                                mRecyclerView.setCanloadMore(true);
+                            }
+                        } else {
+                            adapter.setDatas((ArrayList) newsListBean.getRes());
+                        }
+                    } else {
+                        if (p != 1) {
+                            p = p - 1;
+                        } else {
+                            LL_empty.setVisibility(View.VISIBLE);
+                        }
+                        mRecyclerView.loadMoreComplete();
+                        refresh.setRefreshing(false);
+                    }
+                    newsListBean = null;
+                    decode = null;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    refresh.setRefreshing(false);
+                }
+            }
+
+            @Override
+            public void onMyError(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+    }
+
     public void getData() {
-        //getNewsList();
-        adapter = new NewsListAdapter(context);
-        mRecyclerView.setAdapter(adapter);
+        getNewsList();
         refresh.setRefreshing(false);
     }
 
