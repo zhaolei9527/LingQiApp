@@ -70,14 +70,15 @@
 
         </LinearLayout>
 
+        <include layout="@layout/layout_empty"></include>
+
 
         <com.lingqiapp.View.WenguoyiRecycleView
-            android:id="@+id/rv_homelist"
+            android:id="@+id/ce_shi_lv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipChildren="false"
             android:clipToPadding="false"></com.lingqiapp.View.WenguoyiRecycleView>
-
     </LinearLayout>
 
 </FrameLayout>

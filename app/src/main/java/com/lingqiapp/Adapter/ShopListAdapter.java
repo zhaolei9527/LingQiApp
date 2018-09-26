@@ -5,6 +5,7 @@ import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.lingqiapp.Bean.GoodsSouBean;
 import com.lingqiapp.R;
+import com.lingqiapp.Utils.UrlUtils;
 
 import java.util.ArrayList;
 
@@ -29,23 +32,19 @@ import butterknife.ButterKnife;
 public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ViewHolder> {
 
     private Activity mContext;
-    // private HomeBean homeBean;
 
-    private ArrayList<String> datas = new ArrayList();
-    private ArrayList<String> titleList = new ArrayList<String>();
+    private ArrayList<GoodsSouBean.ResBean> datas = new ArrayList();
 
-    public ArrayList<String> getDatas() {
+    public ArrayList<GoodsSouBean.ResBean> getDatas() {
         return datas;
     }
 
-    public ShopListAdapter(Activity context
-                           //        , HomeBean homeBean
-    ) {
+    public ShopListAdapter(Activity context, GoodsSouBean homeBean) {
         this.mContext = context;
-        //   this.homeBean = homeBean;
+        datas.addAll(homeBean.getRes());
     }
 
-    public void setDatas(ArrayList<String> datas) {
+    public void setDatas(ArrayList<GoodsSouBean.ResBean> datas) {
         this.datas.addAll(datas);
     }
 
@@ -61,12 +60,16 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ViewHo
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        holder.simShopimg.setImageURI("https://ss3.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=06023fafd82a28345ca6300b6bb4c92e/e61190ef76c6a7efa8408794f1faaf51f3de6619.jpg");
+        Log.e("ShopListAdapter", UrlUtils.URL + datas.get(position).getImg());
+        holder.simShopimg.setImageURI(UrlUtils.URL + datas.get(position).getImg());
+        holder.tvShopmoney.setText(datas.get(position).getPrice() + "元");
+        holder.tvShopnum.setText("已领" + datas.get(position).getXiaoliang());
+        holder.tvShoptitle.setText(datas.get(position).getTitle());
     }
 
     @Override
     public int getItemCount() {
-        return 11;
+        return datas.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
