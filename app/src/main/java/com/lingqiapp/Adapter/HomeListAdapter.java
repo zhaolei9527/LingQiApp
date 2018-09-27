@@ -1,5 +1,6 @@
 package com.lingqiapp.Adapter;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
@@ -8,11 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.jude.rollviewpager.hintview.IconHintView;
 import com.lingqiapp.Activity.MainActivity;
+import com.lingqiapp.Activity.PriceDetailsActivity;
 import com.lingqiapp.Bean.HomeBean;
 import com.lingqiapp.R;
 import com.lingqiapp.Utils.DateUtils;
@@ -222,6 +225,12 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
             holder.tvShopmoney.setText(datas.get(position - 1).getPrice() + "元");
             holder.tvShopnum.setText("已领：" + datas.get(position - 1).getXiaoliang() + "件");
             holder.tvShoptitle.setText(datas.get(position - 1).getTitle());
+            holder.llGoods.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", datas.get(position - 1).getId()));
+                }
+            });
         }
     }
 
@@ -293,6 +302,10 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
         @Nullable
         @BindView(R.id.btn_buy)
         Button btnBuy;
+
+        @Nullable
+        @BindView(R.id.ll_goods)
+        LinearLayout llGoods;
 
         public ViewHolder(View view) {
             super(view);

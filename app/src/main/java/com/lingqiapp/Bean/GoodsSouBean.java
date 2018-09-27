@@ -16,9 +16,10 @@ import java.util.List;
  */
 public class GoodsSouBean {
 
+
     /**
      * status : 1
-     * res : [{"id":"30","xiaoliang":"2","img":null,"title":"靓帝e喷视液_清爽眼部肌肤_2018新春特价","type":"1","price":"69"},{"id":"26","xiaoliang":"17","img":null,"title":"靓帝CY细胞美容生殖美学_专用胸牌10件组合_2018新春特价","type":"1","price":"100"},{"id":"40","xiaoliang":null,"img":null,"title":"123456","type":"0","price":"123123"},{"id":"39","xiaoliang":null,"img":null,"title":"测试1","type":"1","price":"12"}]
+     * res : [{"id":"30","xiaoliang":"2","img_feng":"/Public/uploads/goods/2018-09-26/5bab250117ed0.png","title":"靓帝e喷视液_清爽眼部肌肤_2018新春特价","type":"1","price":"69"},{"id":"26","xiaoliang":"17","img_feng":"/Public/uploads/goods/2018-09-26/5bab251f3ff70.jpg","title":"靓帝CY细胞美容生殖美学_专用胸牌10件组合_2018新春特价","type":"1","price":"100"},{"id":"40","xiaoliang":null,"img_feng":"/Public/uploads/goods/2018-09-25/5ba99e61e1c80.jpg","title":"123456","type":"0","price":"123123"},{"id":"39","xiaoliang":null,"img_feng":"/Public/uploads/goods/2018-09-25/5ba99e1311878.jpg","title":"测试1","type":"1","price":"12"}]
      * title : 1
      */
 
@@ -62,7 +63,7 @@ public class GoodsSouBean {
         /**
          * id : 30
          * xiaoliang : 2
-         * img : null
+         * img_feng : /Public/uploads/goods/2018-09-26/5bab250117ed0.png
          * title : 靓帝e喷视液_清爽眼部肌肤_2018新春特价
          * type : 1
          * price : 69
@@ -70,7 +71,7 @@ public class GoodsSouBean {
 
         private String id;
         private String xiaoliang;
-        private Object img;
+        private String img_feng;
         private String title;
         private String type;
         private String price;
@@ -99,12 +100,12 @@ public class GoodsSouBean {
             this.xiaoliang = xiaoliang;
         }
 
-        public Object getImg() {
-            return img;
+        public String getImg_feng() {
+            return img_feng;
         }
 
-        public void setImg(Object img) {
-            this.img = img;
+        public void setImg_feng(String img_feng) {
+            this.img_feng = img_feng;
         }
 
         public String getTitle() {

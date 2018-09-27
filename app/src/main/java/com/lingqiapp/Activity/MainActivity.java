@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lingqiapp.Base.BaseActivity;
+import com.lingqiapp.Fragment.CartFragment;
 import com.lingqiapp.Fragment.HomeFragment;
 import com.lingqiapp.Fragment.KeFuFragment;
 import com.lingqiapp.Fragment.MeFragment;
@@ -77,7 +78,7 @@ public class MainActivity extends BaseActivity {
         final ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(new HomeFragment());
         fragments.add(new NewsFragment());
-        fragments.add(new HomeFragment());
+        fragments.add(new CartFragment());
         fragments.add(new KeFuFragment());
         fragments.add(new MeFragment());
         CustomViewPager viewpager = (CustomViewPager) findViewById(R.id.fl_content);

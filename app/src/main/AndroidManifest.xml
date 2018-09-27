@@ -55,6 +55,9 @@
         <activity android:name=".Activity.ZhanNeiXiaoXiListActivity"></activity>
         <activity android:name=".Activity.MyTuiJianRenActivity"></activity>
         <activity android:name=".Activity.NewsDetailsActivity"></activity>
+        <activity android:name=".Activity.PriceDetailsActivity"></activity>
+        <activity android:name=".Activity.PingJiaListActivity"></activity>
+        <activity android:name=".Activity.MyShouCangAcitivity"></activity>
         <!--====================================功能需要==========================================-->
 
         <activity

@@ -1,6 +1,7 @@
 package com.lingqiapp.Adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
@@ -10,9 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.lingqiapp.Activity.PriceDetailsActivity;
 import com.lingqiapp.Bean.GoodsSouBean;
 import com.lingqiapp.R;
 import com.lingqiapp.Utils.UrlUtils;
@@ -55,16 +58,20 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ViewHo
         return vp;
     }
 
-    private boolean isfirst = false;
-
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        Log.e("ShopListAdapter", UrlUtils.URL + datas.get(position).getImg());
-        holder.simShopimg.setImageURI(UrlUtils.URL + datas.get(position).getImg());
+        Log.e("ShopListAdapter", UrlUtils.URL + datas.get(position).getImg_feng());
+        holder.simShopimg.setImageURI(UrlUtils.URL + datas.get(position).getImg_feng());
         holder.tvShopmoney.setText(datas.get(position).getPrice() + "元");
         holder.tvShopnum.setText("已领" + datas.get(position).getXiaoliang());
         holder.tvShoptitle.setText(datas.get(position).getTitle());
+        holder.llGoods.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", datas.get(position).getId()));
+            }
+        });
     }
 
     @Override
@@ -91,6 +98,9 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ViewHo
         @Nullable
         @BindView(R.id.btn_buy)
         Button btnBuy;
+        @Nullable
+        @BindView(R.id.ll_goods)
+        LinearLayout llGoods;
 
         public ViewHolder(View view) {
             super(view);

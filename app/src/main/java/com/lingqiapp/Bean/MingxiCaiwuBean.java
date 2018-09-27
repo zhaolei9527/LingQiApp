@@ -1,5 +1,10 @@
 package com.lingqiapp.Bean;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,29 +17,27 @@ import java.util.List;
 public class MingxiCaiwuBean {
 
     /**
-     * code : 1
-     * list : [{"id":"97","add_time":"1514012639","change_num":"0.00","over_num":"9254.00","stu":"1"},{"id":"96","add_time":"1514012512","change_num":"12.00","over_num":"9254.00","stu":"1"},{"id":"95","add_time":"1514012387","change_num":"1.00","over_num":"9266.00","stu":"1"},{"id":"94","add_time":"1514010571","change_num":"1.00","over_num":"9267.00","stu":"1"},{"id":"93","add_time":"1514000520","change_num":"100.00","over_num":"9268.00","stu":"1"},{"id":"92","add_time":"1513997566","change_num":"1.00","over_num":"9368.00","stu":"1"},{"id":"91","add_time":"1513996739","change_num":"12.00","over_num":"9369.00","stu":"1"},{"id":"90","add_time":"1513995757","change_num":"100.00","over_num":"9381.00","stu":"1"},{"id":"89","add_time":"1513993512","change_num":"100.00","over_num":"9481.00","stu":"1"},{"id":"88","add_time":"1513993105","change_num":"0.00","over_num":"9581.00","stu":"1"},{"id":"87","add_time":"1513950129","change_num":"100.00","over_num":"9581.00","stu":"1"},{"id":"86","add_time":"1513950067","change_num":"1.00","over_num":"9681.00","stu":"1"}]
-     * msg : 查询成功，返回数据
+     * status : 1
+     * list : [{"id":"15","uid":"461","add_time":"1538010857","change_num":"50.00","over_num":"199850.00","stu":"4","aid":"1","cause":"提现成功！"},{"id":"14","uid":"461","add_time":"1538010851","change_num":"50.00","over_num":"199850.00","stu":"4","aid":"1","cause":"提现成功！"},{"id":"13","uid":"461","add_time":"1538010843","change_num":"50.00","over_num":"199850.00","stu":"4","aid":"1","cause":"提现成功！"},{"id":"12","uid":"461","add_time":"1538010474","change_num":"100000.00","over_num":"199850.00","stu":"3","aid":"1","cause":"后台更改"}]
      */
 
-    private String code;
-    private String msg;
+    private int status;
     private List<ListBean> list;
 
-    public String getCode() {
-        return code;
+    public static List<MingxiCaiwuBean> arrayMingxiCaiwuBeanFromData(String str) {
+
+        Type listType = new TypeToken<ArrayList<MingxiCaiwuBean>>() {
+        }.getType();
+
+        return new Gson().fromJson(str, listType);
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public int getStatus() {
+        return status;
     }
 
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public List<ListBean> getList() {
@@ -47,18 +50,32 @@ public class MingxiCaiwuBean {
 
     public static class ListBean {
         /**
-         * id : 97
-         * add_time : 1514012639
-         * change_num : 0.00
-         * over_num : 9254.00
-         * stu : 1
+         * id : 15
+         * uid : 461
+         * add_time : 1538010857
+         * change_num : 50.00
+         * over_num : 199850.00
+         * stu : 4
+         * aid : 1
+         * cause : 提现成功！
          */
 
         private String id;
+        private String uid;
         private String add_time;
         private String change_num;
         private String over_num;
         private String stu;
+        private String aid;
+        private String cause;
+
+        public static List<ListBean> arrayListBeanFromData(String str) {
+
+            Type listType = new TypeToken<ArrayList<ListBean>>() {
+            }.getType();
+
+            return new Gson().fromJson(str, listType);
+        }
 
         public String getId() {
             return id;
@@ -66,6 +83,14 @@ public class MingxiCaiwuBean {
 
         public void setId(String id) {
             this.id = id;
+        }
+
+        public String getUid() {
+            return uid;
+        }
+
+        public void setUid(String uid) {
+            this.uid = uid;
         }
 
         public String getAdd_time() {
@@ -98,6 +123,22 @@ public class MingxiCaiwuBean {
 
         public void setStu(String stu) {
             this.stu = stu;
+        }
+
+        public String getAid() {
+            return aid;
+        }
+
+        public void setAid(String aid) {
+            this.aid = aid;
+        }
+
+        public String getCause() {
+            return cause;
+        }
+
+        public void setCause(String cause) {
+            this.cause = cause;
         }
     }
 }

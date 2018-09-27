@@ -14,9 +14,9 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
-import com.lingqiapp.Adapter.TiXianListAdapter;
+import com.lingqiapp.Adapter.TuiJianRenListAdapter;
 import com.lingqiapp.Base.BaseActivity;
-import com.lingqiapp.Bean.TixianLogBean;
+import com.lingqiapp.Bean.AboutTuiBean;
 import com.lingqiapp.R;
 import com.lingqiapp.Utils.EasyToast;
 import com.lingqiapp.Utils.SpUtil;
@@ -52,7 +52,7 @@ public class MyTuiJianRenActivity extends BaseActivity {
     ImageView img;
     @BindView(R.id.LL_empty)
     RelativeLayout LLEmpty;
-    private TiXianListAdapter adapter;
+    private TuiJianRenListAdapter adapter;
     private Dialog dialog;
 
     @Override
@@ -105,7 +105,6 @@ public class MyTuiJianRenActivity extends BaseActivity {
             getNewsList();
         } else {
             EasyToast.showShort(context, R.string.Networkexception);
-
         }
 
     }
@@ -125,8 +124,8 @@ public class MyTuiJianRenActivity extends BaseActivity {
                 try {
                     dialog.dismiss();
                     Log.e("NewsListFragment", decode.toString());
-                    TixianLogBean newsSearchBean = new Gson().fromJson(decode, TixianLogBean.class);
-                    if ("1".equals(String.valueOf(newsSearchBean.getStatus()))) {
+                    AboutTuiBean aboutTuiBean = new Gson().fromJson(decode, AboutTuiBean.class);
+                    if ("1".equals(String.valueOf(aboutTuiBean.getStatus()))) {
                         LLEmpty.setVisibility(View.GONE);
                         if (rv_tjr_list != null) {
                             rv_tjr_list.setEnabled(true);
@@ -134,17 +133,17 @@ public class MyTuiJianRenActivity extends BaseActivity {
                             rv_tjr_list.setCanloadMore(true);
                         }
                         if (p == 1) {
-                            adapter = new TiXianListAdapter(newsSearchBean.getList(), context);
+                            adapter = new TuiJianRenListAdapter(aboutTuiBean.getUlist(), context);
                             rv_tjr_list.setAdapter(adapter);
 
-                            if (newsSearchBean.getList().size() < 10) {
+                            if (aboutTuiBean.getUlist().size() < 10) {
                                 rv_tjr_list.setCanloadMore(false);
                                 rv_tjr_list.loadMoreEnd();
                             } else {
                                 rv_tjr_list.setCanloadMore(true);
                             }
                         } else {
-                            adapter.setDatas((ArrayList) newsSearchBean.getList());
+                            adapter.setDatas((ArrayList) aboutTuiBean.getUlist());
                         }
                     } else {
                         if (p != 1) {
@@ -156,7 +155,7 @@ public class MyTuiJianRenActivity extends BaseActivity {
                         rv_tjr_list.setCanloadMore(false);
                         rv_tjr_list.loadMoreEnd();
                     }
-                    newsSearchBean = null;
+                    aboutTuiBean = null;
                     decode = null;
                 } catch (Exception e) {
                     e.printStackTrace();

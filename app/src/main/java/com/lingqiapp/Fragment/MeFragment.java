@@ -21,6 +21,7 @@ import com.lingqiapp.Activity.LianXiWoMenActivity;
 import com.lingqiapp.Activity.LoginActivity;
 import com.lingqiapp.Activity.MYTuiJianMaActivity;
 import com.lingqiapp.Activity.MyMessageActivity;
+import com.lingqiapp.Activity.MyShouCangAcitivity;
 import com.lingqiapp.Activity.MyTuiJianRenActivity;
 import com.lingqiapp.Activity.PingTaiDetailsActivity;
 import com.lingqiapp.Activity.TiXianActivity;
@@ -126,6 +127,7 @@ public class MeFragment extends BaseLazyFragment implements View.OnClickListener
         llZhanneixiaoxi.setOnClickListener(this);
         llYaoqingliebiao.setOnClickListener(this);
         llLianxiwomen.setOnClickListener(this);
+        llWdeshoucang.setOnClickListener(this);
         btnExit.setOnClickListener(this);
     }
 
@@ -152,6 +154,9 @@ public class MeFragment extends BaseLazyFragment implements View.OnClickListener
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.ll_wdeshoucang:
+                startActivity(new Intent(mContext, MyShouCangAcitivity.class));
+                break;
             case R.id.ll_lianxiwomen:
                 startActivity(new Intent(mContext, LianXiWoMenActivity.class));
                 break;

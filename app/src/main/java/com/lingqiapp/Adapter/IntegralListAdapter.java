@@ -46,13 +46,26 @@ public class IntegralListAdapter extends RecyclerView.Adapter<IntegralListAdapte
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         MingxiCaiwuBean.ListBean resBean = datas.get(position);
-        holder.tv_money.setText("当前积分" + resBean.getOver_num());
+        holder.tv_money.setText("当前余额" + resBean.getOver_num()+"元");
         holder.tv_time.setText(DateUtils.getMillon(Long.parseLong(resBean.getAdd_time()) * 1000));
         if ("1".equals(resBean.getStu())) {
-            holder.tv_type.setText("支出");
+            holder.tv_type.setText("消费");
             holder.tv_content.setText("-￥" + resBean.getChange_num());
-        } else {
-            holder.tv_type.setText("新增");
+        } else if ("2".equals(resBean.getStu())) {
+            holder.tv_type.setText("推广奖励");
+            holder.tv_content.setText("+￥" + resBean.getChange_num());
+        }else if ("3".equals(resBean.getStu())) {
+            holder.tv_type.setText("后台调整");
+            holder.tv_content.setText("￥" + resBean.getChange_num());
+        }else if ("4".equals(resBean.getStu())) {
+            holder.tv_type.setText("提现成功");
+            holder.tv_content.setText("-￥" + resBean.getChange_num());
+        }else if ("5".equals(resBean.getStu())) {
+            holder.tv_type.setText("提现失败");
+            holder.tv_content.setText("+￥" + resBean.getChange_num());
+
+        }else if ("6".equals(resBean.getStu())) {
+            holder.tv_type.setText("充值");
             holder.tv_content.setText("+￥" + resBean.getChange_num());
         }
     }

@@ -69,7 +69,7 @@ public class IntegralListFragment extends Fragment {
                 try {
                     MingxiCaiwuBean mingxiCaiwuBean = new Gson().fromJson(decode, MingxiCaiwuBean.class);
                     new Gson().fromJson(decode, MingxiCaiwuBean.class);
-                    if ("1".equals(String.valueOf(mingxiCaiwuBean.getCode()))) {
+                    if ("1".equals(String.valueOf(mingxiCaiwuBean.getStatus()))) {
                         if (mRecyclerView != null) {
                             mRecyclerView.setEnabled(true);
                             mRecyclerView.loadMoreComplete();
