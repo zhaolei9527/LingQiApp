@@ -1,5 +1,10 @@
 package com.lingqiapp.Bean;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,11 +18,19 @@ public class OrderDetailBean {
 
     /**
      * status : 1
-     * msg : {"id":"37","gid":"19","nid":"19","val":"标准装（1盒）","price":"0.01","amount":"1","orderid":"1528698076735972","totalprice":"0.01","addressman":"zl","addressmobile":"17629345001","status":"3","exp":"中通快递","expnum":"4355345345349","addtime":"1528698076","address":"河南省郑州市中原区123456","shtime":null,"yunfei":"0","paytime":"1528698150","fhtime":"1528764760","goods_totalprice":0.01,"goods":[{"gid":"19","nid":"19","val":"标准装（1盒）","gname":"善存 多维元素片(29) 60片 centrum 补充维生素及矿物质","img":"/Public/uploads/goods/2018-05-28/2018_05_28_09_33_53_82652.jpg","price":"0.01","amount":"1"}]}
+     * order : {"id":"300","orderid":"20180929090744429562","sfmoney":"0.00","totalprice":"60","uid":"461","status":"2","paytime":null,"addressid":"183","addtime":"1538183264","number":"2","yemoney":null,"paytype":null,"payment":null,"fhtime":null,"exp":null,"expnum":null,"fhbeizhu":null,"paybeizhu":null,"shtime":null,"sheng":"河南省","shi":"郑州市","xian":"中原区","address":"asdadasfdasdasfasfasf","tel":"17629345001","name":"asdasdasasd","is_ziti":"1","gid":null,"cid":"151","l_num":null,"cart":[{"id":"151","uid":"461","gid":"22","addtime":"1538183259","number":"2","type":"2","z_money":null,"price":"30","title":"爱美丽","img_feng":"/Public/uploads/goods/2018-09-26/5bab23c7ba090.png"}]}
      */
 
     private int status;
-    private MsgBean msg;
+    private OrderBean order;
+
+    public static List<OrderDetailBean> arrayOrderDetailBeanFromData(String str) {
+
+        Type listType = new TypeToken<ArrayList<OrderDetailBean>>() {
+        }.getType();
+
+        return new Gson().fromJson(str, listType);
+    }
 
     public int getStatus() {
         return status;
@@ -27,60 +40,86 @@ public class OrderDetailBean {
         this.status = status;
     }
 
-    public MsgBean getMsg() {
-        return msg;
+    public OrderBean getOrder() {
+        return order;
     }
 
-    public void setMsg(MsgBean msg) {
-        this.msg = msg;
+    public void setOrder(OrderBean order) {
+        this.order = order;
     }
 
-    public static class MsgBean {
+    public static class OrderBean {
         /**
-         * id : 37
-         * gid : 19
-         * nid : 19
-         * val : 标准装（1盒）
-         * price : 0.01
-         * amount : 1
-         * orderid : 1528698076735972
-         * totalprice : 0.01
-         * addressman : zl
-         * addressmobile : 17629345001
-         * status : 3
-         * exp : 中通快递
-         * expnum : 4355345345349
-         * addtime : 1528698076
-         * address : 河南省郑州市中原区123456
+         * id : 300
+         * orderid : 20180929090744429562
+         * sfmoney : 0.00
+         * totalprice : 60
+         * uid : 461
+         * status : 2
+         * paytime : null
+         * addressid : 183
+         * addtime : 1538183264
+         * number : 2
+         * yemoney : null
+         * paytype : null
+         * payment : null
+         * fhtime : null
+         * exp : null
+         * expnum : null
+         * fhbeizhu : null
+         * paybeizhu : null
          * shtime : null
-         * yunfei : 0
-         * paytime : 1528698150
-         * fhtime : 1528764760
-         * goods_totalprice : 0.01
-         * goods : [{"gid":"19","nid":"19","val":"标准装（1盒）","gname":"善存 多维元素片(29) 60片 centrum 补充维生素及矿物质","img":"/Public/uploads/goods/2018-05-28/2018_05_28_09_33_53_82652.jpg","price":"0.01","amount":"1"}]
+         * sheng : 河南省
+         * shi : 郑州市
+         * xian : 中原区
+         * address : asdadasfdasdasfasfasf
+         * tel : 17629345001
+         * name : asdasdasasd
+         * is_ziti : 1
+         * gid : null
+         * cid : 151
+         * l_num : null
+         * cart : [{"id":"151","uid":"461","gid":"22","addtime":"1538183259","number":"2","type":"2","z_money":null,"price":"30","title":"爱美丽","img_feng":"/Public/uploads/goods/2018-09-26/5bab23c7ba090.png"}]
          */
 
         private String id;
-        private String gid;
-        private String nid;
-        private String val;
-        private String price;
-        private String amount;
         private String orderid;
+        private String sfmoney;
         private String totalprice;
-        private String addressman;
-        private String addressmobile;
+        private String uid;
         private String status;
+        private String paytime;
+        private String addressid;
+        private String addtime;
+        private String number;
+        private String yemoney;
+        private String paytype;
+        private String payment;
+        private String fhtime;
         private String exp;
         private String expnum;
-        private String addtime;
+        private String fhbeizhu;
+        private String paybeizhu;
+        private String shtime;
+        private String sheng;
+        private String shi;
+        private String xian;
         private String address;
-        private Object shtime;
-        private String yunfei;
-        private String paytime;
-        private String fhtime;
-        private double goods_totalprice;
-        private List<GoodsBean> goods;
+        private String tel;
+        private String name;
+        private String is_ziti;
+        private String gid;
+        private String cid;
+        private String l_num;
+        private List<CartBean> cart;
+
+        public static List<OrderBean> arrayOrderBeanFromData(String str) {
+
+            Type listType = new TypeToken<ArrayList<OrderBean>>() {
+            }.getType();
+
+            return new Gson().fromJson(str, listType);
+        }
 
         public String getId() {
             return id;
@@ -88,46 +127,6 @@ public class OrderDetailBean {
 
         public void setId(String id) {
             this.id = id;
-        }
-
-        public String getGid() {
-            return gid;
-        }
-
-        public void setGid(String gid) {
-            this.gid = gid;
-        }
-
-        public String getNid() {
-            return nid;
-        }
-
-        public void setNid(String nid) {
-            this.nid = nid;
-        }
-
-        public String getVal() {
-            return val;
-        }
-
-        public void setVal(String val) {
-            this.val = val;
-        }
-
-        public String getPrice() {
-            return price;
-        }
-
-        public void setPrice(String price) {
-            this.price = price;
-        }
-
-        public String getAmount() {
-            return amount;
-        }
-
-        public void setAmount(String amount) {
-            this.amount = amount;
         }
 
         public String getOrderid() {
@@ -138,6 +137,14 @@ public class OrderDetailBean {
             this.orderid = orderid;
         }
 
+        public String getSfmoney() {
+            return sfmoney;
+        }
+
+        public void setSfmoney(String sfmoney) {
+            this.sfmoney = sfmoney;
+        }
+
         public String getTotalprice() {
             return totalprice;
         }
@@ -146,20 +153,12 @@ public class OrderDetailBean {
             this.totalprice = totalprice;
         }
 
-        public String getAddressman() {
-            return addressman;
+        public String getUid() {
+            return uid;
         }
 
-        public void setAddressman(String addressman) {
-            this.addressman = addressman;
-        }
-
-        public String getAddressmobile() {
-            return addressmobile;
-        }
-
-        public void setAddressmobile(String addressmobile) {
-            this.addressmobile = addressmobile;
+        public void setUid(String uid) {
+            this.uid = uid;
         }
 
         public String getStatus() {
@@ -168,6 +167,70 @@ public class OrderDetailBean {
 
         public void setStatus(String status) {
             this.status = status;
+        }
+
+        public String getPaytime() {
+            return paytime;
+        }
+
+        public void setPaytime(String paytime) {
+            this.paytime = paytime;
+        }
+
+        public String getAddressid() {
+            return addressid;
+        }
+
+        public void setAddressid(String addressid) {
+            this.addressid = addressid;
+        }
+
+        public String getAddtime() {
+            return addtime;
+        }
+
+        public void setAddtime(String addtime) {
+            this.addtime = addtime;
+        }
+
+        public String getNumber() {
+            return number;
+        }
+
+        public void setNumber(String number) {
+            this.number = number;
+        }
+
+        public String getYemoney() {
+            return yemoney;
+        }
+
+        public void setYemoney(String yemoney) {
+            this.yemoney = yemoney;
+        }
+
+        public String getPaytype() {
+            return paytype;
+        }
+
+        public void setPaytype(String paytype) {
+            this.paytype = paytype;
+        }
+
+        public String getPayment() {
+            return payment;
+        }
+
+        public void setPayment(String payment) {
+            this.payment = payment;
+        }
+
+        public String getFhtime() {
+            return fhtime;
+        }
+
+        public void setFhtime(String fhtime) {
+            this.fhtime = fhtime;
         }
 
         public String getExp() {
@@ -186,12 +249,52 @@ public class OrderDetailBean {
             this.expnum = expnum;
         }
 
-        public String getAddtime() {
-            return addtime;
+        public String getFhbeizhu() {
+            return fhbeizhu;
         }
 
-        public void setAddtime(String addtime) {
-            this.addtime = addtime;
+        public void setFhbeizhu(String fhbeizhu) {
+            this.fhbeizhu = fhbeizhu;
+        }
+
+        public String getPaybeizhu() {
+            return paybeizhu;
+        }
+
+        public void setPaybeizhu(String paybeizhu) {
+            this.paybeizhu = paybeizhu;
+        }
+
+        public String getShtime() {
+            return shtime;
+        }
+
+        public void setShtime(String shtime) {
+            this.shtime = shtime;
+        }
+
+        public String getSheng() {
+            return sheng;
+        }
+
+        public void setSheng(String sheng) {
+            this.sheng = sheng;
+        }
+
+        public String getShi() {
+            return shi;
+        }
+
+        public void setShi(String shi) {
+            this.shi = shi;
+        }
+
+        public String getXian() {
+            return xian;
+        }
+
+        public void setXian(String xian) {
+            this.xian = xian;
         }
 
         public String getAddress() {
@@ -202,72 +305,110 @@ public class OrderDetailBean {
             this.address = address;
         }
 
-        public Object getShtime() {
-            return shtime;
+        public String getTel() {
+            return tel;
         }
 
-        public void setShtime(Object shtime) {
-            this.shtime = shtime;
+        public void setTel(String tel) {
+            this.tel = tel;
         }
 
-        public String getYunfei() {
-            return yunfei;
+        public String getName() {
+            return name;
         }
 
-        public void setYunfei(String yunfei) {
-            this.yunfei = yunfei;
+        public void setName(String name) {
+            this.name = name;
         }
 
-        public String getPaytime() {
-            return paytime;
+        public String getIs_ziti() {
+            return is_ziti;
         }
 
-        public void setPaytime(String paytime) {
-            this.paytime = paytime;
+        public void setIs_ziti(String is_ziti) {
+            this.is_ziti = is_ziti;
         }
 
-        public String getFhtime() {
-            return fhtime;
+        public String getGid() {
+            return gid;
         }
 
-        public void setFhtime(String fhtime) {
-            this.fhtime = fhtime;
+        public void setGid(String gid) {
+            this.gid = gid;
         }
 
-        public double getGoods_totalprice() {
-            return goods_totalprice;
+        public String getCid() {
+            return cid;
         }
 
-        public void setGoods_totalprice(double goods_totalprice) {
-            this.goods_totalprice = goods_totalprice;
+        public void setCid(String cid) {
+            this.cid = cid;
         }
 
-        public List<GoodsBean> getGoods() {
-            return goods;
+        public String getL_num() {
+            return l_num;
         }
 
-        public void setGoods(List<GoodsBean> goods) {
-            this.goods = goods;
+        public void setL_num(String l_num) {
+            this.l_num = l_num;
         }
 
-        public static class GoodsBean {
+        public List<CartBean> getCart() {
+            return cart;
+        }
+
+        public void setCart(List<CartBean> cart) {
+            this.cart = cart;
+        }
+
+        public static class CartBean {
             /**
-             * gid : 19
-             * nid : 19
-             * val : 标准装（1盒）
-             * gname : 善存 多维元素片(29) 60片 centrum 补充维生素及矿物质
-             * img : /Public/uploads/goods/2018-05-28/2018_05_28_09_33_53_82652.jpg
-             * price : 0.01
-             * amount : 1
+             * id : 151
+             * uid : 461
+             * gid : 22
+             * addtime : 1538183259
+             * number : 2
+             * type : 2
+             * z_money : null
+             * price : 30
+             * title : 爱美丽
+             * img_feng : /Public/uploads/goods/2018-09-26/5bab23c7ba090.png
              */
 
+            private String id;
+            private String uid;
             private String gid;
-            private String nid;
-            private String val;
-            private String gname;
-            private String img;
+            private String addtime;
+            private String number;
+            private String type;
+            private String z_money;
             private String price;
-            private String amount;
+            private String title;
+            private String img_feng;
+
+            public static List<CartBean> arrayCartBeanFromData(String str) {
+
+                Type listType = new TypeToken<ArrayList<CartBean>>() {
+                }.getType();
+
+                return new Gson().fromJson(str, listType);
+            }
+
+            public String getId() {
+                return id;
+            }
+
+            public void setId(String id) {
+                this.id = id;
+            }
+
+            public String getUid() {
+                return uid;
+            }
+
+            public void setUid(String uid) {
+                this.uid = uid;
+            }
 
             public String getGid() {
                 return gid;
@@ -277,36 +418,36 @@ public class OrderDetailBean {
                 this.gid = gid;
             }
 
-            public String getNid() {
-                return nid;
+            public String getAddtime() {
+                return addtime;
             }
 
-            public void setNid(String nid) {
-                this.nid = nid;
+            public void setAddtime(String addtime) {
+                this.addtime = addtime;
             }
 
-            public String getVal() {
-                return val;
+            public String getNumber() {
+                return number;
             }
 
-            public void setVal(String val) {
-                this.val = val;
+            public void setNumber(String number) {
+                this.number = number;
             }
 
-            public String getGname() {
-                return gname;
+            public String getType() {
+                return type;
             }
 
-            public void setGname(String gname) {
-                this.gname = gname;
+            public void setType(String type) {
+                this.type = type;
             }
 
-            public String getImg() {
-                return img;
+            public String getZ_money() {
+                return z_money;
             }
 
-            public void setImg(String img) {
-                this.img = img;
+            public void setZ_money(String z_money) {
+                this.z_money = z_money;
             }
 
             public String getPrice() {
@@ -317,12 +458,20 @@ public class OrderDetailBean {
                 this.price = price;
             }
 
-            public String getAmount() {
-                return amount;
+            public String getTitle() {
+                return title;
             }
 
-            public void setAmount(String amount) {
-                this.amount = amount;
+            public void setTitle(String title) {
+                this.title = title;
+            }
+
+            public String getImg_feng() {
+                return img_feng;
+            }
+
+            public void setImg_feng(String img_feng) {
+                this.img_feng = img_feng;
             }
         }
     }

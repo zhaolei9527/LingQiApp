@@ -86,7 +86,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
             holder.btn_isget_order.setVisibility(View.VISIBLE);
             holder.tv_order_type.setText("待收货");
         } else if ("4".equals(stu)) {
-            holder.tv_order_type.setText("已完成");
+            holder.tv_order_type.setText("待评价");
             holder.btn_pay_order.setVisibility(View.GONE);
             holder.btn_isget_order.setVisibility(View.GONE);
             holder.btn_delete_order.setVisibility(View.GONE);

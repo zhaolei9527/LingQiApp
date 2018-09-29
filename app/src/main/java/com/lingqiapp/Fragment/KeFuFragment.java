@@ -1,7 +1,6 @@
 package com.lingqiapp.Fragment;
 
 
-import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -100,9 +99,6 @@ public class KeFuFragment extends BaseLazyFragment {
                 }
             });
             forumContext.loadUrl("https://kefu.easemob.com/webim/im.html?configId=27e02ed0-94d0-4f54-a674-fd9806960849");
-
-
-
         }catch (Exception e){
             e.printStackTrace();
         }

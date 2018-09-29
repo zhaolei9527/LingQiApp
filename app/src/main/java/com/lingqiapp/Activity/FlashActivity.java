@@ -119,7 +119,7 @@ public class FlashActivity extends BaseActivity {
         } else if (!TextUtils.isEmpty(wxopenid)) {
             getLogin("", "", "2", wxopenid);
         } else {
-            gotoMain();
+            delayGoToLogin();
         }
     }
 
@@ -130,7 +130,9 @@ public class FlashActivity extends BaseActivity {
         HashMap<String, String> params = new HashMap<>(1);
         params.put("tel", tel);
         params.put("password", password);
-        params.put("uuid", openid);
+        if (!TextUtils.isEmpty(openid)) {
+            params.put("uuid", openid);
+        }
         Log.e("LoginActivity", "params:" + params);
         VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "login/dologin", "login/dologin", params, new VolleyInterface(context) {
             @Override

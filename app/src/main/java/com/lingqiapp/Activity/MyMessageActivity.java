@@ -15,8 +15,10 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
+import com.hss01248.frescopicker.FrescoIniter;
 import com.lingqiapp.Base.BaseActivity;
 import com.lingqiapp.Bean.AboutPersonalBean;
+import com.lingqiapp.Bean.TouXiangBean;
 import com.lingqiapp.R;
 import com.lingqiapp.Utils.EasyToast;
 import com.lingqiapp.Utils.SpUtil;
@@ -26,10 +28,14 @@ import com.lingqiapp.View.ChangeNameDialog;
 import com.lingqiapp.Volley.VolleyInterface;
 import com.lingqiapp.Volley.VolleyRequest;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import me.iwf.photopicker.PhotoPickUtils;
 
 /**
  * com.lingqiapp.Activity
@@ -58,6 +64,51 @@ public class MyMessageActivity extends BaseActivity {
     @BindView(R.id.btn_submit)
     Button btnSubmit;
     private Dialog dialog;
+    private Dialog dialogResult;
+    private String pic = "";
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        PhotoPickUtils.onActivityResult(requestCode, resultCode, data, new PhotoPickUtils.PickHandler() {
+            @Override
+            public void onPickSuccess(final ArrayList<String> photos, int requestCode) {
+                switch (requestCode) {
+                    case 505:
+                        dialogResult = Utils.showLoadingDialog(context);
+                        dialogResult.show();
+                        pic = photos.get(0);
+                        SimpleDraweeView.setImageURI("file://" + photos.get(0));
+                        List<File> imgfiles = new ArrayList<>();
+                        List<String> imgnames = new ArrayList<>();
+                        imgfiles.add(new File(pic));
+                        imgnames.add("headpic");
+                        userDoinfo(imgnames, imgfiles);
+                        break;
+                    default:
+                        break;
+                }
+                Log.e("MyMessageActivity", photos.get(0));
+
+            }
+
+            @Override
+            public void onPreviewBack(ArrayList<String> photos, int requestCode) {
+
+            }
+
+            @Override
+            public void onPickFail(String error, int requestCode) {
+
+            }
+
+            @Override
+            public void onPickCancle(int requestCode) {
+            }
+        });
+
+    }
+
 
     @Override
     protected int setthislayout() {
@@ -66,7 +117,7 @@ public class MyMessageActivity extends BaseActivity {
 
     @Override
     protected void initview() {
-
+        PhotoPickUtils.init(getApplicationContext(), new FrescoIniter());//第二个参数根据具体依赖库而定
     }
 
     @Override
@@ -123,7 +174,50 @@ public class MyMessageActivity extends BaseActivity {
             }
         });
 
+        rlChangeTouxiang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PhotoPickUtils.startPick().setPhotoCount(1).setShowCamera(false).start((MyMessageActivity) context, 505);
+            }
+        });
+
     }
+
+
+    /**
+     * 更换头像
+     */
+    private void userDoinfo(List<String> imgnames, List<File> imgs) {
+        final HashMap<String, String> params = new HashMap<>(2);
+        params.put("uid", String.valueOf(SpUtil.get(context, "uid", "")));
+        Log.e("MyMessageActivity", params.toString());
+        VolleyRequest.uploadMultipart(context, UrlUtils.BASE_URL + "about/touxiang", imgnames, imgs, params, new VolleyInterface(context) {
+            @Override
+            public void onMySuccess(String result) {
+                Log.e("MyMessageActivity", result);
+                try {
+                    dialogResult.dismiss();
+                    TouXiangBean touXiangBean = new Gson().fromJson(result, TouXiangBean.class);
+                    if (1 == touXiangBean.getStatus()) {
+                        SpUtil.putAndApply(context, "img", touXiangBean.getUdata().getImg());
+                        SimpleDraweeView.setImageURI(UrlUtils.URL+touXiangBean.getUdata().getImg());
+                        EasyToast.showShort(context, touXiangBean.getMsg());
+                    } else {
+                        EasyToast.showShort(context, touXiangBean.getMsg());
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onMyError(VolleyError error) {
+                dialogResult.dismiss();
+                error.printStackTrace();
+            }
+        });
+    }
+
 
     /**
      * 修改用户名
@@ -137,8 +231,6 @@ public class MyMessageActivity extends BaseActivity {
             public void onMySuccess(String result) {
                 Log.e("RegisterActivity", result);
                 try {
-
-
 
 
                 } catch (Exception e) {

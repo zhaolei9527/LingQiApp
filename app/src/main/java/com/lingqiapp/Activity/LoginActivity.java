@@ -110,7 +110,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             @Override
             public void onClick(View view) {
                 finish();
-                startActivity(new Intent(context, MainActivity.class));
             }
         });
     }
@@ -241,7 +240,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         HashMap<String, String> params = new HashMap<>(1);
         params.put("tel", tel);
         params.put("password", password);
-        params.put("openid", openid);
+        if (!TextUtils.isEmpty(openid)) {
+            params.put("openid", openid);
+        }
         Log.e("LoginActivity", params.toString());
         VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "login/dologin", "login/dologin", params, new VolleyInterface(context) {
             @Override

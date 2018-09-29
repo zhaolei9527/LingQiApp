@@ -30,41 +30,193 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.ChangeBankActivity"></activity>
-        <activity android:name=".Activity.ForgetActivity"></activity>
-        <activity android:name=".Activity.LoginActivity"></activity>
-        <activity android:name=".Activity.RegisterActivity"></activity>
-        <activity android:name=".Activity.BankMessageActivity"></activity>
-        <activity android:name=".Activity.BanQuanDetailsActivity"></activity>
-        <activity android:name=".Activity.DaRenTuiJianDetailsActivity"></activity>
-        <activity android:name=".Activity.PingTaiDetailsActivity"></activity>
-        <activity android:name=".Activity.ZhuCeXieYiDetailsActivity"></activity>
-        <activity android:name=".Activity.YiJianFanKuiActivity"></activity>
-        <activity android:name=".Activity.TiXianActivity"></activity>
-        <activity android:name=".Activity.TiXianJiLuListActivity"></activity>
-        <activity android:name=".Activity.ShopListActivity"></activity>
-        <activity android:name=".Activity.NewsListActivity"></activity>
-        <activity android:name=".Activity.LianXiWoMenActivity"></activity>
-        <activity android:name=".Activity.HuiYuanShengJiActivity"></activity>
-        <activity android:name=".Activity.ChangePasswordActivity"></activity>
-        <activity android:name=".Activity.MyMessageActivity"></activity>
-        <activity android:name=".Activity.MYTuiJianMaActivity"></activity>
-        <activity android:name=".Activity.AddressActivitry"></activity>
-        <activity android:name=".Activity.AddAdressActivity"></activity>
-        <activity android:name=".Activity.CaiWuMingXiActiivity"></activity>
-        <activity android:name=".Activity.ZhanNeiXiaoXiListActivity"></activity>
-        <activity android:name=".Activity.MyTuiJianRenActivity"></activity>
-        <activity android:name=".Activity.NewsDetailsActivity"></activity>
-        <activity android:name=".Activity.PriceDetailsActivity"></activity>
-        <activity android:name=".Activity.PingJiaListActivity"></activity>
-        <activity android:name=".Activity.MyShouCangAcitivity"></activity>
-        <activity android:name=".Activity.OrderActivity"></activity>
-        <activity android:name=".Activity.MyOrderActivity"></activity>
-        <activity android:name=".Activity.KeFuActivity"></activity>
-        <activity android:name=".Activity.GoodPayActivity"></activity>
-        <activity android:name=".Activity.MyOrderDetailsActivity"></activity>
-        <activity android:name=".Activity.PayActivity"></activity>
+        <activity
+            android:name=".Activity.ChangeBankActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.ForgetActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.LoginActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.RegisterActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.BankMessageActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.BanQuanDetailsActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.DaRenTuiJianDetailsActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.PingTaiDetailsActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.ZhuCeXieYiDetailsActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.YiJianFanKuiActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.TiXianActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.TiXianJiLuListActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.ShopListActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.NewsListActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.LianXiWoMenActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.HuiYuanShengJiActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.ChangePasswordActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.MyMessageActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.MYTuiJianMaActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.AddressActivitry"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.AddAdressActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.CaiWuMingXiActiivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.ZhanNeiXiaoXiListActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.MyTuiJianRenActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.NewsDetailsActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.PriceDetailsActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.PingJiaListActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.MyShouCangAcitivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.OrderActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.MyOrderActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.KeFuActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.GoodPayActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.MyOrderDetailsActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.PayActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Activity.WuLiuDetailsActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize"></activity>
+
+        <activity android:name=".Activity.PingJiaPriceActivity"></activity>
+
         <!--====================================功能需要==========================================-->
+
+        <activity
+            android:name="me.iwf.photopicker.PhotoPickerActivity"
+            android:theme="@style/customTheme" />
+
+        <activity
+            android:name="me.iwf.photopicker.PhotoPagerActivity"
+            android:theme="@style/customTheme" />
 
         <activity
             android:name=".wxapi.WXEntryActivity"

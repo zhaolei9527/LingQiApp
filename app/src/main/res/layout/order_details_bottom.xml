@@ -46,38 +46,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/x10"
-        android:layout_marginTop="@dimen/x10">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/x10"
-            android:text="运费："
-            android:textColor="#333" />
-
-        <TextView
-            android:id="@+id/tv_yunfei"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/x10"
-            android:textColor="#F0667F"></TextView>
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_marginLeft="@dimen/x10"
-        android:layout_marginRight="@dimen/x10"
-        android:background="#ccc"></View>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/x5"
         android:layout_marginTop="@dimen/x10">
 
@@ -260,30 +228,33 @@
             android:layout_width="@dimen/x75"
             android:layout_height="@dimen/y25"
             android:layout_marginRight="@dimen/x5"
-            android:background="@drawable/btn_goodpay_selector"
+            android:background="@mipmap/btn_login"
             android:text="删除订单"
             android:textColor="#fff"
-            android:textSize="@dimen/x11" />
+            android:textSize="@dimen/x11"
+            android:visibility="gone" />
 
         <Button
-            android:id="@+id/btn_delete_order"
+            android:id="@+id/btn_wuliu"
             android:layout_width="@dimen/x75"
             android:layout_height="@dimen/y25"
             android:layout_marginRight="@dimen/x5"
-            android:background="@drawable/btn_goodpay_selector"
-            android:text="取消订单"
+            android:background="@mipmap/btn_login"
+            android:text="查看物流"
             android:textColor="#fff"
-            android:textSize="@dimen/x11" />
+            android:textSize="@dimen/x11"
+            android:visibility="visible" />
 
         <Button
-            android:id="@+id/btn_pay_order"
+            android:id="@+id/btn_pingjia"
             android:layout_width="@dimen/x75"
             android:layout_height="@dimen/y25"
             android:layout_marginRight="@dimen/x5"
-            android:background="@drawable/btn_goodpay_selector"
-            android:text="立即支付"
+            android:background="@mipmap/btn_login"
+            android:text="评价"
             android:textColor="#fff"
             android:textSize="@dimen/x11" />
+
     </LinearLayout>
 
     <View

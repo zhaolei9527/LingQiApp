@@ -104,10 +104,10 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoViewHol
                 holder.ivPhoto.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (photoPaths != null && photoPaths.size() == 5) {
-                            Toast.makeText(mContext, "已选了5张图片", Toast.LENGTH_SHORT).show();
+                        if (photoPaths != null && photoPaths.size() == 3) {
+                            Toast.makeText(mContext, "已选了3张图片", Toast.LENGTH_SHORT).show();
                         } else {
-                            PhotoPickUtils.startPick().setPhotoCount(5).setShowCamera(true).setSelected(photoPaths).start((Activity) mContext, 77);
+                            PhotoPickUtils.startPick().setPhotoCount(3).setShowCamera(true).setSelected(photoPaths).start((Activity) mContext, 77);
                         }
                     }
                 });
