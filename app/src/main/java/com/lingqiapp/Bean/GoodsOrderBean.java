@@ -8,66 +8,98 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * com.wenguoyi.Bean
+ * com.lingqiapp.Bean
  *
  * @author 赵磊
- * @date 2018/6/9
+ * @date 2018/9/29
  * 功能描述：
  */
-public class OrderOrderBean {
+public class GoodsOrderBean {
+
+
     /**
      * status : 1
-     * address : {"id":"183","name":"asdasdasasd","province":"河南省","city":"郑州市","country":"中原区","address":"asdadasfdasdasfasfasf","tel":"17629345001","is_default":"1","uid":"461","add_time":"1537838074"}
-     * cart : [{"id":"137","uid":"461","gid":"22","addtime":"1538030700","number":"4","title":"爱美丽","img_feng":"/Public/uploads/goods/2018-09-26/5bab23c7ba090.png","price":"980","zmoney":3920},{"id":"139","uid":"461","gid":"24","addtime":"1538036775","number":"1","title":"生殖美学原理","img_feng":"/Public/uploads/goods/2018-09-26/5bab24dd36ee8.jpg","price":"45","zmoney":45}]
-     * zf_money : 3965
+     * dizhi : {"id":"183","name":"asdasdasasd","province":"河南省","city":"郑州市","country":"中原区","address":"asdadasfdasdasfasfasf","tel":"17629345001","is_default":"1","uid":"461","add_time":"1537838074"}
+     * g_num : 1
+     * gid : 22
+     * cid : 148
+     * goods : {"id":"22","title":"爱美丽","price":"980","img_feng":"/Public/uploads/goods/2018-09-26/5bab23c7ba090.png","kucun":"488"}
+     * z_price : null
      */
 
-    private int status;
-    private AddressBean address;
-    private int zf_money;
-    private List<CartBean> cart;
+    private String status;
+    private DizhiBean dizhi;
+    private String g_num;
+    private String gid;
+    private String cid;
+    private GoodsBean goods;
+    private String z_price;
 
-    public static List<OrderOrderBean> arrayOrderOrderBeanFromData(String str) {
+    public static List<GoodsOrderBean> arrayGoodsOrderBeanFromData(String str) {
 
-        Type listType = new TypeToken<ArrayList<OrderOrderBean>>() {
+        Type listType = new TypeToken<ArrayList<GoodsOrderBean>>() {
         }.getType();
 
         return new Gson().fromJson(str, listType);
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public AddressBean getAddress() {
-        return address;
+    public DizhiBean getDizhi() {
+        return dizhi;
     }
 
-    public void setAddress(AddressBean address) {
-        this.address = address;
+    public void setDizhi(DizhiBean dizhi) {
+        this.dizhi = dizhi;
     }
 
-    public int getZf_money() {
-        return zf_money;
+    public String getG_num() {
+        return g_num;
     }
 
-    public void setZf_money(int zf_money) {
-        this.zf_money = zf_money;
+    public void setG_num(String g_num) {
+        this.g_num = g_num;
     }
 
-    public List<CartBean> getCart() {
-        return cart;
+    public String getGid() {
+        return gid;
     }
 
-    public void setCart(List<CartBean> cart) {
-        this.cart = cart;
+    public void setGid(String gid) {
+        this.gid = gid;
     }
 
-    public static class AddressBean {
+    public String getCid() {
+        return cid;
+    }
+
+    public void setCid(String cid) {
+        this.cid = cid;
+    }
+
+    public GoodsBean getGoods() {
+        return goods;
+    }
+
+    public void setGoods(GoodsBean goods) {
+        this.goods = goods;
+    }
+
+    public String getZ_price() {
+        return z_price;
+    }
+
+    public void setZ_price(String z_price) {
+        this.z_price = z_price;
+    }
+
+    public static class DizhiBean {
         /**
          * id : 183
          * name : asdasdasasd
@@ -92,9 +124,9 @@ public class OrderOrderBean {
         private String uid;
         private String add_time;
 
-        public static List<AddressBean> arrayAddressBeanFromData(String str) {
+        public static List<DizhiBean> arrayDizhiBeanFromData(String str) {
 
-            Type listType = new TypeToken<ArrayList<AddressBean>>() {
+            Type listType = new TypeToken<ArrayList<DizhiBean>>() {
             }.getType();
 
             return new Gson().fromJson(str, listType);
@@ -181,32 +213,24 @@ public class OrderOrderBean {
         }
     }
 
-    public static class CartBean {
+    public static class GoodsBean {
         /**
-         * id : 137
-         * uid : 461
-         * gid : 22
-         * addtime : 1538030700
-         * number : 4
+         * id : 22
          * title : 爱美丽
-         * img_feng : /Public/uploads/goods/2018-09-26/5bab23c7ba090.png
          * price : 980
-         * zmoney : 3920
+         * img_feng : /Public/uploads/goods/2018-09-26/5bab23c7ba090.png
+         * kucun : 488
          */
 
         private String id;
-        private String uid;
-        private String gid;
-        private String addtime;
-        private String number;
         private String title;
-        private String img_feng;
         private String price;
-        private int zmoney;
+        private String img_feng;
+        private String kucun;
 
-        public static List<CartBean> arrayCartBeanFromData(String str) {
+        public static List<GoodsBean> arrayGoodsBeanFromData(String str) {
 
-            Type listType = new TypeToken<ArrayList<CartBean>>() {
+            Type listType = new TypeToken<ArrayList<GoodsBean>>() {
             }.getType();
 
             return new Gson().fromJson(str, listType);
@@ -220,52 +244,12 @@ public class OrderOrderBean {
             this.id = id;
         }
 
-        public String getUid() {
-            return uid;
-        }
-
-        public void setUid(String uid) {
-            this.uid = uid;
-        }
-
-        public String getGid() {
-            return gid;
-        }
-
-        public void setGid(String gid) {
-            this.gid = gid;
-        }
-
-        public String getAddtime() {
-            return addtime;
-        }
-
-        public void setAddtime(String addtime) {
-            this.addtime = addtime;
-        }
-
-        public String getNumber() {
-            return number;
-        }
-
-        public void setNumber(String number) {
-            this.number = number;
-        }
-
         public String getTitle() {
             return title;
         }
 
         public void setTitle(String title) {
             this.title = title;
-        }
-
-        public String getImg_feng() {
-            return img_feng;
-        }
-
-        public void setImg_feng(String img_feng) {
-            this.img_feng = img_feng;
         }
 
         public String getPrice() {
@@ -276,12 +260,20 @@ public class OrderOrderBean {
             this.price = price;
         }
 
-        public int getZmoney() {
-            return zmoney;
+        public String getImg_feng() {
+            return img_feng;
         }
 
-        public void setZmoney(int zmoney) {
-            this.zmoney = zmoney;
+        public void setImg_feng(String img_feng) {
+            this.img_feng = img_feng;
+        }
+
+        public String getKucun() {
+            return kucun;
+        }
+
+        public void setKucun(String kucun) {
+            this.kucun = kucun;
         }
     }
 }

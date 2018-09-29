@@ -126,7 +126,7 @@ public class PingJiaListActivity extends BaseActivity {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                star="5";
+                star="1";
                 btn1.setBackground(getResources().getDrawable(R.mipmap.pingjia02));
                 btn2.setBackground(getResources().getDrawable(R.mipmap.pingjia01));
                 btn3.setBackground(getResources().getDrawable(R.mipmap.pingjia02));
@@ -143,7 +143,7 @@ public class PingJiaListActivity extends BaseActivity {
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                star="3";
+                star="2";
                 btn1.setBackground(getResources().getDrawable(R.mipmap.pingjia02));
                 btn2.setBackground(getResources().getDrawable(R.mipmap.pingjia02));
                 btn3.setBackground(getResources().getDrawable(R.mipmap.pingjia01));
@@ -161,7 +161,7 @@ public class PingJiaListActivity extends BaseActivity {
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                star="1";
+                star="3";
                 btn1.setBackground(getResources().getDrawable(R.mipmap.pingjia02));
                 btn2.setBackground(getResources().getDrawable(R.mipmap.pingjia02));
                 btn3.setBackground(getResources().getDrawable(R.mipmap.pingjia02));

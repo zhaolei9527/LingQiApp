@@ -142,18 +142,20 @@ public class MyShouCangAcitivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 if (Utils.isConnected(context)) {
-                    dialog.show();
-                    StringBuilder stringBuilder = new StringBuilder();
-                    for (int i = 0; i < shopCarListAdapter.getDatas().size(); i++) {
-                        if (shopCarListAdapter.getDatas().get(i).isCheck()) {
-                            if (stringBuilder.length() == 0) {
-                                stringBuilder.append(shopCarListAdapter.getDatas().get(i).getId());
-                            } else {
-                                stringBuilder.append("," + shopCarListAdapter.getDatas().get(i).getId());
+                    if (shopCarListAdapter != null) {
+                        dialog.show();
+                        StringBuilder stringBuilder = new StringBuilder();
+                        for (int i = 0; i < shopCarListAdapter.getDatas().size(); i++) {
+                            if (shopCarListAdapter.getDatas().get(i).isCheck()) {
+                                if (stringBuilder.length() == 0) {
+                                    stringBuilder.append(shopCarListAdapter.getDatas().get(i).getId());
+                                } else {
+                                    stringBuilder.append("," + shopCarListAdapter.getDatas().get(i).getId());
+                                }
                             }
                         }
+                        scDels(stringBuilder.toString());
                     }
-                    scDels(stringBuilder.toString());
                 } else {
                     EasyToast.showShort(context, R.string.Networkexception);
                 }

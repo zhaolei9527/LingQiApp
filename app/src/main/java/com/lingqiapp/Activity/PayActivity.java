@@ -3,6 +3,7 @@ package com.lingqiapp.Activity;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
@@ -19,9 +20,9 @@ import com.google.gson.Gson;
 import com.lingqiapp.App;
 import com.lingqiapp.Base.BaseActivity;
 import com.lingqiapp.Bean.BankEvent;
-import com.lingqiapp.Bean.OrderPay;
 import com.lingqiapp.Bean.OrderWxpayBean;
 import com.lingqiapp.Bean.PayResult;
+import com.lingqiapp.Bean.PayYueBean;
 import com.lingqiapp.R;
 import com.lingqiapp.Utils.Constants;
 import com.lingqiapp.Utils.EasyToast;
@@ -41,15 +42,32 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.HashMap;
 import java.util.Map;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+import static com.lingqiapp.R.id.btn_paynow;
+import static com.lingqiapp.R.id.rl_back;
+import static com.lingqiapp.R.id.tv_ordernumber;
+
 
 public class PayActivity extends BaseActivity implements View.OnClickListener {
 
-    private FrameLayout rl_back;
-    private TextView tv_ordernumber;
-    private TextView tv_totalmoney;
-    private ImageView img_weixin;
-    private CheckBox Choosedweixin;
-    private Button btn_paynow;
+    @BindView(rl_back)
+    FrameLayout rlBack;
+    @BindView(tv_ordernumber)
+    TextView tvOrdernumber;
+    @BindView(R.id.tv_totalmoney)
+    TextView tvTotalmoney;
+    @BindView(R.id.img_weixin)
+    ImageView imgWeixin;
+    @BindView(R.id.Choosedweixin)
+    CheckBox Choosedweixin;
+    @BindView(R.id.img_yue)
+    ImageView imgYue;
+    @BindView(R.id.Choosedyue)
+    CheckBox Choosedyue;
+    @BindView(btn_paynow)
+    Button btnPaynow;
     private String orderid;
     private String order;
     private Dialog dialog;
@@ -97,6 +115,13 @@ public class PayActivity extends BaseActivity implements View.OnClickListener {
 
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         if (isfinish) {
@@ -121,16 +146,10 @@ public class PayActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void initview() {
-        rl_back = (FrameLayout) findViewById(R.id.rl_back);
-        tv_ordernumber = (TextView) findViewById(R.id.tv_ordernumber);
-        tv_totalmoney = (TextView) findViewById(R.id.tv_totalmoney);
-        img_weixin = (ImageView) findViewById(R.id.img_weixin);
-        Choosedweixin = (CheckBox) findViewById(R.id.Choosedweixin);
-        btn_paynow = (Button) findViewById(R.id.btn_paynow);
         orderid = getIntent().getStringExtra("orderid");
         order = getIntent().getStringExtra("order");
         if (!TextUtils.isEmpty(order)) {
-            tv_ordernumber.setText(order);
+            tvOrdernumber.setText(order);
         }
 
         //注册EventBus
@@ -145,14 +164,43 @@ public class PayActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void initListener() {
-        btn_paynow.setOnClickListener(this);
-        rl_back.setOnClickListener(this);
+        btnPaynow.setOnClickListener(this);
+        rlBack.setOnClickListener(this);
+
+        Choosedweixin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (Choosedweixin.isChecked()) {
+                    Choosedyue.setChecked(false);
+                } else {
+                    Choosedyue.setChecked(true);
+                }
+
+            }
+        });
+
+        Choosedyue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (Choosedyue.isChecked()) {
+                    Choosedweixin.setChecked(false);
+                } else {
+                    Choosedweixin.setChecked(true);
+                }
+
+            }
+        });
+
+
     }
 
     @Override
     protected void initData() {
         if (Utils.isConnected(context)) {
-            orderPay();
+            tvOrdernumber.setText(getIntent().getStringExtra("orderid"));
+            tvTotalmoney.setText(getIntent().getStringExtra("monsy"));
         } else {
             finish();
             EasyToast.showShort(context, "网络未连接");
@@ -162,57 +210,28 @@ public class PayActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_paynow:
+            case btn_paynow:
                 if (Utils.isConnected(context)) {
+                    if (Choosedweixin.isChecked()) {
+                        //orderWxpay();
+                        return;
+                    } else {
+                        payYue(getIntent().getStringExtra("orderid"));
+                    }
                     if (!dialog.isShowing()) {
                         dialog.show();
                     }
-                    orderWxpay();
+
                 } else {
                     EasyToast.showShort(context, "网络未连接");
                 }
                 break;
-            case R.id.rl_back:
+            case rl_back:
                 finish();
                 break;
             default:
                 break;
         }
-    }
-
-    /**
-     * 订单支付
-     */
-    private void orderPay() {
-        HashMap<String, String> params = new HashMap<>(3);
-        params.put("pwd", UrlUtils.KEY);
-        params.put("id", orderid);
-        params.put("uid", String.valueOf(SpUtil.get(context, "uid", "")));
-        Log.e("RegisterActivity", params.toString());
-        VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "order/pay", "order/pay", params, new VolleyInterface(context) {
-            @Override
-            public void onMySuccess(String result) {
-                dialog.dismiss();
-                Log.e("RegisterActivity", result);
-                try {
-                    OrderPay orderPay = new Gson().fromJson(result, OrderPay.class);
-                    if ("1".equals(String.valueOf(orderPay.getStatus()))) {
-                        tv_totalmoney.setText("￥" + orderPay.getMsg().getMoney());
-                        tv_ordernumber.setText(String.valueOf(orderPay.getMsg().getOrderid()));
-                    } else {
-                    }
-                    result = null;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onMyError(VolleyError error) {
-                dialog.dismiss();
-                error.printStackTrace();
-            }
-        });
     }
 
     /**
@@ -256,6 +275,48 @@ public class PayActivity extends BaseActivity implements View.OnClickListener {
             }
         });
     }
+
+    /**
+     * 订单生成
+     */
+    private void payYue(final String oid) {
+        HashMap<String, String> params = new HashMap<>(5);
+        params.put("uid", String.valueOf(SpUtil.get(context, "uid", "")));
+        params.put("oid", oid);
+        Log.e("OrderActivity", params.toString());
+        VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "order/pay_yue", "order/pay_yue", params, new VolleyInterface(context) {
+            @Override
+            public void onMySuccess(String result) {
+                dialog.dismiss();
+                Log.e("OrderActivity", result);
+                try {
+                    dialog.dismiss();
+                    PayYueBean payYueBean = new Gson().fromJson(result, PayYueBean.class);
+                    if (1 == payYueBean.getStatus()) {
+                        startActivity(new Intent(context, GoodPayActivity.class)
+                                .putExtra("type", "good")
+                                .putExtra("order", oid)
+                                .putExtra("orderid", oid));
+                        finish();
+                    } else {
+                        startActivity(new Intent(context, GoodPayActivity.class)
+                                .putExtra("order", oid)
+                                .putExtra("orderid", oid));
+                        finish();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onMyError(VolleyError error) {
+                dialog.dismiss();
+                error.printStackTrace();
+            }
+        });
+    }
+
 
     public static boolean isfinish = false;
 

@@ -17,10 +17,12 @@ import com.lingqiapp.Activity.AddressActivitry;
 import com.lingqiapp.Activity.BanQuanDetailsActivity;
 import com.lingqiapp.Activity.BankMessageActivity;
 import com.lingqiapp.Activity.CaiWuMingXiActiivity;
+import com.lingqiapp.Activity.HuiYuanShengJiActivity;
 import com.lingqiapp.Activity.LianXiWoMenActivity;
 import com.lingqiapp.Activity.LoginActivity;
 import com.lingqiapp.Activity.MYTuiJianMaActivity;
 import com.lingqiapp.Activity.MyMessageActivity;
+import com.lingqiapp.Activity.MyOrderActivity;
 import com.lingqiapp.Activity.MyShouCangAcitivity;
 import com.lingqiapp.Activity.MyTuiJianRenActivity;
 import com.lingqiapp.Activity.PingTaiDetailsActivity;
@@ -114,6 +116,13 @@ public class MeFragment extends BaseLazyFragment implements View.OnClickListener
         SimpleDraweeView.setImageURI(String.valueOf(UrlUtils.URL + SpUtil.get(mContext, "img", "")));
         tvUsername.setText(String.valueOf(SpUtil.get(mContext, "username", "")));
         tvYue.setText("账户余额：" + String.valueOf(SpUtil.get(mContext, "money", "")));
+
+        if ("1".equals(String.valueOf(SpUtil.get(mContext, "lv", "1")))) {
+            tvUserlv.setText("开通会员");
+        } else {
+            tvUserlv.setText("领七会员");
+        }
+
         llYijianfankui.setOnClickListener(this);
         llPingtaijieshao.setOnClickListener(this);
         llBanquanxinxi.setOnClickListener(this);
@@ -128,6 +137,12 @@ public class MeFragment extends BaseLazyFragment implements View.OnClickListener
         llYaoqingliebiao.setOnClickListener(this);
         llLianxiwomen.setOnClickListener(this);
         llWdeshoucang.setOnClickListener(this);
+        llMyorder.setOnClickListener(this);
+        llDaifahuo.setOnClickListener(this);
+        llDaifukuan.setOnClickListener(this);
+        llDaipingjia.setOnClickListener(this);
+        llDaishouhuo.setOnClickListener(this);
+        tvUserlv.setOnClickListener(this);
         btnExit.setOnClickListener(this);
     }
 
@@ -154,6 +169,24 @@ public class MeFragment extends BaseLazyFragment implements View.OnClickListener
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.tv_userlv:
+                startActivity(new Intent(mContext, HuiYuanShengJiActivity.class));
+                break;
+            case R.id.ll_daifukuan:
+                startActivity(new Intent(mContext, MyOrderActivity.class).putExtra("cid", "1"));
+                break;
+            case R.id.ll_daifahuo:
+                startActivity(new Intent(mContext, MyOrderActivity.class).putExtra("cid", "2"));
+                break;
+            case R.id.ll_daishouhuo:
+                startActivity(new Intent(mContext, MyOrderActivity.class).putExtra("cid", "3"));
+                break;
+            case R.id.ll_daipingjia:
+                startActivity(new Intent(mContext, MyOrderActivity.class).putExtra("cid", "4"));
+                break;
+            case R.id.ll_myorder:
+                startActivity(new Intent(mContext, MyOrderActivity.class));
+                break;
             case R.id.ll_wdeshoucang:
                 startActivity(new Intent(mContext, MyShouCangAcitivity.class));
                 break;

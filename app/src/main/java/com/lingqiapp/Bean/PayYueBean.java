@@ -8,27 +8,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * com.wenguoyi.Bean
+ * com.lingqiapp.Bean
  *
  * @author 赵磊
- * @date 2018/6/9
+ * @date 2018/9/28
  * 功能描述：
  */
-public class OrderYueBean {
+public class PayYueBean {
+
 
     /**
      * status : 1
-     * msg : 订单生成成功！
-     * orderid : 20180928111246860665
+     * msg : 支付成功
      */
 
     private int status;
     private String msg;
-    private String orderid;
 
-    public static List<OrderYueBean> arrayOrderYueBeanFromData(String str) {
+    public static List<PayYueBean> arrayPayYueBeanFromData(String str) {
 
-        Type listType = new TypeToken<ArrayList<OrderYueBean>>() {
+        Type listType = new TypeToken<ArrayList<PayYueBean>>() {
         }.getType();
 
         return new Gson().fromJson(str, listType);
@@ -48,13 +47,5 @@ public class OrderYueBean {
 
     public void setMsg(String msg) {
         this.msg = msg;
-    }
-
-    public String getOrderid() {
-        return orderid;
-    }
-
-    public void setOrderid(String orderid) {
-        this.orderid = orderid;
     }
 }

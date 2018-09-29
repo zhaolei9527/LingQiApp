@@ -23,10 +23,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:name">
-        <activity android:name=".Activity.MainActivity">
+        <activity android:name=".Activity.MainActivity"></activity>
+        <activity android:name=".Activity.FlashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -58,6 +58,12 @@
         <activity android:name=".Activity.PriceDetailsActivity"></activity>
         <activity android:name=".Activity.PingJiaListActivity"></activity>
         <activity android:name=".Activity.MyShouCangAcitivity"></activity>
+        <activity android:name=".Activity.OrderActivity"></activity>
+        <activity android:name=".Activity.MyOrderActivity"></activity>
+        <activity android:name=".Activity.KeFuActivity"></activity>
+        <activity android:name=".Activity.GoodPayActivity"></activity>
+        <activity android:name=".Activity.MyOrderDetailsActivity"></activity>
+        <activity android:name=".Activity.PayActivity"></activity>
         <!--====================================功能需要==========================================-->
 
         <activity

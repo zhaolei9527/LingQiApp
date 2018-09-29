@@ -87,135 +87,420 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                 holder.RollPagerView.setHintView(new IconHintView(mContext, R.drawable.shape_selected, R.drawable.shape_noraml, DensityUtils.dp2px(mContext, mContext.getResources().getDimension(R.dimen.x7))));
                 holder.RollPagerView.setPlayDelay(3000);
                 holder.RollPagerView.setAdapter(new LoopAdapter(holder.RollPagerView, homeBean.getLun_img()));
+                try {
+                    for (int i = 0; i < homeBean.getGoods_pai().size(); i++) {
+                        if (DateUtils.getWeekByDateStr(DateUtils.getMillon(System.currentTimeMillis())).equals(homeBean.getGoods_pai().get(i).getZhou()) && homeBean.getGoods_pai().get(i).getZhou().equals("1")) {
+                            holder.tv_day1.setText("未开始");
+                            holder.sim1.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(1).getImg_feng());
+                            holder.sim1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(1).getId()));
+                                }
+                            });
 
-                for (int i = 0; i < homeBean.getGoods_pai().size(); i++) {
+                            holder.tv_day2.setText("未开始");
+                            holder.sim2.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(2).getImg_feng());
+                            holder.sim2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(2).getId()));
+                                }
+                            });
 
-                    if (DateUtils.getWeekByDateStr(DateUtils.getMillon(System.currentTimeMillis())).equals(homeBean.getGoods_pai().get(i).getZhou()) && homeBean.getGoods_pai().get(i).getZhou().equals("1")) {
+                            holder.tv_day3.setText("未开始");
+                            holder.sim3.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(3).getImg_feng());
+                            holder.sim3.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(3).getId()));
+                                }
+                            });
 
-                        holder.simNow.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(0).getImg_feng());
-                        holder.sim1.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(1).getImg_feng());
-                        holder.sim2.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(2).getImg_feng());
-                        holder.sim3.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(3).getImg_feng());
-                        holder.sim4.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(4).getImg_feng());
-                        holder.sim5.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(5).getImg_feng());
-                        holder.sim6.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(6).getImg_feng());
+                            holder.tv_day4.setText("未开始");
+                            holder.sim4.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(4).getImg_feng());
+                            holder.sim4.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(4).getId()));
+                                }
+                            });
 
-                        holder.tv_day1.setText("未开始");
-                        holder.tv_day2.setText("未开始");
-                        holder.tv_day3.setText("未开始");
-                        holder.tv_day4.setText("未开始");
-                        holder.tv_day5.setText("未开始");
-                        holder.tv_day6.setText("未开始");
+                            holder.tv_day5.setText("未开始");
+                            holder.sim5.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(5).getImg_feng());
+                            holder.sim5.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(5).getId()));
+                                }
+                            });
 
+                            holder.tv_day6.setText("未开始");
+                            holder.sim6.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(6).getImg_feng());
+                            holder.sim6.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(6).getId()));
+                                }
+                            });
 
-                    } else if (DateUtils.getWeekByDateStr(DateUtils.getMillon(System.currentTimeMillis())).equals(homeBean.getGoods_pai().get(i).getZhou()) && homeBean.getGoods_pai().get(i).getZhou().equals("2")) {
+                            holder.simNow.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(0).getImg_feng());
+                            holder.simNow.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(0).getId()));
+                                }
+                            });
 
-
-                        holder.simNow.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(1).getImg_feng());
-                        holder.sim1.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(0).getImg_feng());
-                        holder.sim2.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(2).getImg_feng());
-                        holder.sim3.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(3).getImg_feng());
-                        holder.sim4.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(4).getImg_feng());
-                        holder.sim5.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(5).getImg_feng());
-                        holder.sim6.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(6).getImg_feng());
-
-                        holder.tv_day1.setText("周一");
-                        holder.tv_day2.setText("未开始");
-                        holder.tv_day3.setText("未开始");
-                        holder.tv_day4.setText("未开始");
-                        holder.tv_day5.setText("未开始");
-                        holder.tv_day6.setText("未开始");
-
-                    } else if (DateUtils.getWeekByDateStr(DateUtils.getMillon(System.currentTimeMillis())).equals(homeBean.getGoods_pai().get(i).getZhou()) && homeBean.getGoods_pai().get(i).getZhou().equals("3")) {
-
-
-                        holder.simNow.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(2).getImg_feng());
-                        holder.sim1.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(0).getImg_feng());
-                        holder.sim2.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(1).getImg_feng());
-                        holder.sim3.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(3).getImg_feng());
-                        holder.sim4.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(4).getImg_feng());
-                        holder.sim5.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(5).getImg_feng());
-                        holder.sim6.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(6).getImg_feng());
-
-                        holder.tv_day1.setText("周一");
-                        holder.tv_day2.setText("周二");
-                        holder.tv_day3.setText("未开始");
-                        holder.tv_day4.setText("未开始");
-                        holder.tv_day5.setText("未开始");
-                        holder.tv_day6.setText("未开始");
-
-                    } else if (DateUtils.getWeekByDateStr(DateUtils.getMillon(System.currentTimeMillis())).equals(homeBean.getGoods_pai().get(i).getZhou()) && homeBean.getGoods_pai().get(i).getZhou().equals("4")) {
-
-
-                        holder.simNow.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(3).getImg_feng());
-                        holder.sim1.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(0).getImg_feng());
-                        holder.sim2.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(1).getImg_feng());
-                        holder.sim3.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(2).getImg_feng());
-                        holder.sim4.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(4).getImg_feng());
-                        holder.sim5.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(5).getImg_feng());
-                        holder.sim6.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(6).getImg_feng());
-
-                        holder.tv_day1.setText("周一");
-                        holder.tv_day2.setText("周二");
-                        holder.tv_day3.setText("周三");
-                        holder.tv_day4.setText("未开始");
-                        holder.tv_day5.setText("未开始");
-                        holder.tv_day6.setText("未开始");
-
-
-                    } else if (DateUtils.getWeekByDateStr(DateUtils.getMillon(System.currentTimeMillis())).equals(homeBean.getGoods_pai().get(i).getZhou()) && homeBean.getGoods_pai().get(i).getZhou().equals("5")) {
-
-                        holder.simNow.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(4).getImg_feng());
-                        holder.sim1.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(0).getImg_feng());
-                        holder.sim2.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(1).getImg_feng());
-                        holder.sim3.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(2).getImg_feng());
-                        holder.sim4.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(3).getImg_feng());
-                        holder.sim5.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(5).getImg_feng());
-                        holder.sim6.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(6).getImg_feng());
-
-                        holder.tv_day1.setText("周一");
-                        holder.tv_day2.setText("周二");
-                        holder.tv_day3.setText("周三");
-                        holder.tv_day4.setText("周四");
-                        holder.tv_day5.setText("未开始");
-                        holder.tv_day6.setText("未开始");
-
-                    } else if (DateUtils.getWeekByDateStr(DateUtils.getMillon(System.currentTimeMillis())).equals(homeBean.getGoods_pai().get(i).getZhou()) && homeBean.getGoods_pai().get(i).getZhou().equals("6")) {
+                        } else if (DateUtils.getWeekByDateStr(DateUtils.getMillon(System.currentTimeMillis())).equals(homeBean.getGoods_pai().get(i).getZhou()) && homeBean.getGoods_pai().get(i).getZhou().equals("2")) {
+                            holder.tv_day1.setText("周一");
+                            holder.sim1.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(0).getImg_feng());
+                            holder.sim1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(0).getId()));
+                                }
+                            });
 
 
-                        holder.simNow.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(5).getImg_feng());
-                        holder.sim1.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(0).getImg_feng());
-                        holder.sim2.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(1).getImg_feng());
-                        holder.sim3.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(2).getImg_feng());
-                        holder.sim4.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(3).getImg_feng());
-                        holder.sim5.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(4).getImg_feng());
-                        holder.sim6.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(6).getImg_feng());
+                            holder.tv_day2.setText("未开始");
+                            holder.sim2.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(2).getImg_feng());
+                            holder.sim2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(2).getId()));
+                                }
+                            });
 
-                        holder.tv_day1.setText("周一");
-                        holder.tv_day2.setText("周二");
-                        holder.tv_day3.setText("周三");
-                        holder.tv_day4.setText("周四");
-                        holder.tv_day5.setText("周五");
-                        holder.tv_day6.setText("未开始");
+                            holder.tv_day3.setText("未开始");
+                            holder.sim3.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(3).getImg_feng());
+                            holder.sim3.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(3).getId()));
+                                }
+                            });
 
-                    } else if (DateUtils.getWeekByDateStr(DateUtils.getMillon(System.currentTimeMillis())).equals(homeBean.getGoods_pai().get(i).getZhou()) && homeBean.getGoods_pai().get(i).getZhou().equals("7")) {
+                            holder.tv_day4.setText("未开始");
+                            holder.sim4.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(4).getImg_feng());
+                            holder.sim4.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(4).getId()));
+                                }
+                            });
 
-                        holder.simNow.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(6).getImg_feng());
-                        holder.sim1.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(0).getImg_feng());
-                        holder.sim2.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(1).getImg_feng());
-                        holder.sim3.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(2).getImg_feng());
-                        holder.sim4.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(3).getImg_feng());
-                        holder.sim5.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(4).getImg_feng());
-                        holder.sim6.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(5).getImg_feng());
+                            holder.tv_day5.setText("未开始");
+                            holder.sim5.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(5).getImg_feng());
+                            holder.sim5.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(5).getId()));
+                                }
+                            });
 
-                        holder.tv_day1.setText("周一");
-                        holder.tv_day2.setText("周二");
-                        holder.tv_day3.setText("周三");
-                        holder.tv_day4.setText("周四");
-                        holder.tv_day5.setText("周五");
-                        holder.tv_day6.setText("周六");
+                            holder.tv_day6.setText("未开始");
+                            holder.sim6.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(6).getImg_feng());
+                            holder.sim6.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(6).getId()));
+                                }
+                            });
+                            holder.simNow.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(1).getImg_feng());
 
+                            holder.simNow.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(1).getId()));
+                                }
+                            });
+
+                        } else if (DateUtils.getWeekByDateStr(DateUtils.getMillon(System.currentTimeMillis())).equals(homeBean.getGoods_pai().get(i).getZhou()) && homeBean.getGoods_pai().get(i).getZhou().equals("3")) {
+                            holder.tv_day1.setText("周一");
+                            holder.tv_day2.setText("周二");
+                            holder.tv_day3.setText("未开始");
+                            holder.tv_day4.setText("未开始");
+                            holder.tv_day5.setText("未开始");
+                            holder.tv_day6.setText("未开始");
+                            holder.simNow.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(2).getImg_feng());
+                            holder.sim1.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(0).getImg_feng());
+                            holder.sim2.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(1).getImg_feng());
+                            holder.sim3.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(3).getImg_feng());
+                            holder.sim4.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(4).getImg_feng());
+                            holder.sim5.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(5).getImg_feng());
+                            holder.sim6.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(6).getImg_feng());
+                            holder.simNow.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(2).getId()));
+                                }
+                            });
+                            holder.sim1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(0).getId()));
+                                }
+                            });
+                            holder.sim2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(1).getId()));
+                                }
+                            });
+                            holder.sim3.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(2).getId()));
+                                }
+                            });
+                            holder.sim4.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(4).getId()));
+                                }
+                            });
+                            holder.sim5.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(5).getId()));
+                                }
+                            });
+                            holder.sim6.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(6).getId()));
+                                }
+                            });
+                        } else if (DateUtils.getWeekByDateStr(DateUtils.getMillon(System.currentTimeMillis())).equals(homeBean.getGoods_pai().get(i).getZhou()) && homeBean.getGoods_pai().get(i).getZhou().equals("4")) {
+                            holder.tv_day1.setText("周一");
+                            holder.tv_day2.setText("周二");
+                            holder.tv_day3.setText("周三");
+                            holder.tv_day4.setText("未开始");
+                            holder.tv_day5.setText("未开始");
+                            holder.tv_day6.setText("未开始");
+                            holder.simNow.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(3).getImg_feng());
+                            holder.sim1.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(0).getImg_feng());
+                            holder.sim2.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(1).getImg_feng());
+                            holder.sim3.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(2).getImg_feng());
+                            holder.sim4.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(4).getImg_feng());
+                            holder.sim5.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(5).getImg_feng());
+                            holder.sim6.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(6).getImg_feng());
+                            holder.simNow.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(3).getId()));
+                                }
+                            });
+                            holder.sim1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(0).getId()));
+                                }
+                            });
+                            holder.sim2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(1).getId()));
+                                }
+                            });
+                            holder.sim3.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(2).getId()));
+                                }
+                            });
+                            holder.sim4.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(4).getId()));
+                                }
+                            });
+                            holder.sim5.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(5).getId()));
+                                }
+                            });
+                            holder.sim6.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(6).getId()));
+                                }
+                            });
+                        } else if (DateUtils.getWeekByDateStr(DateUtils.getMillon(System.currentTimeMillis())).equals(homeBean.getGoods_pai().get(i).getZhou()) && homeBean.getGoods_pai().get(i).getZhou().equals("5")) {
+                            holder.tv_day1.setText("周一");
+                            holder.tv_day2.setText("周二");
+                            holder.tv_day3.setText("周三");
+                            holder.tv_day4.setText("周四");
+                            holder.tv_day5.setText("未开始");
+                            holder.tv_day6.setText("未开始");
+                            holder.simNow.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(4).getImg_feng());
+                            holder.sim1.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(0).getImg_feng());
+                            holder.sim2.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(1).getImg_feng());
+                            holder.sim3.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(2).getImg_feng());
+                            holder.sim4.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(3).getImg_feng());
+                            holder.sim5.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(5).getImg_feng());
+                            holder.sim6.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(6).getImg_feng());
+                            holder.simNow.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(4).getId()));
+                                }
+                            });
+                            holder.sim1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(0).getId()));
+                                }
+                            });
+                            holder.sim2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(1).getId()));
+                                }
+                            });
+                            holder.sim3.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(2).getId()));
+                                }
+                            });
+                            holder.sim4.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(3).getId()));
+                                }
+                            });
+                            holder.sim5.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(5).getId()));
+                                }
+                            });
+                            holder.sim6.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(6).getId()));
+                                }
+                            });
+                        } else if (DateUtils.getWeekByDateStr(DateUtils.getMillon(System.currentTimeMillis())).equals(homeBean.getGoods_pai().get(i).getZhou()) && homeBean.getGoods_pai().get(i).getZhou().equals("6")) {
+                            holder.tv_day1.setText("周一");
+                            holder.tv_day2.setText("周二");
+                            holder.tv_day3.setText("周三");
+                            holder.tv_day4.setText("周四");
+                            holder.tv_day5.setText("周五");
+                            holder.tv_day6.setText("未开始");
+                            holder.simNow.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(5).getImg_feng());
+                            holder.sim1.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(0).getImg_feng());
+                            holder.sim2.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(1).getImg_feng());
+                            holder.sim3.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(2).getImg_feng());
+                            holder.sim4.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(3).getImg_feng());
+                            holder.sim5.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(4).getImg_feng());
+                            holder.sim6.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(6).getImg_feng());
+                            holder.simNow.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(5).getId()));
+                                }
+                            });
+                            holder.sim1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(0).getId()));
+                                }
+                            });
+                            holder.sim2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(1).getId()));
+                                }
+                            });
+                            holder.sim3.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(2).getId()));
+                                }
+                            });
+                            holder.sim4.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(3).getId()));
+                                }
+                            });
+                            holder.sim5.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(4).getId()));
+                                }
+                            });
+                            holder.sim6.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(6).getId()));
+                                }
+                            });
+                        } else if (DateUtils.getWeekByDateStr(DateUtils.getMillon(System.currentTimeMillis())).equals(homeBean.getGoods_pai().get(i).getZhou()) && homeBean.getGoods_pai().get(i).getZhou().equals("7")) {
+                            holder.tv_day1.setText("周一");
+                            holder.tv_day2.setText("周二");
+                            holder.tv_day3.setText("周三");
+                            holder.tv_day4.setText("周四");
+                            holder.tv_day5.setText("周五");
+                            holder.tv_day6.setText("周六");
+                            holder.simNow.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(6).getImg_feng());
+                            holder.sim1.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(0).getImg_feng());
+                            holder.sim2.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(1).getImg_feng());
+                            holder.sim3.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(2).getImg_feng());
+                            holder.sim4.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(3).getImg_feng());
+                            holder.sim5.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(4).getImg_feng());
+                            holder.sim6.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(5).getImg_feng());
+                            holder.simNow.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(6).getId()));
+                                }
+                            });
+                            holder.sim1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(0).getId()));
+                                }
+                            });
+                            holder.sim2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(1).getId()));
+                                }
+                            });
+                            holder.sim3.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(2).getId()));
+                                }
+                            });
+                            holder.sim4.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(3).getId()));
+                                }
+                            });
+                            holder.sim5.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(4).getId()));
+                                }
+                            });
+                            holder.sim6.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(5).getId()));
+                                }
+                            });
+                        }
                     }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
                 isfirst = !isfirst;

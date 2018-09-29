@@ -103,26 +103,24 @@ public class ShopCarFragment extends BaseLazyFragment {
         shopnow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StringBuilder id = new StringBuilder();
                 StringBuilder cid = new StringBuilder();
-                StringBuilder amount = new StringBuilder();
+                StringBuilder gid = new StringBuilder();
 
                 for (int i = 0; i < shopCarListAdapter.getDatas().size(); i++) {
                     if (shopCarListAdapter.getDatas().get(i).isCheck()) {
-                        if (id.length() == 0) {
-                            id.append(shopCarListAdapter.getDatas().get(i).getGid());
+                        if (cid.length() == 0) {
                             cid.append(shopCarListAdapter.getDatas().get(i).getId());
-                            amount.append(shopCarListAdapter.getDatas().get(i).getNumber());
+                            gid.append(shopCarListAdapter.getDatas().get(i).getGid());
+
                         } else {
-                            id.append("," + shopCarListAdapter.getDatas().get(i).getGid());
                             cid.append("," + shopCarListAdapter.getDatas().get(i).getId());
-                            amount.append("," + shopCarListAdapter.getDatas().get(i).getNumber());
+                            gid.append(shopCarListAdapter.getDatas().get(i).getGid());
                         }
                     }
                 }
 
-                if (!TextUtils.isEmpty(id.toString())) {
-                    orderOrder(id.toString(), cid.toString(), amount.toString());
+                if (!TextUtils.isEmpty(cid.toString())) {
+                    orderOrder(cid.toString(), gid.toString());
                 } else {
                     EasyToast.showShort(context, "请选择商品");
                 }
@@ -338,13 +336,11 @@ public class ShopCarFragment extends BaseLazyFragment {
     /**
      * 购物车下单
      */
-    private void orderOrder(String id, final String cid, final String amount) {
+    private void orderOrder(final String cid, final String gid) {
         HashMap<String, String> params = new HashMap<>(3);
-        params.put("pwd", UrlUtils.KEY);
         params.put("uid", String.valueOf(SpUtil.get(context, "uid", "")));
-        params.put("id", id);
         params.put("cid", cid);
-        params.put("amount", amount);
+        params.put("gid", gid);
         Log.e("ShopCarFragment", params.toString());
         VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "order/order", "order/order", params, new VolleyInterface(context) {
             @Override
@@ -355,8 +351,8 @@ public class ShopCarFragment extends BaseLazyFragment {
                     if (1 == orderOrderBean.getStatus()) {
                         context.startActivity(new Intent(context, OrderActivity.class)
                                 .putExtra("order", result)
+                                .putExtra("gid", gid)
                                 .putExtra("cart_id", cid)
-                                .putExtra("amount_list", amount)
                         );
                     } else {
                     }

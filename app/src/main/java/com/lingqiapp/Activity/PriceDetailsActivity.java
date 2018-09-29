@@ -24,6 +24,7 @@ import com.lingqiapp.Adapter.GoodsLoopAdapter;
 import com.lingqiapp.Base.BaseActivity;
 import com.lingqiapp.Bean.GoodsCangBean;
 import com.lingqiapp.Bean.GoodsDetailBean;
+import com.lingqiapp.Bean.GoodsOrderBean;
 import com.lingqiapp.R;
 import com.lingqiapp.Utils.DateUtils;
 import com.lingqiapp.Utils.DensityUtils;
@@ -238,7 +239,7 @@ public class PriceDetailsActivity extends BaseActivity implements View.OnClickLi
                 }
 
                 if (Utils.isConnected(context)) {
-
+                    startActivity(new Intent(context, KeFuActivity.class));
                 } else {
                     EasyToast.showShort(context, "网络未连接");
                 }
@@ -250,18 +251,18 @@ public class PriceDetailsActivity extends BaseActivity implements View.OnClickLi
                     return;
                 }
 
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append(String.valueOf(goodsDetailBean.getGoods().getId()));
-                stringBuilder.append("," + goodsDetailBean.getGoods().getImg().get(0));
-                stringBuilder.append("," + goodsDetailBean.getGoods().getTitle());
-                stringBuilder.append("," + goodsDetailBean.getGoods().getPrice());
-                stringBuilder.append("," + "1");
-                stringBuilder.append("," + goodsDetailBean.getGoods().getId());
-                Log.e("PriceDetailsActivity", stringBuilder.toString());
-                // Intent OrderActivityintent = new Intent(context, OrderActivity.class);
-                //OrderActivityintent.putExtra("order", stringBuilder.toString());
-                //OrderActivityintent.putExtra("price", goodsDetailBean.getGoods().getPrice());
-                //startActivity(OrderActivityintent);
+                if (Utils.isConnected(context)) {
+                    String kucun = goodsDetailBean.getGoods().getKucun();
+                    int kucuni = Integer.parseInt(kucun);
+                    if (kucuni > 1) {
+                        orderBuy();
+                        dialog.show();
+                    } else {
+                        EasyToast.showShort(context, "库存不足");
+                    }
+                } else {
+                    EasyToast.showShort(context, "网络未连接");
+                }
                 break;
             case R.id.ll_allpingjia:
                 Intent intent = new Intent(context, PingJiaListActivity.class);
@@ -320,6 +321,47 @@ public class PriceDetailsActivity extends BaseActivity implements View.OnClickLi
             return;
         }
     }
+
+    /**
+     * 确认订单（立即购买）
+     */
+    private void orderBuy() {
+        final HashMap<String, String> params = new HashMap<>(1);
+        params.put("g_num", btnShuliang.getText().toString());
+        params.put("uid", String.valueOf(SpUtil.get(context, "uid", "")));
+        params.put("gid", String.valueOf(getIntent().getStringExtra("id")));
+        Log.e("PriceDetailsActivity", params.toString());
+        VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "goods/goods_order", "goods/goods_order", params, new VolleyInterface(context) {
+            @Override
+            public void onMySuccess(String result) {
+                Log.e("PriceDetailsActivity", result);
+                try {
+                    dialog.dismiss();
+                    GoodsOrderBean goodsOrderBean = new Gson().fromJson(result, GoodsOrderBean.class);
+                    if ("1".equals(goodsOrderBean.getStatus())) {
+                        context.startActivity(new Intent(context, OrderActivity.class)
+                                .putExtra("order", result)
+                                .putExtra("type", "123")
+                                .putExtra("cart_id", goodsOrderBean.getCid())
+                                .putExtra("gid", String.valueOf(getIntent().getStringExtra("id")))
+                        );
+                    } else {
+                    }
+                    result = null;
+                } catch (Exception e) {
+                    dialog.dismiss();
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onMyError(VolleyError error) {
+                dialog.dismiss();
+                error.printStackTrace();
+            }
+        });
+    }
+
 
     /**
      * 产品详情获取

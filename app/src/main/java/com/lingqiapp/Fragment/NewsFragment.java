@@ -67,17 +67,18 @@ public class NewsFragment extends BaseLazyFragment {
 
     @Override
     protected void initData() {
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         llSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(mContext, NewsListActivity.class));
             }
         });
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         p = 1;
         getIndex();
     }

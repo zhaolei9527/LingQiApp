@@ -1,15 +1,11 @@
-package com.lingqiapp.Fragment;
+package com.lingqiapp.Activity;
 
-
-import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.FrameLayout;
 
+import com.lingqiapp.Base.BaseActivity;
 import com.lingqiapp.R;
 import com.tencent.smtt.export.external.extension.interfaces.IX5WebViewExtension;
 import com.tencent.smtt.export.external.interfaces.WebResourceError;
@@ -20,41 +16,47 @@ import com.tencent.smtt.sdk.WebViewClient;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
+ * com.sakuraphonebtc.Activity
+ *
  * @author 赵磊
- * @date 2018/5/21
+ * @date 2018/3/31
  * 功能描述：
  */
-public class KeFuFragment extends BaseLazyFragment {
-
-    Unbinder unbinder;
-    @BindView(R.id.tv_Title)
-    TextView tvTitle;
+public class KeFuActivity extends BaseActivity {
+    @BindView(R.id.rl_back)
+    FrameLayout rlBack;
     @BindView(R.id.forum_context)
     WebView forumContext;
 
-    @Override
-    protected void initPrepare() {
 
+    @Override
+    protected int setthislayout() {
+        return R.layout.activity_kefu_layout;
     }
 
     @Override
-    protected void onInvisible() {
-
+    protected void initview() {
     }
 
+    @Override
+    protected void initListener() {
+        rlBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
 
     @Override
     protected void initData() {
-
     }
 
     @Override
-    public void onResume() {
+    protected void onResume() {
         super.onResume();
-
         try {
             IX5WebViewExtension ix5 = forumContext.getX5WebViewExtension();
             if (null != ix5) {
@@ -101,33 +103,21 @@ public class KeFuFragment extends BaseLazyFragment {
             });
             forumContext.loadUrl("https://kefu.easemob.com/webim/im.html?configId=27e02ed0-94d0-4f54-a674-fd9806960849");
 
-
-
         }catch (Exception e){
             e.printStackTrace();
         }
 
-
-
     }
 
     @Override
-    protected View initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.kefu_fragment_layout, container, false);
-        return view;
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }
