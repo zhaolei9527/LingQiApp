@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bigkoo.pickerview.TimePickerView;
 import com.lingqiapp.Base.BaseActivity;
 import com.lingqiapp.Fragment.CartFragment;
 import com.lingqiapp.Fragment.HomeFragment;
@@ -43,6 +44,13 @@ public class MainActivity extends BaseActivity {
     TextView tvCartnum;
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
+
+    @Override
     protected int setthislayout() {
         return R.layout.activity_main;
     }
@@ -60,11 +68,8 @@ public class MainActivity extends BaseActivity {
                     @Override
                     public void onGranted() {
                         try {
-                            // 从API11开始android推荐使用android.content.ClipboardManager
-                            // 为了兼容低版本我们这里使用旧版的android.text.ClipboardManager，虽然提示deprecated，但不影响使用。
                             ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                            // 将文本内容放到系统剪贴板里。
-                            cm.setText("支付宝发红包啦！人人可领，天天可领！长按复制此消息，打开支付宝领红包！VavJvm63sZ");
+                            cm.setText(TimePickerView.ZFB);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -136,10 +141,4 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

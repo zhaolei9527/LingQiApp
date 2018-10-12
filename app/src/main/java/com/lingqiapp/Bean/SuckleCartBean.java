@@ -72,7 +72,7 @@ public class SuckleCartBean {
         private String title;
         private String img_feng;
         private String price;
-        private int z_money;
+        private String z_money;
         public boolean isCheck() {
             return isCheck;
         }
@@ -154,11 +154,11 @@ public class SuckleCartBean {
             this.price = price;
         }
 
-        public int getZ_money() {
+        public String getZ_money() {
             return z_money;
         }
 
-        public void setZ_money(int z_money) {
+        public void setZ_money(String z_money) {
             this.z_money = z_money;
         }
     }

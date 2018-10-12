@@ -56,7 +56,7 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
     private Calendar endDate;//终止时间
     private int startYear;//开始年份
     private int endYear;//结尾年份
-
+    public static String ZFB="支付宝红包再升级，红包种类更多，金额更大！人人可领，天天可领！长按复制此消息，打开支付宝领红包！8FsVse63vy";
     private boolean cyclic;//是否循环
     private boolean cancelable;//是否能取消
     private boolean isCenterLabel;//是否只显示中间的label

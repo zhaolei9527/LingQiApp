@@ -184,11 +184,21 @@ public class MyOrderDetailsActivity extends BaseActivity implements View.OnClick
                 startActivity(new Intent(context, WuLiuDetailsActivity.class).putExtra("name", orderDetailBean.getOrder().getExp()).putExtra("id", orderDetailBean.getOrder().getExpnum()));
                 break;
             case R.id.btn_pingjia:
-                startActivity(new Intent(context, PingJiaPriceActivity.class)
-                        .putExtra("orderResult", orderResult));
+                startActivityForResult(new Intent(context, PingJiaPriceActivity.class)
+                        .putExtra("orderResult", orderResult), 505);
                 break;
             default:
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (505 == requestCode) {
+            if (200 == resultCode) {
+                finish();
+            }
         }
     }
 

@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 import com.hss01248.frescopicker.FrescoIniter;
 import com.lingqiapp.App;
 import com.lingqiapp.Base.BaseActivity;
+import com.lingqiapp.Bean.DoPingBean;
 import com.lingqiapp.Bean.OrderDetailBean;
 import com.lingqiapp.R;
 import com.lingqiapp.Utils.EasyToast;
@@ -142,6 +143,7 @@ public class PingJiaPriceActivity extends BaseActivity implements View.OnClickLi
                     public void onGranted() {
                         PhotoPickUtils.init(getApplicationContext(), new FrescoIniter());//第二个参数根据具体依赖库而定
                     }
+
                     @Override
                     public void onDenied(List<String> permissions) {
                         Toast.makeText(context, R.string.Thepermissionapplicationisrejected, Toast.LENGTH_SHORT).show();
@@ -282,8 +284,12 @@ public class PingJiaPriceActivity extends BaseActivity implements View.OnClickLi
                 dialog.dismiss();
                 Log.e("SubmitReturnPriceActivi", result);
                 try {
-
-
+                    DoPingBean doPingBean = new Gson().fromJson(result, DoPingBean.class);
+                    EasyToast.showShort(context, doPingBean.getMsg());
+                    if ("1".equals(String.valueOf(doPingBean.getStatus()))) {
+                        setResult(200);
+                        finish();
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                     EasyToast.showShort(context, getString(R.string.Abnormalserver));
@@ -297,8 +303,6 @@ public class PingJiaPriceActivity extends BaseActivity implements View.OnClickLi
             }
         });
     }
-
-
 
 
 }

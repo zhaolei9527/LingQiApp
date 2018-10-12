@@ -318,6 +318,7 @@ public class PayActivity extends BaseActivity implements View.OnClickListener {
                                 .putExtra("orderid", oid));
                         finish();
                     } else {
+                        EasyToast.showShort(context, payYueBean.getMsg());
                         startActivity(new Intent(context, GoodPayActivity.class)
                                 .putExtra("order", oid)
                                 .putExtra("orderid", oid));

@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -125,7 +126,9 @@ public class MeFragment extends BaseLazyFragment implements View.OnClickListener
             tvUserlv.setText("领七会员");
         }
 
-        if ("0".equals(String.valueOf(SpUtil.get(mContext, "zw_count", "0")))) {
+        if ("0".equals(String.valueOf(SpUtil.get(mContext, "zw_count", "0")))
+                || TextUtils.isEmpty(String.valueOf(SpUtil.get(mContext, "zw_count", "0")))
+                || "null".equals(String.valueOf(SpUtil.get(mContext, "zw_count", "0")))) {
             tvCartnum.setVisibility(View.GONE);
         } else {
             tvCartnum.setVisibility(View.VISIBLE);

@@ -46,6 +46,7 @@ public class HomeFragment extends BaseLazyFragment {
     private Context context;
     private WenguoyiRecycleView rv_homelist;
     private SakuraLinearLayoutManager line;
+    private HomeListAdapter adapter;
 
     @Override
     protected void initPrepare() {
@@ -115,9 +116,16 @@ public class HomeFragment extends BaseLazyFragment {
                 try {
                     HomeBean homeBean = new Gson().fromJson(result, HomeBean.class);
                     if (page == 1) {
-                        HomeListAdapter adapter = new HomeListAdapter((MainActivity) getActivity(), homeBean);
+                        adapter = new HomeListAdapter((MainActivity) getActivity(), homeBean);
                         rv_homelist.setAdapter(adapter);
                     } else {
+                        if (result.contains("\\u6ca1\\u6709\\u66f4\\u591a\\u7684\\u70ed\\u9500\\u5546\\u54c1")) {
+                            rv_homelist.loadMoreComplete();
+                            rv_homelist.loadMoreEnd();
+                            rv_homelist.setCanloadMore(false);
+                            return;
+                        }
+                        adapter.setDatas(homeBean.getList());
                         rv_homelist.loadMoreComplete();
                         rv_homelist.setCanloadMore(true);
                     }

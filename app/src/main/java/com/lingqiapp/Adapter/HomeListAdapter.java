@@ -24,6 +24,7 @@ import com.lingqiapp.Utils.EasyToast;
 import com.lingqiapp.Utils.UrlUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,7 +52,7 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
         datas.addAll(homeBean.getList());
     }
 
-    public void setDatas(ArrayList<HomeBean.ListBean> datas) {
+    public void setDatas(List<HomeBean.ListBean> datas) {
         this.datas.addAll(datas);
     }
 
