@@ -227,7 +227,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:scheme="wx82670e4f447fbb75" />
+                <data android:scheme="wxf01c8a76202a8f4e" />
             </intent-filter>
         </activity>
 
@@ -238,7 +238,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:scheme="wx82670e4f447fbb75" />
+                <data android:scheme="wxf01c8a76202a8f4e" />
             </intent-filter>
         </activity>
 

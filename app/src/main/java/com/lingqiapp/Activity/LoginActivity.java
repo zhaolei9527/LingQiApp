@@ -259,6 +259,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         SpUtil.putAndApply(context, "money", loginBean.getUser().getMoney());
                         SpUtil.putAndApply(context, "img", loginBean.getUser().getImg());
                         SpUtil.putAndApply(context, "password", password);
+                        if (!TextUtils.isEmpty(openid)) {
+                            SpUtil.putAndApply(context, "wxopenid", openid);
+                        }
                         SpUtil.putAndApply(context, "tel", "" + loginBean.getUser().getTel());
                         SpUtil.putAndApply(context, "lv", loginBean.getUser().getIs_hui());
                         SpUtil.putAndApply(context, "zw_count", "" + loginBean.getZw_count());

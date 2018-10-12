@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
@@ -30,6 +31,8 @@ import com.lingqiapp.Volley.VolleyInterface;
 import com.lingqiapp.Volley.VolleyRequest;
 
 import java.util.HashMap;
+
+import me.fangx.haorefresh.LoadMoreListener;
 
 /**
  * com.wenguoyi.Fragment
@@ -77,17 +80,26 @@ public class HomeFragment extends BaseLazyFragment {
         line.setOrientation(LinearLayoutManager.VERTICAL);
         rv_homelist.setLayoutManager(line);
         rv_homelist.setItemAnimator(new DefaultItemAnimator());
-        ProgressView progressView = new ProgressView(context);
-        progressView.setIndicatorId(ProgressView.BallRotate);
-        progressView.setIndicatorColor(getResources().getColor(R.color.colorAccent));
-        rv_homelist.setFootLoadingView(progressView);
         view.findViewById(R.id.ll_search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(context, ShopListActivity.class));
             }
         });
-
+        ProgressView progressView = new ProgressView(context);
+        progressView.setIndicatorId(ProgressView.BallRotate);
+        progressView.setIndicatorColor(getResources().getColor(R.color.colorAccent));
+        rv_homelist.setFootLoadingView(progressView);
+        rv_homelist.setLoadMoreListener(new LoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                page = page + 1;
+                getData();
+            }
+        });
+        TextView textView = new TextView(context);
+        textView.setText("-我也是有底线的-");
+        rv_homelist.setFootEndView(textView);
     }
 
     //数据获取
@@ -102,8 +114,13 @@ public class HomeFragment extends BaseLazyFragment {
                 Log.e("HomeFragment", result);
                 try {
                     HomeBean homeBean = new Gson().fromJson(result, HomeBean.class);
-                    HomeListAdapter adapter = new HomeListAdapter((MainActivity) getActivity(), homeBean);
-                    rv_homelist.setAdapter(adapter);
+                    if (page == 1) {
+                        HomeListAdapter adapter = new HomeListAdapter((MainActivity) getActivity(), homeBean);
+                        rv_homelist.setAdapter(adapter);
+                    } else {
+                        rv_homelist.loadMoreComplete();
+                        rv_homelist.setCanloadMore(true);
+                    }
                     homeBean = null;
                     result = null;
                 } catch (Exception e) {

@@ -1,6 +1,12 @@
 package com.lingqiapp.Bean;
 
+import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * sakura.liangdinvshen.Bean
@@ -11,39 +17,48 @@ import com.google.gson.annotations.SerializedName;
  */
 public class OrderWxpayBean {
 
+
     /**
-     * status : 1
-     * msg : {"appId":"wxe921d2ca987f9c35","mch_id":"1507215981","nonceStr":"3zq22uxr0wlni004ujpcnl7nqa591839","package":"Sign=WXPay","prepay_id":"wx11102015023922af50b250f32408348115","timeStamp":1528683615,"sign":"B37BD76818FF400F9423A7251C434DB7"}
+     * stu : 1
+     * data : {"appId":"wxf01c8a76202a8f4e","mch_id":"1515626841","nonceStr":"ewawhj7i54fpz7d8cbpif9cof7tzb0pu","package":"Sign=WXPay","prepay_id":"wx12131622530704597551f5cf0270161101","timeStamp":1539321454,"sign":"2100"}
      */
 
-    private int status;
-    private MsgBean msg;
+    private int stu;
+    private DataBean data;
 
-    public int getStatus() {
-        return status;
+    public static List<OrderWxpayBean> arrayOrderWxpayBeanFromData(String str) {
+
+        Type listType = new TypeToken<ArrayList<OrderWxpayBean>>() {
+        }.getType();
+
+        return new Gson().fromJson(str, listType);
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public int getStu() {
+        return stu;
     }
 
-    public MsgBean getMsg() {
-        return msg;
+    public void setStu(int stu) {
+        this.stu = stu;
     }
 
-    public void setMsg(MsgBean msg) {
-        this.msg = msg;
+    public DataBean getData() {
+        return data;
     }
 
-    public static class MsgBean {
+    public void setData(DataBean data) {
+        this.data = data;
+    }
+
+    public static class DataBean {
         /**
-         * appId : wxe921d2ca987f9c35
-         * mch_id : 1507215981
-         * nonceStr : 3zq22uxr0wlni004ujpcnl7nqa591839
+         * appId : wxf01c8a76202a8f4e
+         * mch_id : 1515626841
+         * nonceStr : ewawhj7i54fpz7d8cbpif9cof7tzb0pu
          * package : Sign=WXPay
-         * prepay_id : wx11102015023922af50b250f32408348115
-         * timeStamp : 1528683615
-         * sign : B37BD76818FF400F9423A7251C434DB7
+         * prepay_id : wx12131622530704597551f5cf0270161101
+         * timeStamp : 1539321454
+         * sign : 2100
          */
 
         private String appId;
@@ -54,6 +69,14 @@ public class OrderWxpayBean {
         private String prepay_id;
         private String timeStamp;
         private String sign;
+
+        public static List<DataBean> arrayDataBeanFromData(String str) {
+
+            Type listType = new TypeToken<ArrayList<DataBean>>() {
+            }.getType();
+
+            return new Gson().fromJson(str, listType);
+        }
 
         public String getAppId() {
             return appId;

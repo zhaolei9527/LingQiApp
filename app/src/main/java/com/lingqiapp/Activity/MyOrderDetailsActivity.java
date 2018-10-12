@@ -86,6 +86,8 @@ public class MyOrderDetailsActivity extends BaseActivity implements View.OnClick
     Button btnDeleteOrderInfo;
     @BindView(R.id.btn_wuliu)
     Button btnWuliu;
+    @BindView(R.id.btn_pingjia)
+    Button btnPingJia;
     @BindView(R.id.rl_gotopay)
     LinearLayout rlGotopay;
     @BindView(R.id.tv_stu)
@@ -134,6 +136,7 @@ public class MyOrderDetailsActivity extends BaseActivity implements View.OnClick
     protected void initListener() {
         rlBack.setOnClickListener(this);
         btnWuliu.setOnClickListener(this);
+        btnPingJia.setOnClickListener(this);
     }
 
     @Override

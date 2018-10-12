@@ -115,23 +115,26 @@ public class FlashActivity extends BaseActivity {
         password = (String) SpUtil.get(context, "password", "");
         wxopenid = (String) SpUtil.get(context, "wxopenid", "");
         if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(password)) {
-            getLogin(account, password, "", "");
+            getLogin(account, password, "");
+            Log.e("FlashActivity", "常规登录");
         } else if (!TextUtils.isEmpty(wxopenid)) {
-            getLogin("", "", "2", wxopenid);
+            getLogin("", "", wxopenid);
+            Log.e("FlashActivity", "wx登录");
         } else {
             delayGoToLogin();
+            Log.e("FlashActivity", "nodata");
         }
     }
 
     /**
      * 登录获取
      */
-    private void getLogin(final String tel, final String password, String type, String openid) {
+    private void getLogin(final String tel, final String password, String openid) {
         HashMap<String, String> params = new HashMap<>(1);
         params.put("tel", tel);
         params.put("password", password);
         if (!TextUtils.isEmpty(openid)) {
-            params.put("uuid", openid);
+            params.put("openid", openid);
         }
         Log.e("LoginActivity", "params:" + params);
         VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "login/dologin", "login/dologin", params, new VolleyInterface(context) {

@@ -141,6 +141,16 @@
                     android:layout_marginRight="@dimen/x5"
                     android:background="@mipmap/pingjia1" />
 
+                <TextView
+                    android:id="@+id/tv_pingjia_lv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:text="好评"
+                    android:textColor="@color/text666"
+                    android:textSize="@dimen/x12" />
+
             </LinearLayout>
 
             <View

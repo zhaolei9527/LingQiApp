@@ -172,11 +172,12 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rl_lv"
             android:layout_width="match_parent"
             android:layout_height="@dimen/y30">
 
             <ImageView
-                android:id="@+id/img_yue"
+                android:id="@+id/img_lv"
                 android:layout_width="@dimen/x21"
                 android:layout_height="@dimen/x21"
                 android:layout_centerVertical="true"
@@ -188,7 +189,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/x10"
-                android:layout_toRightOf="@id/img_yue"
+                android:layout_toRightOf="@id/img_lv"
                 android:text="会员免费领" />
 
             <CheckBox

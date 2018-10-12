@@ -19,22 +19,34 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
 import com.lingqiapp.App;
 import com.lingqiapp.Base.BaseActivity;
+import com.lingqiapp.Bean.BankEvent;
 import com.lingqiapp.Bean.GoodsOrderBean;
 import com.lingqiapp.Bean.OrderOrderBean;
+import com.lingqiapp.Bean.OrderWxpayBean;
 import com.lingqiapp.Bean.OrderYueBean;
 import com.lingqiapp.Bean.PayYueBean;
 import com.lingqiapp.R;
+import com.lingqiapp.Utils.Constants;
 import com.lingqiapp.Utils.EasyToast;
 import com.lingqiapp.Utils.SpUtil;
 import com.lingqiapp.Utils.UrlUtils;
 import com.lingqiapp.Utils.Utils;
 import com.lingqiapp.Volley.VolleyInterface;
 import com.lingqiapp.Volley.VolleyRequest;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.lingqiapp.R.id.ll_checklv;
 
 public class OrderActivity extends BaseActivity implements View.OnClickListener {
 
@@ -84,8 +96,9 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
     LinearLayout llPay;
     @BindView(R.id.img_checklv)
     ImageView imgChecklv;
-    @BindView(R.id.ll_checklv)
+    @BindView(ll_checklv)
     LinearLayout llChecklv;
+    private IWXAPI api;
 
     private Dialog dialog;
     private String yue;
@@ -142,6 +155,20 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
         llChecklv.setOnClickListener(this);
         tvPay.setOnClickListener(this);
         shopnow.setOnClickListener(this);
+
+        //注册EventBus
+        if (!EventBus.getDefault().isRegistered(OrderActivity.this)) {
+            EventBus.getDefault().register(OrderActivity.this);
+        }
+
+        if ("1".equals(String.valueOf(SpUtil.get(context, "lv", "1")))) {
+            llChecklv.setVisibility(View.GONE);
+        } else {
+            llChecklv.setVisibility(View.VISIBLE);
+        }
+
+        api = WXAPIFactory.createWXAPI(this, Constants.APP_ID, false);
+        api.registerApp(Constants.APP_ID);
     }
 
     @Override
@@ -350,7 +377,7 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.ll_checklv:
+            case ll_checklv:
                 if ("404".equals(checklv)) {
                     imgChecklv.setVisibility(View.VISIBLE);
                     checklv = "200";
@@ -446,6 +473,7 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
                                 .putExtra("orderid", oid));
                         finish();
                     } else {
+                        EasyToast.showShort(context, payYueBean.getMsg());
                         startActivity(new Intent(context, GoodPayActivity.class)
                                 .putExtra("order", oid)
                                 .putExtra("orderid", oid));
@@ -485,19 +513,20 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
                 Log.e("OrderActivity", result);
                 try {
                     dialog.dismiss();
-                    PayYueBean payYueBean = new Gson().fromJson(result, PayYueBean.class);
-                    if (1 == payYueBean.getStatus()) {
-                        startActivity(new Intent(context, GoodPayActivity.class)
-                                .putExtra("type", "good")
-                                .putExtra("order", oid)
-                                .putExtra("orderid", oid));
-                        finish();
-                    } else {
-                        startActivity(new Intent(context, GoodPayActivity.class)
-                                .putExtra("order", oid)
-                                .putExtra("orderid", oid));
-                        finish();
+                    OrderWxpayBean orderWxpayBean = new Gson().fromJson(result, OrderWxpayBean.class);
+                    if (api != null) {
+                        PayReq req = new PayReq();
+                        req.appId = Constants.APP_ID;
+                        req.partnerId = orderWxpayBean.getData().getMch_id();
+                        req.prepayId = orderWxpayBean.getData().getPrepay_id();
+                        req.packageValue = "Sign=WXPay";
+                        req.nonceStr = orderWxpayBean.getData().getNonceStr();
+                        req.timeStamp = orderWxpayBean.getData().getTimeStamp();
+                        req.sign = "aaaaa";
+                        api.sendReq(req);
                     }
+                    orderWxpayBean = null;
+                    result = null;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -510,5 +539,24 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
             }
         });
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(BankEvent event) {
+        if (!TextUtils.isEmpty(event.getmType())) {
+            if ("pay".equals(event.getmType())) {
+                if ("good".equals(event.getMsg())) {
+                    startActivity(new Intent(context, GoodPayActivity.class)
+                            .putExtra("type", "good")
+                            .putExtra("orderid", orderYueBean.getOrderid().get(0)));
+                    finish();
+                } else if ("bad".equals(event.getMsg())) {
+                    startActivity(new Intent(context, GoodPayActivity.class)
+                            .putExtra("orderid", orderYueBean.getOrderid().get(0)));
+                    finish();
+                }
+            }
+        }
+    }
+
 
 }

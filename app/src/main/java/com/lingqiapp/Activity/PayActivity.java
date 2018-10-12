@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
@@ -68,6 +69,10 @@ public class PayActivity extends BaseActivity implements View.OnClickListener {
     CheckBox Choosedyue;
     @BindView(btn_paynow)
     Button btnPaynow;
+    @BindView(R.id.Choosedlv)
+    CheckBox Choosedlv;
+    @BindView(R.id.rl_lv)
+    RelativeLayout rlLv;
     private String orderid;
     private String order;
     private Dialog dialog;
@@ -170,28 +175,37 @@ public class PayActivity extends BaseActivity implements View.OnClickListener {
         Choosedweixin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (Choosedweixin.isChecked()) {
                     Choosedyue.setChecked(false);
                 } else {
                     Choosedyue.setChecked(true);
                 }
-
             }
         });
 
         Choosedyue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (Choosedyue.isChecked()) {
                     Choosedweixin.setChecked(false);
                 } else {
                     Choosedweixin.setChecked(true);
                 }
-
             }
         });
+
+        Choosedlv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Choosedlv.setChecked(true);
+            }
+        });
+
+        if ("1".equals(String.valueOf(SpUtil.get(context, "lv", "1")))) {
+            rlLv.setVisibility(View.GONE);
+        } else {
+            rlLv.setVisibility(View.VISIBLE);
+        }
 
 
     }
@@ -213,7 +227,7 @@ public class PayActivity extends BaseActivity implements View.OnClickListener {
             case btn_paynow:
                 if (Utils.isConnected(context)) {
                     if (Choosedweixin.isChecked()) {
-                        //orderWxpay();
+                        orderWxpay();
                         return;
                     } else {
                         payYue(getIntent().getStringExtra("orderid"));
@@ -239,11 +253,13 @@ public class PayActivity extends BaseActivity implements View.OnClickListener {
      */
     private void orderWxpay() {
         HashMap<String, String> params = new HashMap<>(3);
-        params.put("pwd", UrlUtils.KEY);
         params.put("id", orderid);
         params.put("uid", String.valueOf(SpUtil.get(context, "uid", "")));
+        if (Choosedlv.isChecked()){
+            params.put("type", "200");
+        }
         Log.e("orderWxpay", params.toString());
-        VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "order/dopay", "order/dopay", params, new VolleyInterface(context) {
+        VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "order/wxpay", "order/wxpay", params, new VolleyInterface(context) {
             @Override
             public void onMySuccess(String result) {
                 dialog.dismiss();
@@ -253,11 +269,11 @@ public class PayActivity extends BaseActivity implements View.OnClickListener {
                     if (api != null) {
                         PayReq req = new PayReq();
                         req.appId = Constants.APP_ID;
-                        req.partnerId = orderWxpayBean.getMsg().getMch_id();
-                        req.prepayId = orderWxpayBean.getMsg().getPrepay_id();
+                        req.partnerId = orderWxpayBean.getData().getMch_id();
+                        req.prepayId = orderWxpayBean.getData().getPrepay_id();
                         req.packageValue = "Sign=WXPay";
-                        req.nonceStr = orderWxpayBean.getMsg().getNonceStr();
-                        req.timeStamp = orderWxpayBean.getMsg().getTimeStamp();
+                        req.nonceStr = orderWxpayBean.getData().getNonceStr();
+                        req.timeStamp = orderWxpayBean.getData().getTimeStamp();
                         req.sign = "aaaaa";
                         api.sendReq(req);
                     }
@@ -283,6 +299,9 @@ public class PayActivity extends BaseActivity implements View.OnClickListener {
         HashMap<String, String> params = new HashMap<>(5);
         params.put("uid", String.valueOf(SpUtil.get(context, "uid", "")));
         params.put("oid", oid);
+        if (Choosedlv.isChecked()){
+            params.put("type", "200");
+        }
         Log.e("OrderActivity", params.toString());
         VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "order/pay_yue", "order/pay_yue", params, new VolleyInterface(context) {
             @Override
