@@ -82,6 +82,10 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
     TextView tvPay;
     @BindView(R.id.ll_pay)
     LinearLayout llPay;
+    @BindView(R.id.img_checklv)
+    ImageView imgChecklv;
+    @BindView(R.id.ll_checklv)
+    LinearLayout llChecklv;
 
     private Dialog dialog;
     private String yue;
@@ -92,7 +96,7 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
     private OrderYueBean orderYueBean;
     private GoodsOrderBean goodsOrderBean;
     private String type;
-
+    private String checklv = "404";
 
     @Override
     protected void onDestroy() {
@@ -135,6 +139,7 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
         imgDismiss.setOnClickListener(this);
         llCheckali.setOnClickListener(this);
         llCheckwechat.setOnClickListener(this);
+        llChecklv.setOnClickListener(this);
         tvPay.setOnClickListener(this);
         shopnow.setOnClickListener(this);
     }
@@ -340,11 +345,20 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
         ButterKnife.bind(this);
     }
 
-    private int pay = 1;
+    private int pay = 2;
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.ll_checklv:
+                if ("404".equals(checklv)) {
+                    imgChecklv.setVisibility(View.VISIBLE);
+                    checklv = "200";
+                } else {
+                    imgChecklv.setVisibility(View.GONE);
+                    checklv = "404";
+                }
+                break;
             case R.id.shopnow:
                 if (TextUtils.isEmpty(addressID)) {
                     dialog.dismiss();
@@ -376,11 +390,27 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
                     return;
                 }
                 if (pay == 2) {
-                    //orderZfpay();
-                } else {
-                    //orderWxpay();
                     dialog.show();
-                    payYue(orderYueBean.getOrderid());
+                    StringBuffer stringBuffer = new StringBuffer();
+                    for (int i = 0; i < orderYueBean.getOrderid().size(); i++) {
+                        if (stringBuffer.length() == 0) {
+                            stringBuffer.append(orderYueBean.getOrderid().get(i));
+                        } else {
+                            stringBuffer.append("," + orderYueBean.getOrderid().get(i));
+                        }
+                    }
+                    payWechat(stringBuffer.toString());
+                } else if (pay == 1) {
+                    dialog.show();
+                    StringBuffer stringBuffer = new StringBuffer();
+                    for (int i = 0; i < orderYueBean.getOrderid().size(); i++) {
+                        if (stringBuffer.length() == 0) {
+                            stringBuffer.append(orderYueBean.getOrderid().get(i));
+                        } else {
+                            stringBuffer.append("," + orderYueBean.getOrderid().get(i));
+                        }
+                    }
+                    payYue(stringBuffer.toString());
                 }
                 break;
             default:
@@ -388,15 +418,67 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
         }
     }
 
-    /**
-     * 订单生成
+    /***
+     *余额支付
      */
     private void payYue(final String oid) {
         HashMap<String, String> params = new HashMap<>(5);
         params.put("uid", String.valueOf(SpUtil.get(context, "uid", "")));
         params.put("oid", oid);
-        Log.e("OrderActivity", params.toString());
+        if ("404".equals(checklv)) {
+
+        } else {
+            params.put("type", "200");
+        }
+        Log.e("OrderActivity--yue", params.toString());
         VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "order/pay_yue", "order/pay_yue", params, new VolleyInterface(context) {
+            @Override
+            public void onMySuccess(String result) {
+                dialog.dismiss();
+                Log.e("OrderActivity", result);
+                try {
+                    dialog.dismiss();
+                    PayYueBean payYueBean = new Gson().fromJson(result, PayYueBean.class);
+                    if (1 == payYueBean.getStatus()) {
+                        startActivity(new Intent(context, GoodPayActivity.class)
+                                .putExtra("type", "good")
+                                .putExtra("order", oid)
+                                .putExtra("orderid", oid));
+                        finish();
+                    } else {
+                        startActivity(new Intent(context, GoodPayActivity.class)
+                                .putExtra("order", oid)
+                                .putExtra("orderid", oid));
+                        finish();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onMyError(VolleyError error) {
+                dialog.dismiss();
+                error.printStackTrace();
+            }
+        });
+    }
+
+
+    /**
+     * 微信支付
+     */
+    private void payWechat(final String oid) {
+        HashMap<String, String> params = new HashMap<>(5);
+        params.put("uid", String.valueOf(SpUtil.get(context, "uid", "")));
+        params.put("oid", oid);
+        if ("404".equals(checklv)) {
+
+        } else {
+            params.put("type", "200");
+        }
+        Log.e("OrderActivity--wx", params.toString());
+        VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "order/wxpay", "order/wxpay", params, new VolleyInterface(context) {
             @Override
             public void onMySuccess(String result) {
                 dialog.dismiss();

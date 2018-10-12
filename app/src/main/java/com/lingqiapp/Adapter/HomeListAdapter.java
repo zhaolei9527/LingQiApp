@@ -20,6 +20,7 @@ import com.lingqiapp.Bean.HomeBean;
 import com.lingqiapp.R;
 import com.lingqiapp.Utils.DateUtils;
 import com.lingqiapp.Utils.DensityUtils;
+import com.lingqiapp.Utils.EasyToast;
 import com.lingqiapp.Utils.UrlUtils;
 
 import java.util.ArrayList;
@@ -95,7 +96,8 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                             holder.sim1.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(1).getId()));
+                                    EasyToast.showShort(mContext, "活动尚未开始");
+//                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(1).getId()));
                                 }
                             });
 
@@ -104,7 +106,9 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                             holder.sim2.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(2).getId()));
+                                    EasyToast.showShort(mContext, "活动尚未开始");
+
+//                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(2).getId()));
                                 }
                             });
 
@@ -113,7 +117,8 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                             holder.sim3.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(3).getId()));
+                                    EasyToast.showShort(mContext, "活动尚未开始");
+//                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(3).getId()));
                                 }
                             });
 
@@ -131,7 +136,8 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                             holder.sim5.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(5).getId()));
+                                    EasyToast.showShort(mContext, "活动尚未开始");
+//                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(5).getId()));
                                 }
                             });
 
@@ -140,7 +146,8 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                             holder.sim6.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(6).getId()));
+                                    EasyToast.showShort(mContext, "活动尚未开始");
+//                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(6).getId()));
                                 }
                             });
 
@@ -168,34 +175,44 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                             holder.sim2.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(2).getId()));
+                                    EasyToast.showShort(mContext, "活动尚未开始");
+
+//                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(2).getId()));
                                 }
                             });
 
                             holder.tv_day3.setText("未开始");
                             holder.sim3.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(3).getImg_feng());
                             holder.sim3.setOnClickListener(new View.OnClickListener() {
+
                                 @Override
                                 public void onClick(View view) {
-                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(3).getId()));
+                                    EasyToast.showShort(mContext, "活动尚未开始");
+                                    //mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(3).getId()));
                                 }
                             });
 
                             holder.tv_day4.setText("未开始");
                             holder.sim4.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(4).getImg_feng());
                             holder.sim4.setOnClickListener(new View.OnClickListener() {
+
                                 @Override
                                 public void onClick(View view) {
-                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(4).getId()));
+                                    EasyToast.showShort(mContext, "活动尚未开始");
+                                    //mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(4).getId()));
                                 }
                             });
 
                             holder.tv_day5.setText("未开始");
                             holder.sim5.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(5).getImg_feng());
                             holder.sim5.setOnClickListener(new View.OnClickListener() {
+
                                 @Override
                                 public void onClick(View view) {
-                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(5).getId()));
+                                    EasyToast.showShort(mContext, "活动尚未开始");
+
+//                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(5).getId()));
+
                                 }
                             });
 
@@ -204,7 +221,9 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                             holder.sim6.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(6).getId()));
+                                    EasyToast.showShort(mContext, "活动尚未开始");
+
+                                    //mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(6).getId()));
                                 }
                             });
                             holder.simNow.setImageURI(UrlUtils.URL + homeBean.getGoods_pai().get(1).getImg_feng());
@@ -251,25 +270,33 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                             holder.sim3.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(2).getId()));
+                                    EasyToast.showShort(mContext, "活动尚未开始");
+
+//                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(2).getId()));
                                 }
                             });
                             holder.sim4.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(4).getId()));
+                                    EasyToast.showShort(mContext, "活动尚未开始");
+
+//                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(4).getId()));
                                 }
                             });
                             holder.sim5.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(5).getId()));
+                                    EasyToast.showShort(mContext, "活动尚未开始");
+
+//                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(5).getId()));
                                 }
                             });
                             holder.sim6.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(6).getId()));
+                                    EasyToast.showShort(mContext, "活动尚未开始");
+
+//                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(6).getId()));
                                 }
                             });
                         } else if (DateUtils.getWeekByDateStr(DateUtils.getMillon(System.currentTimeMillis())).equals(homeBean.getGoods_pai().get(i).getZhou()) && homeBean.getGoods_pai().get(i).getZhou().equals("4")) {
@@ -313,19 +340,25 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                             holder.sim4.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(4).getId()));
+                                    EasyToast.showShort(mContext, "活动尚未开始");
+
+//                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(4).getId()));
                                 }
                             });
                             holder.sim5.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(5).getId()));
+                                    EasyToast.showShort(mContext, "活动尚未开始");
+
+                                    //mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(5).getId()));
                                 }
                             });
                             holder.sim6.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(6).getId()));
+                                    EasyToast.showShort(mContext, "活动尚未开始");
+
+                                    //mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(6).getId()));
                                 }
                             });
                         } else if (DateUtils.getWeekByDateStr(DateUtils.getMillon(System.currentTimeMillis())).equals(homeBean.getGoods_pai().get(i).getZhou()) && homeBean.getGoods_pai().get(i).getZhou().equals("5")) {
@@ -375,13 +408,17 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                             holder.sim5.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(5).getId()));
+                                    EasyToast.showShort(mContext, "活动尚未开始");
+
+//                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(5).getId()));
                                 }
                             });
                             holder.sim6.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(6).getId()));
+                                    EasyToast.showShort(mContext, "活动尚未开始");
+
+//                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(6).getId()));
                                 }
                             });
                         } else if (DateUtils.getWeekByDateStr(DateUtils.getMillon(System.currentTimeMillis())).equals(homeBean.getGoods_pai().get(i).getZhou()) && homeBean.getGoods_pai().get(i).getZhou().equals("6")) {
@@ -437,7 +474,9 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
                             holder.sim6.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(6).getId()));
+                                    EasyToast.showShort(mContext, "活动尚未开始");
+
+//                                    mContext.startActivity(new Intent(mContext, PriceDetailsActivity.class).putExtra("id", homeBean.getGoods_pai().get(6).getId()));
                                 }
                             });
                         } else if (DateUtils.getWeekByDateStr(DateUtils.getMillon(System.currentTimeMillis())).equals(homeBean.getGoods_pai().get(i).getZhou()) && homeBean.getGoods_pai().get(i).getZhou().equals("7")) {

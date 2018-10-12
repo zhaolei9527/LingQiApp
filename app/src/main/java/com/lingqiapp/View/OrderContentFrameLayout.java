@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -62,16 +63,9 @@ public class OrderContentFrameLayout extends LinearLayout {
             @Override
             public void onReceive(Context context, Intent intent) {
                 String stu1 = intent.getStringExtra("stu");
-                if (!TextUtils.isEmpty(stu1)) {
-                    if (stu.equals(stu1)) {
-                        p = 1;
-                        getData();
-                    }
-                } else {
-                    if (stu.equals(stu1)) {
-                        p = 1;
-                        getData();
-                    }
+                if (stu.equals(stu1)) {
+                    p = 1;
+                    getData();
                 }
                 String unRegister = intent.getStringExtra("unRegister");
                 if (!TextUtils.isEmpty(unRegister)) {
@@ -81,7 +75,7 @@ public class OrderContentFrameLayout extends LinearLayout {
                 }
             }
         };
-        // context.registerReceiver(receiver, new IntentFilter("OrderContentRefresh"));
+        context.registerReceiver(receiver, new IntentFilter("OrderContentRefresh"));
     }
 
     public void onCreateView() {
@@ -116,14 +110,11 @@ public class OrderContentFrameLayout extends LinearLayout {
 
     public void getData() {
         if (Utils.isConnected(context)) {
-            if (!TextUtils.isEmpty(stu)) {
-                dialog.show();
-            }
+            dialog.show();
+            orderLists(stu);
         } else {
             dialog.dismiss();
         }
-
-        orderLists(stu);
     }
 
     /**
@@ -168,6 +159,8 @@ public class OrderContentFrameLayout extends LinearLayout {
                             ll_empty.setVisibility(View.VISIBLE);
                         } else {
                             EasyToast.showShort(context, R.string.notmore);
+                            mRecyclerView.loadMoreEnd();
+                            mRecyclerView.setCanloadMore(false);
                         }
                     }
 

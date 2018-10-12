@@ -97,18 +97,16 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
             holder.btn_delete_order.setVisibility(View.GONE);
         }
 
-        for (int i = 0; i < datas.get(position).getCart().size(); i++) {
-            View item_oreder_layout = View.inflate(mContext, R.layout.item_orederlist_layout, null);
-            SimpleDraweeView SimpleDraweeView = (com.facebook.drawee.view.SimpleDraweeView) item_oreder_layout.findViewById(R.id.SimpleDraweeView);
-            SimpleDraweeView.setImageURI(UrlUtils.URL + datas.get(position).getCart().get(i).getImg_feng());
-            TextView tv_title = (TextView) item_oreder_layout.findViewById(R.id.tv_title);
-            tv_title.setText(datas.get(position).getCart().get(i).getTitle());
-            TextView tv_price = (TextView) item_oreder_layout.findViewById(R.id.tv_price);
-            tv_price.setText("￥" + datas.get(position).getCart().get(i).getPrice());
-            TextView tv_num = (TextView) item_oreder_layout.findViewById(R.id.tv_num);
-            tv_num.setText("  X" + datas.get(position).getCart().get(i).getNumber());
-            holder.ll_oreders.addView(item_oreder_layout);
-        }
+        View item_oreder_layout = View.inflate(mContext, R.layout.item_orederlist_layout, null);
+        SimpleDraweeView SimpleDraweeView = (com.facebook.drawee.view.SimpleDraweeView) item_oreder_layout.findViewById(R.id.SimpleDraweeView);
+        SimpleDraweeView.setImageURI(UrlUtils.URL + datas.get(position).getImg_feng());
+        TextView tv_title = (TextView) item_oreder_layout.findViewById(R.id.tv_title);
+        tv_title.setText(datas.get(position).getTitle());
+        TextView tv_price = (TextView) item_oreder_layout.findViewById(R.id.tv_price);
+        tv_price.setText("￥" + datas.get(position).getPrice());
+        TextView tv_num = (TextView) item_oreder_layout.findViewById(R.id.tv_num);
+        tv_num.setText("  X" + datas.get(position).getNumber());
+        holder.ll_oreders.addView(item_oreder_layout);
 
         holder.btn_pay_order.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,6 +117,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
                         .putExtra("orderid", datas.get(position).getOrderid())
                         .putExtra("monsy", datas.get(position).getTotalprice())
                 );
+                dialog.dismiss();
             }
         });
 

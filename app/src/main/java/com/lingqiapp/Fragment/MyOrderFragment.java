@@ -31,7 +31,7 @@ public class MyOrderFragment extends BaseLazyFragment {
     private ViewPager VpNews_context;
     private List titles = new ArrayList();
     private OrderPageAdapter orderPageAdapter;
-
+    private String stu = "0";
 
     @Override
     protected void initPrepare() {
@@ -54,7 +54,7 @@ public class MyOrderFragment extends BaseLazyFragment {
                 VpNews_context.setCurrentItem(2);
             } else if ("3".equals(MyOrderActivity.cid)) {
                 VpNews_context.setCurrentItem(3);
-            }else if ("4".equals(MyOrderActivity.cid)) {
+            } else if ("4".equals(MyOrderActivity.cid)) {
                 VpNews_context.setCurrentItem(4);
             }
         }
@@ -68,15 +68,20 @@ public class MyOrderFragment extends BaseLazyFragment {
             @Override
             public void onPageSelected(int position) {
                 if (position == 0) {
-                    context.sendBroadcast(new Intent("OrderContentRefresh").putExtra("stu", ""));
+                    context.sendBroadcast(new Intent("OrderContentRefresh").putExtra("stu", "0"));
+                    stu = "0";
                 } else if (position == 1) {
                     context.sendBroadcast(new Intent("OrderContentRefresh").putExtra("stu", "1"));
+                    stu = "1";
                 } else if (position == 2) {
                     context.sendBroadcast(new Intent("OrderContentRefresh").putExtra("stu", "2"));
+                    stu = "2";
                 } else if (position == 3) {
                     context.sendBroadcast(new Intent("OrderContentRefresh").putExtra("stu", "3"));
+                    stu = "3";
                 } else if (position == 4) {
                     context.sendBroadcast(new Intent("OrderContentRefresh").putExtra("stu", "4"));
+                    stu = "4";
                 }
             }
 
@@ -107,7 +112,7 @@ public class MyOrderFragment extends BaseLazyFragment {
     @Override
     public void onResume() {
         super.onResume();
-        context.sendBroadcast(new Intent("OrderContentRefresh").putExtra("stu", ""));
+        context.sendBroadcast(new Intent("OrderContentRefresh").putExtra("stu", stu));
     }
 
     @Override

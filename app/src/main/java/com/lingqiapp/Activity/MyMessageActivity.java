@@ -89,26 +89,21 @@ public class MyMessageActivity extends BaseActivity {
                         break;
                 }
                 Log.e("MyMessageActivity", photos.get(0));
-
             }
 
             @Override
             public void onPreviewBack(ArrayList<String> photos, int requestCode) {
-
             }
 
             @Override
             public void onPickFail(String error, int requestCode) {
-
             }
 
             @Override
             public void onPickCancle(int requestCode) {
             }
         });
-
     }
-
 
     @Override
     protected int setthislayout() {
@@ -142,7 +137,6 @@ public class MyMessageActivity extends BaseActivity {
                 startActivity(new Intent(context, ChangePasswordActivity.class));
             }
         });
-
 
         rChangeName.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,7 +194,7 @@ public class MyMessageActivity extends BaseActivity {
                     TouXiangBean touXiangBean = new Gson().fromJson(result, TouXiangBean.class);
                     if (1 == touXiangBean.getStatus()) {
                         SpUtil.putAndApply(context, "img", touXiangBean.getUdata().getImg());
-                        SimpleDraweeView.setImageURI(UrlUtils.URL+touXiangBean.getUdata().getImg());
+                        SimpleDraweeView.setImageURI(UrlUtils.URL + touXiangBean.getUdata().getImg());
                         EasyToast.showShort(context, touXiangBean.getMsg());
                     } else {
                         EasyToast.showShort(context, touXiangBean.getMsg());
@@ -231,7 +225,6 @@ public class MyMessageActivity extends BaseActivity {
             public void onMySuccess(String result) {
                 Log.e("RegisterActivity", result);
                 try {
-
 
                 } catch (Exception e) {
                     e.printStackTrace();

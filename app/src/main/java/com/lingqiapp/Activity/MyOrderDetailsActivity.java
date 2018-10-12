@@ -189,6 +189,13 @@ public class MyOrderDetailsActivity extends BaseActivity implements View.OnClick
         }
     }
 
+    //setTimeout(function(){	angular.element('pre:last').scope().editAreaCtn = '亲爱的';	angular.element('pre:last').scope().sendTextMessage();},(new Date(2018,8,30,09,0,0)-new Date()));
+    //   setInterval(function(){
+    //   angular.element('pre:last').scope().editAreaCtn = '亲爱的';
+    //   angular.element('pre:last').scope().sendTextMessage();
+    //   },3000);
+    //
+
     private String orderResult = "";
 
     /**
@@ -235,6 +242,7 @@ public class MyOrderDetailsActivity extends BaseActivity implements View.OnClick
                         rlGotopay.setVisibility(View.GONE);
                         tvStu.setText("");
                     }
+
                     if (!TextUtils.isEmpty(orderDetailBean.getOrder().getExp()) && !TextUtils.isEmpty(orderDetailBean.getOrder().getExpnum())) {
                         tvOrderExp.setText("快递公司：" + orderDetailBean.getOrder().getExp());
                         tvOrderExpnum.setText("快递单号：" + orderDetailBean.getOrder().getExpnum());
@@ -251,30 +259,26 @@ public class MyOrderDetailsActivity extends BaseActivity implements View.OnClick
                     }
                     tvBianhao.setText("订单编号：" + orderDetailBean.getOrder().getOrderid());
                     tvOrderTime.setText("下单时间：" + DateUtils.getMillon(Long.parseLong(orderDetailBean.getOrder().getAddtime()) * 1000));
-                    for (int i = 0; i < orderDetailBean.getOrder().getCart().size(); i++) {
-                        final View item_oreder_details_layout = View.inflate(context, R.layout.item_oreder_details_layout, null);
-                        item_oreder_details_layout.setTag(orderDetailBean.getOrder().getCart().get(i).getGid());
-                        SimpleDraweeView SimpleDraweeView = (com.facebook.drawee.view.SimpleDraweeView) item_oreder_details_layout.findViewById(R.id.SimpleDraweeView);
-                        SimpleDraweeView.setImageURI(UrlUtils.URL + orderDetailBean.getOrder().getCart().get(i).getImg_feng());
-                        final TextView tv_title = (TextView) item_oreder_details_layout.findViewById(R.id.tv_title);
-                        tv_title.setText(orderDetailBean.getOrder().getCart().get(i).getTitle());
-                        TextView tv_classify = (TextView) item_oreder_details_layout.findViewById(R.id.tv_classify);
-                        tv_classify.setText("￥" + orderDetailBean.getOrder().getCart().get(i).getPrice());
-                        TextView tv_size = (TextView) item_oreder_details_layout.findViewById(R.id.tv_size);
-                        tv_size.setText("×" + orderDetailBean.getOrder().getCart().get(i).getNumber());
-                        item_oreder_details_layout.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(context, PriceDetailsActivity.class);
-                                int tag = Integer.parseInt(item_oreder_details_layout.getTag().toString());
-                                intent.putExtra("id", String.valueOf(tag));
-                                startActivity(intent);
-                            }
-                        });
-                        llOrders.addView(item_oreder_details_layout);
-
-
-                    }
+                    final View item_oreder_details_layout = View.inflate(context, R.layout.item_oreder_details_layout, null);
+                    item_oreder_details_layout.setTag(orderDetailBean.getOrder().getGid());
+                    SimpleDraweeView SimpleDraweeView = (com.facebook.drawee.view.SimpleDraweeView) item_oreder_details_layout.findViewById(R.id.SimpleDraweeView);
+                    SimpleDraweeView.setImageURI(UrlUtils.URL + orderDetailBean.getOrder().getImg_feng());
+                    final TextView tv_title = (TextView) item_oreder_details_layout.findViewById(R.id.tv_title);
+                    tv_title.setText(orderDetailBean.getOrder().getTitle());
+                    TextView tv_classify = (TextView) item_oreder_details_layout.findViewById(R.id.tv_classify);
+                    tv_classify.setText("￥" + orderDetailBean.getOrder().getPrice());
+                    TextView tv_size = (TextView) item_oreder_details_layout.findViewById(R.id.tv_size);
+                    tv_size.setText("×" + orderDetailBean.getOrder().getNumber());
+                    item_oreder_details_layout.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(context, PriceDetailsActivity.class);
+                            int tag = Integer.parseInt(item_oreder_details_layout.getTag().toString());
+                            intent.putExtra("id", String.valueOf(tag));
+                            startActivity(intent);
+                        }
+                    });
+                    llOrders.addView(item_oreder_details_layout);
                     result = null;
                 } catch (Exception e) {
                     e.printStackTrace();

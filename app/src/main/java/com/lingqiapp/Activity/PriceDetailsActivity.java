@@ -137,6 +137,12 @@ public class PriceDetailsActivity extends BaseActivity implements View.OnClickLi
     protected void initview() {
         llAllpingjia.setOnClickListener(this);
         uid = (String) SpUtil.get(context, "uid", "");
+        if ("1".equals(String.valueOf(SpUtil.get(context, "lv", "1")))) {
+            tvLv.setText("点击加入领七会员 免费领取");
+        } else {
+            tvLv.setText("已是领七会员 可免费领取");
+        }
+        tvLv.setOnClickListener(this);
     }
 
     @Override
@@ -213,6 +219,10 @@ public class PriceDetailsActivity extends BaseActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.tv_lv:
+                Intent intent3 = new Intent(context, HuiYuanShengJiActivity.class);
+                startActivity(intent3);
+                break;
             case R.id.ll_shouye:
                 Intent intent2 = new Intent(context, MainActivity.class);
                 intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

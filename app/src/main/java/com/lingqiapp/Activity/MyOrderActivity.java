@@ -36,9 +36,7 @@ public class MyOrderActivity extends BaseActivity {
 
     @Override
     protected void initview() {
-
         cid = getIntent().getStringExtra("cid");
-
         Class aClass = (Class) MyOrderFragment.class;
         Class clazz = null;
         try {

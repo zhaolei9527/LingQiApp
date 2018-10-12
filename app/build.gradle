@@ -42,19 +42,19 @@ android {
     }
 }
 MobSDK {
-    appKey "d580ad56b4b5"
-    appSecret "7fcae59a62342e7e2759e9e397c82bdd"
+    appKey "28302167e39c8"
+    appSecret "0cbfa25aaa1e2ce0a8684898777f5b8e"
 
     ShareSDK {
         //平台配置信息
         devInfo {
             Wechat {
-                appId "wx90ea24410608f881"
-                appSecret "fe55afd2d213f97fbcc87b3888a73998"
+                appId "wxf01c8a76202a8f4e"
+                appSecret "a6040b19a42a441025727f1b32c50ffe"
             }
             WechatMoments {
-                appId "wx90ea24410608f881"
-                appSecret "fe55afd2d213f97fbcc87b3888a73998"
+                appId "wxf01c8a76202a8f4e"
+                appSecret "a6040b19a42a441025727f1b32c50ffe"
             }
         }
     }

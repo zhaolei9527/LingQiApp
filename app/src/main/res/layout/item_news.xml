@@ -67,6 +67,8 @@
                 android:layout_marginLeft="@dimen/x10"
                 android:layout_marginRight="@dimen/x10"
                 android:layout_marginTop="@dimen/y5"
+                android:ellipsize="end"
+                android:maxLines="2"
                 android:text="小主来咯~为您推荐护肤美白秘籍，进来了解一下，小主来咯为您推荐护肤美白秘籍。"
                 android:textColor="#999999"
                 android:textSize="@dimen/x11" />

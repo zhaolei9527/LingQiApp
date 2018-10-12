@@ -18,7 +18,7 @@ public class OrderDetailBean {
 
     /**
      * status : 1
-     * order : {"id":"300","orderid":"20180929090744429562","sfmoney":"0.00","totalprice":"60","uid":"461","status":"2","paytime":null,"addressid":"183","addtime":"1538183264","number":"2","yemoney":null,"paytype":null,"payment":null,"fhtime":null,"exp":null,"expnum":null,"fhbeizhu":null,"paybeizhu":null,"shtime":null,"sheng":"河南省","shi":"郑州市","xian":"中原区","address":"asdadasfdasdasfasfasf","tel":"17629345001","name":"asdasdasasd","is_ziti":"1","gid":null,"cid":"151","l_num":null,"cart":[{"id":"151","uid":"461","gid":"22","addtime":"1538183259","number":"2","type":"2","z_money":null,"price":"30","title":"爱美丽","img_feng":"/Public/uploads/goods/2018-09-26/5bab23c7ba090.png"}]}
+     * order : {"id":"290","orderid":"20180928111246860665","totalprice":"3920","uid":"461","status":"4","paytime":null,"addressid":"183","addtime":"1538104366","number":"4","yemoney":null,"paytype":null,"payment":null,"fhtime":null,"exp":null,"expnum":null,"fhbeizhu":null,"paybeizhu":null,"shtime":null,"sheng":"河南省","shi":"郑州市","xian":"中原区","address":"asdadasfdasdasfasfasf","tel":"17629345001","name":"asdasdasasd","is_ziti":"1","gid":"22","cid":"137","l_num":null,"title":"爱美丽","img_feng":"/Public/uploads/goods/2018-09-26/5bab23c7ba090.png","price":"30"}
      */
 
     private int status;
@@ -50,16 +50,15 @@ public class OrderDetailBean {
 
     public static class OrderBean {
         /**
-         * id : 300
-         * orderid : 20180929090744429562
-         * sfmoney : 0.00
-         * totalprice : 60
+         * id : 290
+         * orderid : 20180928111246860665
+         * totalprice : 3920
          * uid : 461
-         * status : 2
+         * status : 4
          * paytime : null
          * addressid : 183
-         * addtime : 1538183264
-         * number : 2
+         * addtime : 1538104366
+         * number : 4
          * yemoney : null
          * paytype : null
          * payment : null
@@ -76,15 +75,16 @@ public class OrderDetailBean {
          * tel : 17629345001
          * name : asdasdasasd
          * is_ziti : 1
-         * gid : null
-         * cid : 151
+         * gid : 22
+         * cid : 137
          * l_num : null
-         * cart : [{"id":"151","uid":"461","gid":"22","addtime":"1538183259","number":"2","type":"2","z_money":null,"price":"30","title":"爱美丽","img_feng":"/Public/uploads/goods/2018-09-26/5bab23c7ba090.png"}]
+         * title : 爱美丽
+         * img_feng : /Public/uploads/goods/2018-09-26/5bab23c7ba090.png
+         * price : 30
          */
 
         private String id;
         private String orderid;
-        private String sfmoney;
         private String totalprice;
         private String uid;
         private String status;
@@ -111,7 +111,9 @@ public class OrderDetailBean {
         private String gid;
         private String cid;
         private String l_num;
-        private List<CartBean> cart;
+        private String title;
+        private String img_feng;
+        private String price;
 
         public static List<OrderBean> arrayOrderBeanFromData(String str) {
 
@@ -135,14 +137,6 @@ public class OrderDetailBean {
 
         public void setOrderid(String orderid) {
             this.orderid = orderid;
-        }
-
-        public String getSfmoney() {
-            return sfmoney;
-        }
-
-        public void setSfmoney(String sfmoney) {
-            this.sfmoney = sfmoney;
         }
 
         public String getTotalprice() {
@@ -353,126 +347,28 @@ public class OrderDetailBean {
             this.l_num = l_num;
         }
 
-        public List<CartBean> getCart() {
-            return cart;
+        public String getTitle() {
+            return title;
         }
 
-        public void setCart(List<CartBean> cart) {
-            this.cart = cart;
+        public void setTitle(String title) {
+            this.title = title;
         }
 
-        public static class CartBean {
-            /**
-             * id : 151
-             * uid : 461
-             * gid : 22
-             * addtime : 1538183259
-             * number : 2
-             * type : 2
-             * z_money : null
-             * price : 30
-             * title : 爱美丽
-             * img_feng : /Public/uploads/goods/2018-09-26/5bab23c7ba090.png
-             */
+        public String getImg_feng() {
+            return img_feng;
+        }
 
-            private String id;
-            private String uid;
-            private String gid;
-            private String addtime;
-            private String number;
-            private String type;
-            private String z_money;
-            private String price;
-            private String title;
-            private String img_feng;
+        public void setImg_feng(String img_feng) {
+            this.img_feng = img_feng;
+        }
 
-            public static List<CartBean> arrayCartBeanFromData(String str) {
+        public String getPrice() {
+            return price;
+        }
 
-                Type listType = new TypeToken<ArrayList<CartBean>>() {
-                }.getType();
-
-                return new Gson().fromJson(str, listType);
-            }
-
-            public String getId() {
-                return id;
-            }
-
-            public void setId(String id) {
-                this.id = id;
-            }
-
-            public String getUid() {
-                return uid;
-            }
-
-            public void setUid(String uid) {
-                this.uid = uid;
-            }
-
-            public String getGid() {
-                return gid;
-            }
-
-            public void setGid(String gid) {
-                this.gid = gid;
-            }
-
-            public String getAddtime() {
-                return addtime;
-            }
-
-            public void setAddtime(String addtime) {
-                this.addtime = addtime;
-            }
-
-            public String getNumber() {
-                return number;
-            }
-
-            public void setNumber(String number) {
-                this.number = number;
-            }
-
-            public String getType() {
-                return type;
-            }
-
-            public void setType(String type) {
-                this.type = type;
-            }
-
-            public String getZ_money() {
-                return z_money;
-            }
-
-            public void setZ_money(String z_money) {
-                this.z_money = z_money;
-            }
-
-            public String getPrice() {
-                return price;
-            }
-
-            public void setPrice(String price) {
-                this.price = price;
-            }
-
-            public String getTitle() {
-                return title;
-            }
-
-            public void setTitle(String title) {
-                this.title = title;
-            }
-
-            public String getImg_feng() {
-                return img_feng;
-            }
-
-            public void setImg_feng(String img_feng) {
-                this.img_feng = img_feng;
-            }
+        public void setPrice(String price) {
+            this.price = price;
         }
     }
 }

@@ -19,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
 import com.lingqiapp.Bean.CodeBean;
@@ -29,11 +28,9 @@ import com.lingqiapp.Utils.UrlUtils;
 import com.lingqiapp.Utils.Utils;
 import com.lingqiapp.Volley.VolleyInterface;
 import com.lingqiapp.Volley.VolleyRequest;
-
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -173,7 +170,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     return;
                 }
 
-
                 if (!incode.equals(code)) {
                     Toast.makeText(this, "图形验证码错误", Toast.LENGTH_SHORT).show();
                     return;
@@ -263,6 +259,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             Toast.makeText(this, "请输入手机号", Toast.LENGTH_SHORT).show();
             return;
         }
+
         if (!Utils.isCellphone(account)) {
             Toast.makeText(this, "请输入正确手机号", Toast.LENGTH_SHORT).show();
             return;
@@ -279,6 +276,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             Toast.makeText(this, "请输入密码", Toast.LENGTH_SHORT).show();
             return;
         }
+
         passwordagain = etPasswordagain.getText().toString().trim();
         if (TextUtils.isEmpty(passwordagain)) {
             Toast.makeText(this, "请再次输入密码", Toast.LENGTH_SHORT).show();

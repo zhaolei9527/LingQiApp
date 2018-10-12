@@ -150,6 +150,7 @@ public class FlashActivity extends BaseActivity {
                         SpUtil.putAndApply(context, "lv", loginBean.getUser().getIs_hui());
                         SpUtil.putAndApply(context, "password", password);
                         SpUtil.putAndApply(context, "tel", "" + loginBean.getUser().getTel());
+                        SpUtil.putAndApply(context, "zw_count", "" + loginBean.getZw_count());
                         gotoMain();
                     } else {
                         SpUtil.clear(context);

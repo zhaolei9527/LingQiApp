@@ -95,6 +95,8 @@ public class MeFragment extends BaseLazyFragment implements View.OnClickListener
     @BindView(R.id.ll_yaoqingliebiao)
     LinearLayout llYaoqingliebiao;
     Unbinder unbinder;
+    @BindView(R.id.tv_Cartnum)
+    TextView tvCartnum;
 
     @Override
     protected void initPrepare() {
@@ -121,6 +123,13 @@ public class MeFragment extends BaseLazyFragment implements View.OnClickListener
             tvUserlv.setText("开通会员");
         } else {
             tvUserlv.setText("领七会员");
+        }
+
+        if ("0".equals(String.valueOf(SpUtil.get(mContext, "zw_count", "0")))) {
+            tvCartnum.setVisibility(View.GONE);
+        } else {
+            tvCartnum.setVisibility(View.VISIBLE);
+            tvCartnum.setText(String.valueOf(SpUtil.get(mContext, "zw_count", "0")));
         }
 
         llYijianfankui.setOnClickListener(this);

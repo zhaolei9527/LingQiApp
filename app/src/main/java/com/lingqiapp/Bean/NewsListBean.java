@@ -76,7 +76,6 @@ public class NewsListBean {
          * img : /Public/uploads/News/2018-09-18/5ba0bad26570c.jpg
          * view : 28
          * cid : 14
-         * jianjie : null
          */
 
         private String id;
@@ -86,7 +85,16 @@ public class NewsListBean {
         private String img;
         private String view;
         private String cid;
-        private String jianjie;
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
+
+        private String description;
 
         public static List<ResBean> arrayResBeanFromData(String str) {
 
@@ -152,13 +160,6 @@ public class NewsListBean {
             this.cid = cid;
         }
 
-        public String getJianjie() {
-            return jianjie;
-        }
-
-        public void setJianjie(String jianjie) {
-            this.jianjie = jianjie;
-        }
     }
 
     public static class CateBean {

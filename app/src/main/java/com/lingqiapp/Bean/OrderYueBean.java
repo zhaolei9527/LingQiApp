@@ -19,12 +19,12 @@ public class OrderYueBean {
     /**
      * status : 1
      * msg : 订单生成成功！
-     * orderid : 20180928111246860665
+     * orderid : ["20181011091411746243"]
      */
 
     private int status;
     private String msg;
-    private String orderid;
+    private List<String> orderid;
 
     public static List<OrderYueBean> arrayOrderYueBeanFromData(String str) {
 
@@ -50,11 +50,11 @@ public class OrderYueBean {
         this.msg = msg;
     }
 
-    public String getOrderid() {
+    public List<String> getOrderid() {
         return orderid;
     }
 
-    public void setOrderid(String orderid) {
+    public void setOrderid(List<String> orderid) {
         this.orderid = orderid;
     }
 }

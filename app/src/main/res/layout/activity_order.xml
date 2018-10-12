@@ -131,7 +131,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y195"
+            android:layout_height="@dimen/y250"
             android:layout_gravity="bottom"
             android:background="@color/bgfff"
             android:orientation="vertical">
@@ -243,6 +243,47 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x1"
                 android:background="@color/bgea"></View>
+
+            <LinearLayout
+                android:id="@+id/ll_checklv"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y30"
+                android:layout_marginTop="@dimen/x5"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <ImageView
+                    android:layout_width="@dimen/x25"
+                    android:layout_height="@dimen/x25"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:background="@mipmap/zuanshihy" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x12"
+                    android:layout_weight="1"
+                    android:text="使用会员免费领"
+                    android:textColor="@color/text333"
+                    android:textSize="@dimen/x15" />
+
+                <ImageView
+                    android:id="@+id/img_checklv"
+                    android:layout_width="@dimen/x25"
+                    android:layout_height="@dimen/x25"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginRight="@dimen/x12"
+                    android:background="@mipmap/check_yes"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x1"
+                android:background="@color/bgea"></View>
+
 
             <LinearLayout
                 android:layout_width="wrap_content"

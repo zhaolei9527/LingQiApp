@@ -261,10 +261,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         SpUtil.putAndApply(context, "password", password);
                         SpUtil.putAndApply(context, "tel", "" + loginBean.getUser().getTel());
                         SpUtil.putAndApply(context, "lv", loginBean.getUser().getIs_hui());
+                        SpUtil.putAndApply(context, "zw_count", "" + loginBean.getZw_count());
                         gotoMain();
                     } else if ("2".equals(loginBean.getStatus())) {
-                        EasyToast.showShort(context, loginBean.getMsg().toString());
-                        startActivity(new Intent(context, RegisterActivity.class).putExtra("msg", mesg));
+                        btnLogin.setText("绑定登录");
+                        EasyToast.showShort(context, "请输入账号密码完成帐号绑定登录");
                     } else {
                         EasyToast.showShort(context, loginBean.getMsg().toString());
                     }
