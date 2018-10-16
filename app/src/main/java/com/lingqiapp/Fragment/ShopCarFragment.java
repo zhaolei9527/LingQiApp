@@ -355,6 +355,7 @@ public class ShopCarFragment extends BaseLazyFragment {
                                 .putExtra("cart_id", cid)
                         );
                     } else {
+                        EasyToast.showShort(context, orderOrderBean.getMsg());
                     }
                     result = null;
                 } catch (Exception e) {

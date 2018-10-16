@@ -16,10 +16,9 @@ import java.util.List;
  */
 public class TixianLogBean {
 
-
     /**
      * status : 1
-     * list : [{"id":"61","aid":null,"uid":"461","desc":null,"stu":"0","add_time":"1537926787","bian_num":"2147483647","bank":"asdasdsad","no":"6222600260001072444","money":"50"},{"id":"60","aid":null,"uid":"461","desc":null,"stu":"0","add_time":"1537926489","bian_num":"2147483647","bank":"asdasdsad","no":"6222600260001072444","money":"50"},{"id":"59","aid":null,"uid":"461","desc":null,"stu":"0","add_time":"1537926487","bian_num":"2147483647","bank":"asdasdsad","no":"6222600260001072444","money":"50"},{"id":"58","aid":null,"uid":"461","desc":null,"stu":"0","add_time":"1537926484","bian_num":"2147483647","bank":"asdasdsad","no":"6222600260001072444","money":"50"},{"id":"57","aid":null,"uid":"461","desc":null,"stu":"0","add_time":"1537926404","bian_num":"2147483647","bank":"asdasdsad","no":"6222600260001072444","money":"50"}]
+     * list : [{"id":"1","aid":null,"uid":"461","desc":null,"stu":"0","add_time":"1539675867","bian_num":"20181016154427698178","bank":"呵呵呵","no":"6212262201023557228","money":"196","tx_money":"200"}]
      */
 
     private int status;
@@ -51,16 +50,17 @@ public class TixianLogBean {
 
     public static class ListBean {
         /**
-         * id : 61
+         * id : 1
          * aid : null
          * uid : 461
          * desc : null
          * stu : 0
-         * add_time : 1537926787
-         * bian_num : 2147483647
-         * bank : asdasdsad
-         * no : 6222600260001072444
-         * money : 50
+         * add_time : 1539675867
+         * bian_num : 20181016154427698178
+         * bank : 呵呵呵
+         * no : 6212262201023557228
+         * money : 196
+         * tx_money : 200
          */
 
         private String id;
@@ -73,6 +73,7 @@ public class TixianLogBean {
         private String bank;
         private String no;
         private String money;
+        private String tx_money;
 
         public static List<ListBean> arrayListBeanFromData(String str) {
 
@@ -160,6 +161,14 @@ public class TixianLogBean {
 
         public void setMoney(String money) {
             this.money = money;
+        }
+
+        public String getTx_money() {
+            return tx_money;
+        }
+
+        public void setTx_money(String tx_money) {
+            this.tx_money = tx_money;
         }
     }
 }

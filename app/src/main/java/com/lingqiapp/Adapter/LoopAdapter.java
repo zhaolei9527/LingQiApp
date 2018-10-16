@@ -1,5 +1,6 @@
 package com.lingqiapp.Adapter;
 
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -38,6 +39,7 @@ public class LoopAdapter extends LoopPagerAdapter {
         SimpleDraweeView SimpleDraweeView = (com.facebook.drawee.view.SimpleDraweeView) inflate.findViewById(R.id.SimpleDraweeView);
         try {
             SimpleDraweeView.setImageURI("" + UrlUtils.URL + lbdatas.get(position).getImg());
+            Log.e("LoopAdapter", UrlUtils.URL + lbdatas.get(position).getImg());
             //SimpleDraweeView.setImageURI("https://ss3.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=06023fafd82a28345ca6300b6bb4c92e/e61190ef76c6a7efa8408794f1faaf51f3de6619.jpg");
         } catch (Exception e) {
             e.printStackTrace();

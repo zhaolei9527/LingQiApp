@@ -59,9 +59,10 @@ public class ShopListActivity extends BaseActivity {
     @BindView(R.id.ce_shi_lv)
     WenguoyiRecycleView ceShiLv;
     ShopListAdapter adapter;
+    @BindView(R.id.fl_top)
+    FrameLayout flTop;
     private int p = 1;
     private SakuraLinearLayoutManager line;
-
 
     @Override
     protected int setthislayout() {
@@ -89,14 +90,18 @@ public class ShopListActivity extends BaseActivity {
 
     @Override
     protected void initListener() {
-
         rlBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-
+        flTop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ceShiLv.scrollToPosition(0);
+            }
+        });
     }
 
     @Override

@@ -356,6 +356,7 @@ public class PriceDetailsActivity extends BaseActivity implements View.OnClickLi
                                 .putExtra("gid", String.valueOf(getIntent().getStringExtra("id")))
                         );
                     } else {
+                        EasyToast.showShort(context,goodsOrderBean.getMsg());
                     }
                     result = null;
                 } catch (Exception e) {

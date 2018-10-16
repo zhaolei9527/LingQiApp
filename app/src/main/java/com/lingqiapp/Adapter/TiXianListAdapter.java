@@ -57,7 +57,7 @@ public class TiXianListAdapter extends RecyclerView.Adapter<TiXianListAdapter.Vi
         holder.tvBank.setText(datas.get(position).getBank() + "  尾号 (" + datas.get(position).getNo().substring(datas.get(position).getNo().length() - 4)
                 + ")");
 
-        holder.tvMoney.setText(datas.get(position).getMoney() + "元");
+        holder.tvMoney.setText(datas.get(position).getTx_money() + "元");
 
         holder.tvTime.setText(DateUtils.getMillon(Long.parseLong(datas.get(position).getAdd_time()) * 1000));
 

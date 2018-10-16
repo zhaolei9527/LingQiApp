@@ -35,6 +35,17 @@ public class GoodsOrderBean {
     private GoodsBean goods;
     private String z_price;
 
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    private String msg;
+
+
     public static List<GoodsOrderBean> arrayGoodsOrderBeanFromData(String str) {
 
         Type listType = new TypeToken<ArrayList<GoodsOrderBean>>() {

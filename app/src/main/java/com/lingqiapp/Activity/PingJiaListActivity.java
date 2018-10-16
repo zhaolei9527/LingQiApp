@@ -64,6 +64,8 @@ public class PingJiaListActivity extends BaseActivity {
     Button btn3;
     @BindView(R.id.btn4)
     Button btn4;
+    @BindView(R.id.fl_top)
+    FrameLayout flTop;
     private int p = 1;
     private SakuraLinearLayoutManager line;
     private Dialog dialog;
@@ -96,7 +98,12 @@ public class PingJiaListActivity extends BaseActivity {
 
     @Override
     protected void initListener() {
-
+        flTop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ceShiLv.scrollToPosition(0);
+            }
+        });
         rlBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,7 +114,7 @@ public class PingJiaListActivity extends BaseActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                star="";
+                star = "";
                 btn1.setBackground(getResources().getDrawable(R.mipmap.pingjia01));
                 btn2.setBackground(getResources().getDrawable(R.mipmap.pingjia02));
                 btn3.setBackground(getResources().getDrawable(R.mipmap.pingjia02));
@@ -126,7 +133,7 @@ public class PingJiaListActivity extends BaseActivity {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                star="1";
+                star = "1";
                 btn1.setBackground(getResources().getDrawable(R.mipmap.pingjia02));
                 btn2.setBackground(getResources().getDrawable(R.mipmap.pingjia01));
                 btn3.setBackground(getResources().getDrawable(R.mipmap.pingjia02));
@@ -143,7 +150,7 @@ public class PingJiaListActivity extends BaseActivity {
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                star="2";
+                star = "2";
                 btn1.setBackground(getResources().getDrawable(R.mipmap.pingjia02));
                 btn2.setBackground(getResources().getDrawable(R.mipmap.pingjia02));
                 btn3.setBackground(getResources().getDrawable(R.mipmap.pingjia01));
@@ -161,7 +168,7 @@ public class PingJiaListActivity extends BaseActivity {
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                star="3";
+                star = "3";
                 btn1.setBackground(getResources().getDrawable(R.mipmap.pingjia02));
                 btn2.setBackground(getResources().getDrawable(R.mipmap.pingjia02));
                 btn3.setBackground(getResources().getDrawable(R.mipmap.pingjia02));

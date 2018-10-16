@@ -15,6 +15,14 @@ import java.util.List;
  * 功能描述：
  */
 public class OrderOrderBean {
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
     /**
      * status : 1
      * address : {"id":"183","name":"asdasdasasd","province":"河南省","city":"郑州市","country":"中原区","address":"asdadasfdasdasfasfasf","tel":"17629345001","is_default":"1","uid":"461","add_time":"1537838074"}
@@ -22,9 +30,10 @@ public class OrderOrderBean {
      * zf_money : 3965
      */
 
+    private String msg;
     private int status;
     private AddressBean address;
-    private int zf_money;
+    private String zf_money;
     private List<CartBean> cart;
 
     public static List<OrderOrderBean> arrayOrderOrderBeanFromData(String str) {
@@ -51,11 +60,11 @@ public class OrderOrderBean {
         this.address = address;
     }
 
-    public int getZf_money() {
+    public String getZf_money() {
         return zf_money;
     }
 
-    public void setZf_money(int zf_money) {
+    public void setZf_money(String zf_money) {
         this.zf_money = zf_money;
     }
 
@@ -202,7 +211,7 @@ public class OrderOrderBean {
         private String title;
         private String img_feng;
         private String price;
-        private int zmoney;
+        private String zmoney;
 
         public static List<CartBean> arrayCartBeanFromData(String str) {
 
@@ -276,11 +285,11 @@ public class OrderOrderBean {
             this.price = price;
         }
 
-        public int getZmoney() {
+        public String getZmoney() {
             return zmoney;
         }
 
-        public void setZmoney(int zmoney) {
+        public void setZmoney(String zmoney) {
             this.zmoney = zmoney;
         }
     }

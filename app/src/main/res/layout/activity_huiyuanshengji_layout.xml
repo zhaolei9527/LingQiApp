@@ -102,7 +102,33 @@
                         android:textColor="@color/bgfff"
                         android:textSize="@dimen/x12" />
 
+
                 </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_youxiaoqi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginTop="@dimen/x5"
+                    android:background="@mipmap/head_yue_bg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/x2"
+                    android:paddingLeft="@dimen/x5"
+                    android:paddingRight="@dimen/x5"
+                    android:paddingTop="@dimen/x2"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tv_youxiaoqi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/bgfff"
+                        android:textSize="@dimen/x11" />
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
@@ -163,10 +189,10 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tv_lv_time1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/x20"
-                        android:text="包3个月"
                         android:textColor="@color/text000"
                         android:textSize="@dimen/x14" />
 
@@ -174,7 +200,6 @@
                         android:id="@+id/tv_lv1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="59"
                         android:textColor="@color/bgtitle"
                         android:textSize="@dimen/x14" />
 
@@ -187,6 +212,7 @@
                         android:textSize="@dimen/x14" />
 
                     <Button
+                        android:id="@+id/btn_submit1"
                         android:layout_width="@dimen/x55"
                         android:layout_height="@dimen/y19"
                         android:layout_marginRight="@dimen/x10"
@@ -217,10 +243,10 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tv_lv_time2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/x20"
-                        android:text="包6个月"
                         android:textColor="@color/text000"
                         android:textSize="@dimen/x14" />
 
@@ -228,7 +254,6 @@
                         android:id="@+id/tv_lv2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="129"
                         android:textColor="@color/bgtitle"
                         android:textSize="@dimen/x14" />
 
@@ -241,6 +266,7 @@
                         android:textSize="@dimen/x14" />
 
                     <Button
+                        android:id="@+id/btn_submit2"
                         android:layout_width="@dimen/x55"
                         android:layout_height="@dimen/y19"
                         android:layout_marginRight="@dimen/x10"
@@ -271,10 +297,10 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tv_lv_time3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/x20"
-                        android:text="包12个月"
                         android:textColor="@color/text000"
                         android:textSize="@dimen/x14" />
 
@@ -282,7 +308,6 @@
                         android:id="@+id/tv_lv3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="219"
                         android:textColor="@color/bgtitle"
                         android:textSize="@dimen/x14" />
 
@@ -295,6 +320,7 @@
                         android:textSize="@dimen/x14" />
 
                     <Button
+                        android:id="@+id/btn_submit3"
                         android:layout_width="@dimen/x55"
                         android:layout_height="@dimen/y19"
                         android:layout_marginRight="@dimen/x10"
@@ -333,7 +359,6 @@
                     android:textSize="@dimen/x14" />
             </LinearLayout>
 
-
         </LinearLayout>
 
         <TextView
@@ -346,7 +371,6 @@
             android:paddingLeft="@dimen/x10"
             android:paddingRight="@dimen/x10"
             android:paddingTop="@dimen/x10"
-            android:text="开通会员后，每个月享有一次0.00元拿付费商品的权利"
             android:textColor="@color/text333" />
     </LinearLayout>
 

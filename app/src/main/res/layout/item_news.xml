@@ -28,7 +28,7 @@
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/SimpleDraweeView"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y101"
+            android:layout_height="@dimen/y121"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/x10"
             android:layout_marginRight="@dimen/x10"

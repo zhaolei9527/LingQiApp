@@ -10,16 +10,16 @@
         android:background="@mipmap/grzx_bg">
 
         <RelativeLayout
-            android:layout_marginTop="@dimen/x5"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y84">
+            android:layout_height="@dimen/y84"
+            android:layout_marginTop="@dimen/x5">
 
             <com.facebook.drawee.view.SimpleDraweeView
-                android:layout_marginTop="@dimen/x10"
                 android:id="@+id/SimpleDraweeView"
                 android:layout_width="@dimen/x54"
                 android:layout_height="@dimen/x54"
                 android:layout_marginLeft="@dimen/x15"
+                android:layout_marginTop="@dimen/x10"
                 fresco:roundAsCircle="true" />
 
             <LinearLayout

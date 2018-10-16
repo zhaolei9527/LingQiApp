@@ -99,5 +99,20 @@
             android:clipChildren="false"
             android:clipToPadding="false"></com.lingqiapp.View.WenguoyiRecycleView>
     </LinearLayout>
+    <FrameLayout
+        android:id="@+id/fl_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="@dimen/x20"
+        android:layout_marginRight="@dimen/x10"
+        android:background="@drawable/bg_zhiding"
+        android:padding="@dimen/x3">
 
+        <ImageView
+            android:layout_width="@dimen/x25"
+            android:layout_height="@dimen/x25"
+            android:background="@mipmap/dingbu" />
+
+    </FrameLayout>
 </FrameLayout>
