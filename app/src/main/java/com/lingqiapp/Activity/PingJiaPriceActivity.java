@@ -249,8 +249,8 @@ public class PingJiaPriceActivity extends BaseActivity implements View.OnClickLi
             ArrayList<String> names = new ArrayList<>();
             for (int i = 0; i < photos.size(); i++) {
                 File file = new File(photos.get(i));
+                names.add("p_img[]");
                 datas.add(file);
-                names.add("p_img");
             }
             orderDoretreat(orderDetailBean.getOrder().getOrderid(), datas, names);
         } else {

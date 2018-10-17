@@ -71,9 +71,9 @@ public class PingJiaListAdapter extends RecyclerView.Adapter<PingJiaListAdapter.
             ImageView imageView = new ImageView(mContext);
             imageView.setPadding(PixelUtils.dip2px(mContext, 3), 0, 0, 0);
             if (i1 < i) {
-                imageView.setBackgroundResource(R.mipmap.new_sc2);
+                imageView.setBackgroundResource(R.mipmap.pingjia1);
             } else {
-                imageView.setBackgroundResource(R.mipmap.new_sc1);
+                imageView.setBackgroundResource(R.mipmap.pingjia2);
             }
             holder.llStar.addView(imageView);
         }
@@ -84,15 +84,14 @@ public class PingJiaListAdapter extends RecyclerView.Adapter<PingJiaListAdapter.
                 if (i1 == 0) {
                     holder.SimpleDraweeView1.setImageURI(UrlUtils.URL + datas.get(position).getP_img().get(0));
                 } else if (i1 == 1) {
-                    holder.SimpleDraweeView1.setImageURI(UrlUtils.URL + datas.get(position).getP_img().get(1));
+                    holder.SimpleDraweeView2.setImageURI(UrlUtils.URL + datas.get(position).getP_img().get(1));
                 } else {
-                    holder.SimpleDraweeView1.setImageURI(UrlUtils.URL + datas.get(position).getP_img().get(2));
+                    holder.SimpleDraweeView3.setImageURI(UrlUtils.URL + datas.get(position).getP_img().get(2));
                 }
             }
         } else {
             holder.llImgs.setVisibility(View.GONE);
         }
-
 
     }
 

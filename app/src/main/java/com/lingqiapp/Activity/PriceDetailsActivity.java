@@ -47,8 +47,6 @@ import java.util.HashMap;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.lingqiapp.R.id.btn_shuliang;
-
 public class PriceDetailsActivity extends BaseActivity implements View.OnClickListener {
 
     @BindView(R.id.rl_back)
@@ -65,8 +63,6 @@ public class PriceDetailsActivity extends BaseActivity implements View.OnClickLi
     TextView tvXiaoliang;
     @BindView(R.id.btn_jian)
     Button btnJian;
-    @BindView(btn_shuliang)
-    TextView btnShuliang;
     @BindView(R.id.btn_jia)
     Button btnJia;
     @BindView(R.id.ll_checkmax)
@@ -117,6 +113,24 @@ public class PriceDetailsActivity extends BaseActivity implements View.OnClickLi
     TextView tvAddshop;
     @BindView(R.id.shopnow)
     TextView shopnow;
+    @BindView(R.id.btn_shuliang)
+    TextView btnShuliang;
+    @BindView(R.id.SimpleDraweeView11)
+    SimpleDraweeView SimpleDraweeView11;
+    @BindView(R.id.SimpleDraweeView12)
+    SimpleDraweeView SimpleDraweeView12;
+    @BindView(R.id.SimpleDraweeView13)
+    SimpleDraweeView SimpleDraweeView13;
+    @BindView(R.id.ll_imgs1)
+    LinearLayout llImgs1;
+    @BindView(R.id.SimpleDraweeView21)
+    SimpleDraweeView SimpleDraweeView21;
+    @BindView(R.id.SimpleDraweeView22)
+    SimpleDraweeView SimpleDraweeView22;
+    @BindView(R.id.SimpleDraweeView23)
+    SimpleDraweeView SimpleDraweeView23;
+    @BindView(R.id.ll_imgs2)
+    LinearLayout llImgs2;
     private Dialog dialog;
     private GoodsDetailBean goodsDetailBean;
     private String uid;
@@ -356,7 +370,7 @@ public class PriceDetailsActivity extends BaseActivity implements View.OnClickLi
                                 .putExtra("gid", String.valueOf(getIntent().getStringExtra("id")))
                         );
                     } else {
-                        EasyToast.showShort(context,goodsOrderBean.getMsg());
+                        EasyToast.showShort(context, goodsOrderBean.getMsg());
                     }
                     result = null;
                 } catch (Exception e) {
@@ -395,7 +409,7 @@ public class PriceDetailsActivity extends BaseActivity implements View.OnClickLi
                         RollPagerView.setAdapter(new GoodsLoopAdapter(RollPagerView, goodsDetailBean.getGoods()));
                         if ("0".equals(String.valueOf(goodsDetailBean.getPj().getCount()))) {
                             tvPingjiaMax.setText("宝贝评价（" + goodsDetailBean.getPj().getCount() + ")");
-                            tvNoPingjia.setVisibility(View.VISIBLE);
+                            tvNoPingjia.setVisibility(View.GONE);
                             llHasPingjia.setVisibility(View.GONE);
                             llHasPingjia2.setVisibility(View.GONE);
                         } else {
@@ -415,12 +429,26 @@ public class PriceDetailsActivity extends BaseActivity implements View.OnClickLi
                                     ImageView imageView = new ImageView(context);
                                     imageView.setPadding(PixelUtils.dip2px(context, 3), 0, 0, 0);
                                     if (i1 < i) {
-                                        imageView.setBackgroundResource(R.mipmap.new_sc2);
+                                        imageView.setBackgroundResource(R.mipmap.pingjia1);
                                     } else {
-                                        imageView.setBackgroundResource(R.mipmap.new_sc1);
+                                        imageView.setBackgroundResource(R.mipmap.pingjia2);
                                     }
                                     llStar.addView(imageView);
                                 }
+
+                                if (!goodsDetailBean.getPj().get_$0().getP_img().isEmpty()) {
+                                    llImgs1.setVisibility(View.VISIBLE);
+                                    for (int i2 = 0; i2 < goodsDetailBean.getPj().get_$0().getP_img().size(); i2++) {
+                                        if (i2 == 0) {
+                                            SimpleDraweeView11.setImageURI(UrlUtils.URL + goodsDetailBean.getPj().get_$0().getP_img().get(0));
+                                        } else if (i2 == 1) {
+                                            SimpleDraweeView12.setImageURI(UrlUtils.URL + goodsDetailBean.getPj().get_$0().getP_img().get(1));
+                                        } else {
+                                            SimpleDraweeView13.setImageURI(UrlUtils.URL + goodsDetailBean.getPj().get_$0().getP_img().get(2));
+                                        }
+                                    }
+                                }
+
                             }
 
                             if (goodsDetailBean.getPj().get_$1() != null) {
@@ -436,20 +464,34 @@ public class PriceDetailsActivity extends BaseActivity implements View.OnClickLi
                                     ImageView imageView = new ImageView(context);
                                     imageView.setPadding(PixelUtils.dip2px(context, 3), 0, 0, 0);
                                     if (i1 < i2) {
-                                        imageView.setBackgroundResource(R.mipmap.new_sc2);
+                                        imageView.setBackgroundResource(R.mipmap.pingjia1);
                                     } else {
-                                        imageView.setBackgroundResource(R.mipmap.new_sc1);
+                                        imageView.setBackgroundResource(R.mipmap.pingjia2);
                                     }
                                     llStar2.addView(imageView);
                                 }
+
+                                if (!goodsDetailBean.getPj().get_$1().getP_img().isEmpty()) {
+                                    llImgs2.setVisibility(View.VISIBLE);
+                                    for (int i3 = 0; i3 < goodsDetailBean.getPj().get_$1().getP_img().size(); i3++) {
+                                        if (i3 == 0) {
+                                            SimpleDraweeView21.setImageURI(UrlUtils.URL + goodsDetailBean.getPj().get_$1().getP_img().get(0));
+                                        } else if (i3 == 1) {
+                                            SimpleDraweeView22.setImageURI(UrlUtils.URL + goodsDetailBean.getPj().get_$1().getP_img().get(1));
+                                        } else {
+                                            SimpleDraweeView23.setImageURI(UrlUtils.URL + goodsDetailBean.getPj().get_$1().getP_img().get(2));
+                                        }
+                                    }
+                                }
+
 
                             }
 
                         }
                         if ("0".equals(String.valueOf(goodsDetailBean.getIs_cang()))) {
-                            imgShoucang.setBackground(getResources().getDrawable(R.mipmap.new_sc1));
+                            imgShoucang.setBackground(getResources().getDrawable(R.mipmap.pingjia1));
                         } else {
-                            imgShoucang.setBackground(getResources().getDrawable(R.mipmap.new_sc2));
+                            imgShoucang.setBackground(getResources().getDrawable(R.mipmap.pingjia2));
                         }
                     } else {
                         Toast.makeText(context, getString(R.string.Abnormalserver), Toast.LENGTH_SHORT).show();

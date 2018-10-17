@@ -17,16 +17,19 @@ import java.util.List;
  */
 public class GoodsDetailBean {
 
-
     /**
-     * goods : {"id":"23","title":"细胞美容","img":["/Public/uploads/2018-09-26/5bab22f209c40.png","/Public/uploads/2018-09-26/5bab22f51bd50.jpg","/Public/uploads/2018-09-26/5bab22f9124f8.jpg"],"addtime":"1511621024","price":"4980","kucun":"128","xiaoliang":"63","type":"1"}
+     * goods : {"id":"42","title":"荣耀畅玩8C 全网通标配版 4GB+32GB 幻夜黑 移动联通电信4G全面屏手机 双卡双待","img":["/Public/uploads/2018-10-16/5bc53e3c72035.jpg"],"addtime":"1539653181","kucun":"49951","xiaoliang":"0","price":"1099.00"}
      * is_cang : 0
-     * pj : {"0":{"id":"3","uid":"462","oid":null,"star":"2","pcontent":"最差劲的一次购物","gid":"23","aid":"1","hcontent":"不好意思，给你带来了不便","p_img":["/Public/uploads/2018-09-26/5bab22f209c40.png","/Public/uploads/2018-09-26/5bab22f51bd50.jpg","/Public/uploads/2018-09-26/5bab22f9124f8.jpg"],"addtime":"1538014550","ni_name":"火云邪神","img":"/Public/uploads/headimg/default_img.png"},"1":{"id":"5","uid":"465","oid":null,"star":"4","pcontent":"很满意","gid":"23","aid":"1","hcontent":"满意就好，我们会更加努力","p_img":["/Public/uploads/2018-09-26/5bab22f209c40.png","/Public/uploads/2018-09-26/5bab22f51bd50.jpg","/Public/uploads/2018-09-26/5bab22f9124f8.jpg"],"addtime":"1538014520","ni_name":"领七用户","img":"/Public/uploads/headimg/default_img.png"},"count":"5"}
+     * is_hui : 2
+     * shen : 0
+     * pj : {"0":{"id":"21","uid":"471","orderid":"20181017133717437939","star":"5","pcontent":"vdjsbhssbb","gid":"42","aid":null,"hcontent":null,"p_img":["/Public/uploads/oder_ping/2018-10-17/5bc6dc22608b4.png","/Public/uploads/oder_ping/2018-10-17/5bc6dc2262024.png"],"addtime":"1539759139","stu":"1","hftime":null,"ni_name":"程序猿","img":"/Public/uploads/headimg/default_img.png"},"1":{"id":"19","uid":"471","orderid":"20181017133723866790","star":"5","pcontent":"ghchh","gid":"42","aid":null,"hcontent":null,"p_img":["/Public/uploads/oder_ping/2018-10-17/5bc6dad3c6513.png","/Public/uploads/oder_ping/2018-10-17/5bc6dad3c806b.png"],"addtime":"1539758805","stu":"1","hftime":null,"ni_name":"程序猿","img":"/Public/uploads/headimg/default_img.png"},"count":"2"}
      * status : 1
      */
 
     private GoodsBean goods;
     private String is_cang;
+    private String is_hui;
+    private int shen;
     private PjBean pj;
     private int status;
 
@@ -54,6 +57,22 @@ public class GoodsDetailBean {
         this.is_cang = is_cang;
     }
 
+    public String getIs_hui() {
+        return is_hui;
+    }
+
+    public void setIs_hui(String is_hui) {
+        this.is_hui = is_hui;
+    }
+
+    public int getShen() {
+        return shen;
+    }
+
+    public void setShen(int shen) {
+        this.shen = shen;
+    }
+
     public PjBean getPj() {
         return pj;
     }
@@ -72,23 +91,21 @@ public class GoodsDetailBean {
 
     public static class GoodsBean {
         /**
-         * id : 23
-         * title : 细胞美容
-         * img : ["/Public/uploads/2018-09-26/5bab22f209c40.png","/Public/uploads/2018-09-26/5bab22f51bd50.jpg","/Public/uploads/2018-09-26/5bab22f9124f8.jpg"]
-         * addtime : 1511621024
-         * price : 4980
-         * kucun : 128
-         * xiaoliang : 63
-         * type : 1
+         * id : 42
+         * title : 荣耀畅玩8C 全网通标配版 4GB+32GB 幻夜黑 移动联通电信4G全面屏手机 双卡双待
+         * img : ["/Public/uploads/2018-10-16/5bc53e3c72035.jpg"]
+         * addtime : 1539653181
+         * kucun : 49951
+         * xiaoliang : 0
+         * price : 1099.00
          */
 
         private String id;
         private String title;
         private String addtime;
-        private String price;
         private String kucun;
         private String xiaoliang;
-        private String type;
+        private String price;
         private List<String> img;
 
         public static List<GoodsBean> arrayGoodsBeanFromData(String str) {
@@ -123,14 +140,6 @@ public class GoodsDetailBean {
             this.addtime = addtime;
         }
 
-        public String getPrice() {
-            return price;
-        }
-
-        public void setPrice(String price) {
-            this.price = price;
-        }
-
         public String getKucun() {
             return kucun;
         }
@@ -147,12 +156,12 @@ public class GoodsDetailBean {
             this.xiaoliang = xiaoliang;
         }
 
-        public String getType() {
-            return type;
+        public String getPrice() {
+            return price;
         }
 
-        public void setType(String type) {
-            this.type = type;
+        public void setPrice(String price) {
+            this.price = price;
         }
 
         public List<String> getImg() {
@@ -166,9 +175,9 @@ public class GoodsDetailBean {
 
     public static class PjBean {
         /**
-         * 0 : {"id":"3","uid":"462","oid":null,"star":"2","pcontent":"最差劲的一次购物","gid":"23","aid":"1","hcontent":"不好意思，给你带来了不便","p_img":["/Public/uploads/2018-09-26/5bab22f209c40.png","/Public/uploads/2018-09-26/5bab22f51bd50.jpg","/Public/uploads/2018-09-26/5bab22f9124f8.jpg"],"addtime":"1538014550","ni_name":"火云邪神","img":"/Public/uploads/headimg/default_img.png"}
-         * 1 : {"id":"5","uid":"465","oid":null,"star":"4","pcontent":"很满意","gid":"23","aid":"1","hcontent":"满意就好，我们会更加努力","p_img":["/Public/uploads/2018-09-26/5bab22f209c40.png","/Public/uploads/2018-09-26/5bab22f51bd50.jpg","/Public/uploads/2018-09-26/5bab22f9124f8.jpg"],"addtime":"1538014520","ni_name":"领七用户","img":"/Public/uploads/headimg/default_img.png"}
-         * count : 5
+         * 0 : {"id":"21","uid":"471","orderid":"20181017133717437939","star":"5","pcontent":"vdjsbhssbb","gid":"42","aid":null,"hcontent":null,"p_img":["/Public/uploads/oder_ping/2018-10-17/5bc6dc22608b4.png","/Public/uploads/oder_ping/2018-10-17/5bc6dc2262024.png"],"addtime":"1539759139","stu":"1","hftime":null,"ni_name":"程序猿","img":"/Public/uploads/headimg/default_img.png"}
+         * 1 : {"id":"19","uid":"471","orderid":"20181017133723866790","star":"5","pcontent":"ghchh","gid":"42","aid":null,"hcontent":null,"p_img":["/Public/uploads/oder_ping/2018-10-17/5bc6dad3c6513.png","/Public/uploads/oder_ping/2018-10-17/5bc6dad3c806b.png"],"addtime":"1539758805","stu":"1","hftime":null,"ni_name":"程序猿","img":"/Public/uploads/headimg/default_img.png"}
+         * count : 2
          */
 
         @SerializedName("0")
@@ -211,29 +220,33 @@ public class GoodsDetailBean {
 
         public static class _$0Bean {
             /**
-             * id : 3
-             * uid : 462
-             * oid : null
-             * star : 2
-             * pcontent : 最差劲的一次购物
-             * gid : 23
-             * aid : 1
-             * hcontent : 不好意思，给你带来了不便
-             * p_img : ["/Public/uploads/2018-09-26/5bab22f209c40.png","/Public/uploads/2018-09-26/5bab22f51bd50.jpg","/Public/uploads/2018-09-26/5bab22f9124f8.jpg"]
-             * addtime : 1538014550
-             * ni_name : 火云邪神
+             * id : 21
+             * uid : 471
+             * orderid : 20181017133717437939
+             * star : 5
+             * pcontent : vdjsbhssbb
+             * gid : 42
+             * aid : null
+             * hcontent : null
+             * p_img : ["/Public/uploads/oder_ping/2018-10-17/5bc6dc22608b4.png","/Public/uploads/oder_ping/2018-10-17/5bc6dc2262024.png"]
+             * addtime : 1539759139
+             * stu : 1
+             * hftime : null
+             * ni_name : 程序猿
              * img : /Public/uploads/headimg/default_img.png
              */
 
             private String id;
             private String uid;
-            private Object oid;
+            private String orderid;
             private String star;
             private String pcontent;
             private String gid;
-            private String aid;
-            private String hcontent;
+            private Object aid;
+            private Object hcontent;
             private String addtime;
+            private String stu;
+            private Object hftime;
             private String ni_name;
             private String img;
             private List<String> p_img;
@@ -262,12 +275,12 @@ public class GoodsDetailBean {
                 this.uid = uid;
             }
 
-            public Object getOid() {
-                return oid;
+            public String getOrderid() {
+                return orderid;
             }
 
-            public void setOid(Object oid) {
-                this.oid = oid;
+            public void setOrderid(String orderid) {
+                this.orderid = orderid;
             }
 
             public String getStar() {
@@ -294,19 +307,19 @@ public class GoodsDetailBean {
                 this.gid = gid;
             }
 
-            public String getAid() {
+            public Object getAid() {
                 return aid;
             }
 
-            public void setAid(String aid) {
+            public void setAid(Object aid) {
                 this.aid = aid;
             }
 
-            public String getHcontent() {
+            public Object getHcontent() {
                 return hcontent;
             }
 
-            public void setHcontent(String hcontent) {
+            public void setHcontent(Object hcontent) {
                 this.hcontent = hcontent;
             }
 
@@ -316,6 +329,22 @@ public class GoodsDetailBean {
 
             public void setAddtime(String addtime) {
                 this.addtime = addtime;
+            }
+
+            public String getStu() {
+                return stu;
+            }
+
+            public void setStu(String stu) {
+                this.stu = stu;
+            }
+
+            public Object getHftime() {
+                return hftime;
+            }
+
+            public void setHftime(Object hftime) {
+                this.hftime = hftime;
             }
 
             public String getNi_name() {
@@ -345,29 +374,33 @@ public class GoodsDetailBean {
 
         public static class _$1Bean {
             /**
-             * id : 5
-             * uid : 465
-             * oid : null
-             * star : 4
-             * pcontent : 很满意
-             * gid : 23
-             * aid : 1
-             * hcontent : 满意就好，我们会更加努力
-             * p_img : ["/Public/uploads/2018-09-26/5bab22f209c40.png","/Public/uploads/2018-09-26/5bab22f51bd50.jpg","/Public/uploads/2018-09-26/5bab22f9124f8.jpg"]
-             * addtime : 1538014520
-             * ni_name : 领七用户
+             * id : 19
+             * uid : 471
+             * orderid : 20181017133723866790
+             * star : 5
+             * pcontent : ghchh
+             * gid : 42
+             * aid : null
+             * hcontent : null
+             * p_img : ["/Public/uploads/oder_ping/2018-10-17/5bc6dad3c6513.png","/Public/uploads/oder_ping/2018-10-17/5bc6dad3c806b.png"]
+             * addtime : 1539758805
+             * stu : 1
+             * hftime : null
+             * ni_name : 程序猿
              * img : /Public/uploads/headimg/default_img.png
              */
 
             private String id;
             private String uid;
-            private Object oid;
+            private String orderid;
             private String star;
             private String pcontent;
             private String gid;
-            private String aid;
-            private String hcontent;
+            private Object aid;
+            private Object hcontent;
             private String addtime;
+            private String stu;
+            private Object hftime;
             private String ni_name;
             private String img;
             private List<String> p_img;
@@ -396,12 +429,12 @@ public class GoodsDetailBean {
                 this.uid = uid;
             }
 
-            public Object getOid() {
-                return oid;
+            public String getOrderid() {
+                return orderid;
             }
 
-            public void setOid(Object oid) {
-                this.oid = oid;
+            public void setOrderid(String orderid) {
+                this.orderid = orderid;
             }
 
             public String getStar() {
@@ -428,19 +461,19 @@ public class GoodsDetailBean {
                 this.gid = gid;
             }
 
-            public String getAid() {
+            public Object getAid() {
                 return aid;
             }
 
-            public void setAid(String aid) {
+            public void setAid(Object aid) {
                 this.aid = aid;
             }
 
-            public String getHcontent() {
+            public Object getHcontent() {
                 return hcontent;
             }
 
-            public void setHcontent(String hcontent) {
+            public void setHcontent(Object hcontent) {
                 this.hcontent = hcontent;
             }
 
@@ -450,6 +483,22 @@ public class GoodsDetailBean {
 
             public void setAddtime(String addtime) {
                 this.addtime = addtime;
+            }
+
+            public String getStu() {
+                return stu;
+            }
+
+            public void setStu(String stu) {
+                this.stu = stu;
+            }
+
+            public Object getHftime() {
+                return hftime;
+            }
+
+            public void setHftime(Object hftime) {
+                this.hftime = hftime;
             }
 
             public String getNi_name() {

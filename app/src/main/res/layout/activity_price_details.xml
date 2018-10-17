@@ -296,6 +296,32 @@
                                 android:textColor="#333"
                                 android:textSize="@dimen/y10" />
 
+                            <LinearLayout
+                                android:id="@+id/ll_imgs1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:padding="@dimen/x8"
+                                android:visibility="gone">
+
+                                <com.facebook.drawee.view.SimpleDraweeView
+                                    android:id="@+id/SimpleDraweeView11"
+                                    android:layout_width="@dimen/x97"
+                                    android:layout_height="@dimen/x97" />
+
+                                <com.facebook.drawee.view.SimpleDraweeView
+                                    android:id="@+id/SimpleDraweeView12"
+                                    android:layout_width="@dimen/x97"
+                                    android:layout_height="@dimen/x97"
+                                    android:layout_marginLeft="@dimen/x5" />
+
+                                <com.facebook.drawee.view.SimpleDraweeView
+                                    android:id="@+id/SimpleDraweeView13"
+                                    android:layout_width="@dimen/x97"
+                                    android:layout_height="@dimen/x97"
+                                    android:layout_marginLeft="@dimen/x5" />
+                            </LinearLayout>
+
                         </LinearLayout>
 
                         <LinearLayout
@@ -365,6 +391,32 @@
                                 android:maxLines="2"
                                 android:textColor="#333"
                                 android:textSize="@dimen/y10" />
+
+                            <LinearLayout
+                                android:id="@+id/ll_imgs2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:padding="@dimen/x8"
+                                android:visibility="gone">
+
+                                <com.facebook.drawee.view.SimpleDraweeView
+                                    android:id="@+id/SimpleDraweeView21"
+                                    android:layout_width="@dimen/x97"
+                                    android:layout_height="@dimen/x97" />
+
+                                <com.facebook.drawee.view.SimpleDraweeView
+                                    android:id="@+id/SimpleDraweeView22"
+                                    android:layout_width="@dimen/x97"
+                                    android:layout_height="@dimen/x97"
+                                    android:layout_marginLeft="@dimen/x5" />
+
+                                <com.facebook.drawee.view.SimpleDraweeView
+                                    android:id="@+id/SimpleDraweeView23"
+                                    android:layout_width="@dimen/x97"
+                                    android:layout_height="@dimen/x97"
+                                    android:layout_marginLeft="@dimen/x5" />
+                            </LinearLayout>
 
                         </LinearLayout>
 
