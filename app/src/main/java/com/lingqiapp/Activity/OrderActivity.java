@@ -513,6 +513,25 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
                 Log.e("OrderActivity", result);
                 try {
                     dialog.dismiss();
+
+                    if (result.contains("msg")) {
+                        PayYueBean payYueBean = new Gson().fromJson(result, PayYueBean.class);
+                        if (1 == payYueBean.getStatus()) {
+                            startActivity(new Intent(context, GoodPayActivity.class)
+                                    .putExtra("type", "good")
+                                    .putExtra("order", oid)
+                                    .putExtra("orderid", oid));
+                            finish();
+                        } else {
+                            EasyToast.showShort(context, payYueBean.getMsg());
+                            startActivity(new Intent(context, GoodPayActivity.class)
+                                    .putExtra("order", oid)
+                                    .putExtra("orderid", oid));
+                            finish();
+                        }
+                        return;
+                    }
+
                     OrderWxpayBean orderWxpayBean = new Gson().fromJson(result, OrderWxpayBean.class);
                     if (api != null) {
                         PayReq req = new PayReq();

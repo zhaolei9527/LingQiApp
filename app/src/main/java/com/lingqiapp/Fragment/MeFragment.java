@@ -210,6 +210,8 @@ public class MeFragment extends BaseLazyFragment implements View.OnClickListener
                 break;
             case R.id.ll_zhanneixiaoxi:
                 startActivity(new Intent(mContext, ZhanNeiXiaoXiListActivity.class));
+                SpUtil.putAndApply(mContext, "zw_count", "0");
+                tvCartnum.setVisibility(View.GONE);
                 break;
             case R.id.ll_caiwumingxi:
                 startActivity(new Intent(mContext, CaiWuMingXiActiivity.class));
