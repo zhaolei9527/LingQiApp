@@ -476,6 +476,7 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
                         EasyToast.showShort(context, payYueBean.getMsg());
                         startActivity(new Intent(context, GoodPayActivity.class)
                                 .putExtra("order", oid)
+                                .putExtra("msg", payYueBean.getMsg())
                                 .putExtra("orderid", oid));
                         finish();
                     }
@@ -526,6 +527,7 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
                             EasyToast.showShort(context, payYueBean.getMsg());
                             startActivity(new Intent(context, GoodPayActivity.class)
                                     .putExtra("order", oid)
+                                    .putExtra("msg", payYueBean.getMsg())
                                     .putExtra("orderid", oid));
                             finish();
                         }

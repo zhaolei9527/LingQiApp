@@ -116,7 +116,6 @@ public class CaiWuMingXiActiivity extends BaseActivity {
             public void onClick(View v) {
                 initTimePicker("结束时间", "end");
                 pvTime.show();
-
             }
         });
 
@@ -136,6 +135,7 @@ public class CaiWuMingXiActiivity extends BaseActivity {
                 }
                 IntegralListFragment IntegralListFragment = new IntegralListFragment();
                 Bundle args = new Bundle();
+
                 args.putString("start", tv_start.getText().toString());
                 args.putString("end", tv_end.getText().toString());
                 IntegralListFragment.setArguments(args);
@@ -150,8 +150,8 @@ public class CaiWuMingXiActiivity extends BaseActivity {
     protected void initData() {
         IntegralListFragment IntegralListFragment = new IntegralListFragment();
         Bundle args = new Bundle();
-        args.putString("start", tv_start.getText().toString());
-        args.putString("end", tv_end.getText().toString());
+        args.putString("start","");
+        args.putString("end", "");
         IntegralListFragment.setArguments(args);
         getSupportFragmentManager().beginTransaction().replace(R.id.fl_content, IntegralListFragment).commit();
     }

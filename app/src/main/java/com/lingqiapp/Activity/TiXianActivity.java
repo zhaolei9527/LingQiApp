@@ -196,6 +196,9 @@ public class TiXianActivity extends BaseActivity {
                 try {
                     dialog.dismiss();
                     EasyToast.showShort(context, new Gson().fromJson(decode, TiXianBean.class).getMsg());
+                    if ("1".equals(String.valueOf(tiXianBean.getStatus()))) {
+                        finish();
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

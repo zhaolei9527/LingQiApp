@@ -192,7 +192,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/x10"
                 android:layout_toRightOf="@id/img_lv"
-                android:text="会员免费领" />
+                android:text="是否使用会员特权免费领取" />
 
             <CheckBox
                 android:id="@+id/Choosedlv"

@@ -226,6 +226,7 @@ public class PayActivity extends BaseActivity implements View.OnClickListener {
                     }
                     if (!dialog.isShowing()) {
                         dialog.show();
+                        btnPaynow.setClickable(false);
                     }
 
                 } else {
@@ -257,7 +258,7 @@ public class PayActivity extends BaseActivity implements View.OnClickListener {
                 dialog.dismiss();
                 Log.e("orderWxpay", result);
                 try {
-
+                    btnPaynow.setClickable(true);
                     if (result.contains("msg")) {
                         PayYueBean payYueBean = new Gson().fromJson(result, PayYueBean.class);
                         if (1 == payYueBean.getStatus()) {
@@ -322,6 +323,7 @@ public class PayActivity extends BaseActivity implements View.OnClickListener {
                 dialog.dismiss();
                 Log.e("OrderActivity", result);
                 try {
+                    btnPaynow.setClickable(true);
                     dialog.dismiss();
                     PayYueBean payYueBean = new Gson().fromJson(result, PayYueBean.class);
                     if (1 == payYueBean.getStatus()) {

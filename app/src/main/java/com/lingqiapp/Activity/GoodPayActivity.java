@@ -46,7 +46,11 @@ public class GoodPayActivity extends BaseActivity implements View.OnClickListene
         btn_repay.setOnClickListener(this);
         btn_abckorder.setOnClickListener(this);
         type = getIntent().getStringExtra("type");
-        tv_content.setText(getIntent().getStringExtra("msg"));
+
+        if (!TextUtils.isEmpty(getIntent().getStringExtra("msg"))){
+            tv_content.setText(getIntent().getStringExtra("msg"));
+        }
+
         orderid = getIntent().getStringExtra("orderid");
         order = getIntent().getStringExtra("order");
         if (TextUtils.isEmpty(type)) {

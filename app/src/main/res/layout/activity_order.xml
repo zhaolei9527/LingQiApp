@@ -264,7 +264,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/x12"
                     android:layout_weight="1"
-                    android:text="使用会员免费领"
+                    android:text="是否使用会员特权免费领取"
                     android:textColor="@color/text333"
                     android:textSize="@dimen/x15" />
 

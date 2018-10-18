@@ -96,9 +96,6 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ViewHo
         @BindView(R.id.tv_shopnum)
         TextView tvShopnum;
         @Nullable
-        @BindView(R.id.btn_buy)
-        Button btnBuy;
-        @Nullable
         @BindView(R.id.ll_goods)
         LinearLayout llGoods;
 

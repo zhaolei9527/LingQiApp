@@ -261,7 +261,6 @@ public class PriceDetailsActivity extends BaseActivity implements View.OnClickLi
                     startActivity(new Intent(context, LoginActivity.class));
                     return;
                 }
-
                 if (Utils.isConnected(context)) {
                     startActivity(new Intent(context, KeFuActivity.class));
                 } else {
@@ -274,7 +273,6 @@ public class PriceDetailsActivity extends BaseActivity implements View.OnClickLi
                     startActivity(new Intent(context, LoginActivity.class));
                     return;
                 }
-
                 if (Utils.isConnected(context)) {
                     String kucun = goodsDetailBean.getGoods().getKucun();
                     int kucuni = Integer.parseInt(kucun);
@@ -315,13 +313,11 @@ public class PriceDetailsActivity extends BaseActivity implements View.OnClickLi
                 }
                 break;
             case R.id.tv_addshop:
-
                 if (TextUtils.isEmpty(uid)) {
                     EasyToast.showShort(context, "请先登录");
                     startActivity(new Intent(context, LoginActivity.class));
                     return;
                 }
-
                 String kucun = goodsDetailBean.getGoods().getKucun();
                 int kucuni = Integer.parseInt(kucun);
                 if (kucuni > 1) {
@@ -378,7 +374,6 @@ public class PriceDetailsActivity extends BaseActivity implements View.OnClickLi
                     e.printStackTrace();
                 }
             }
-
             @Override
             public void onMyError(VolleyError error) {
                 dialog.dismiss();
@@ -414,7 +409,6 @@ public class PriceDetailsActivity extends BaseActivity implements View.OnClickLi
                             llHasPingjia2.setVisibility(View.GONE);
                         } else {
                             tvNoPingjia.setVisibility(View.GONE);
-
                             if (goodsDetailBean.getPj().get_$0() != null) {
                                 llHasPingjia.setVisibility(View.VISIBLE);
                                 tvPingjiaMax.setText("宝贝评价(" + goodsDetailBean.getPj().getCount() + ")");
@@ -435,7 +429,6 @@ public class PriceDetailsActivity extends BaseActivity implements View.OnClickLi
                                     }
                                     llStar.addView(imageView);
                                 }
-
                                 if (!goodsDetailBean.getPj().get_$0().getP_img().isEmpty()) {
                                     llImgs1.setVisibility(View.VISIBLE);
                                     for (int i2 = 0; i2 < goodsDetailBean.getPj().get_$0().getP_img().size(); i2++) {
@@ -448,9 +441,7 @@ public class PriceDetailsActivity extends BaseActivity implements View.OnClickLi
                                         }
                                     }
                                 }
-
                             }
-
                             if (goodsDetailBean.getPj().get_$1() != null) {
                                 llHasPingjia2.setVisibility(View.VISIBLE);
                                 sdvPingjia2.setImageURI(UrlUtils.URL + goodsDetailBean.getPj().get_$1().getImg());
@@ -483,15 +474,12 @@ public class PriceDetailsActivity extends BaseActivity implements View.OnClickLi
                                         }
                                     }
                                 }
-
-
                             }
-
                         }
                         if ("0".equals(String.valueOf(goodsDetailBean.getIs_cang()))) {
-                            imgShoucang.setBackground(getResources().getDrawable(R.mipmap.pingjia1));
-                        } else {
                             imgShoucang.setBackground(getResources().getDrawable(R.mipmap.pingjia2));
+                        } else {
+                            imgShoucang.setBackground(getResources().getDrawable(R.mipmap.pingjia1));
                         }
                     } else {
                         Toast.makeText(context, getString(R.string.Abnormalserver), Toast.LENGTH_SHORT).show();
