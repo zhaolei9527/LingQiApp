@@ -24,6 +24,7 @@ import com.google.gson.Gson;
 import com.lingqiapp.Bean.CodeBean;
 import com.lingqiapp.R;
 import com.lingqiapp.Utils.CodeUtils;
+import com.lingqiapp.Utils.EasyToast;
 import com.lingqiapp.Utils.UrlUtils;
 import com.lingqiapp.Utils.Utils;
 import com.lingqiapp.Volley.VolleyInterface;
@@ -150,7 +151,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 image.setImageBitmap(bitmap);
                 break;
             case R.id.btn_register:
-                submit();
+                if (cbCheck.isChecked()){
+                    submit();
+                }else {
+                    EasyToast.showShort(context,"请先勾选同意注册协议");
+                }
                 break;
             case R.id.btn_getSMScode:
                 account = etAccount.getText().toString().trim();

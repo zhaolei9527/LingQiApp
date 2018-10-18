@@ -99,6 +99,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rl_weixinpay"
             android:layout_width="match_parent"
             android:layout_height="@dimen/y30">
 
@@ -135,6 +136,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rl_yuepay"
             android:layout_width="match_parent"
             android:layout_height="@dimen/y30">
 
@@ -203,9 +205,7 @@
                 android:layout_marginRight="@dimen/x15"
                 android:background="@drawable/rb_selector"
                 android:button="@null"
-                android:checked="false"
-                android:clickable="false"
-                android:focusable="false" />
+                android:checked="false" />
 
         </RelativeLayout>
 

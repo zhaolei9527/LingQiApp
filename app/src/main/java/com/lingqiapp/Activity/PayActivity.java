@@ -73,6 +73,10 @@ public class PayActivity extends BaseActivity implements View.OnClickListener {
     CheckBox Choosedlv;
     @BindView(R.id.rl_lv)
     RelativeLayout rlLv;
+    @BindView(R.id.rl_weixinpay)
+    RelativeLayout rlWeixinpay;
+    @BindView(R.id.rl_yuepay)
+    RelativeLayout rlYuepay;
     private String orderid;
     private String order;
     private Dialog dialog;
@@ -172,34 +176,22 @@ public class PayActivity extends BaseActivity implements View.OnClickListener {
         btnPaynow.setOnClickListener(this);
         rlBack.setOnClickListener(this);
 
-        Choosedweixin.setOnClickListener(new View.OnClickListener() {
+        rlWeixinpay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Choosedweixin.isChecked()) {
-                    Choosedyue.setChecked(false);
-                } else {
-                    Choosedyue.setChecked(true);
-                }
+                Choosedweixin.setChecked(true);
+                Choosedyue.setChecked(false);
             }
         });
 
-        Choosedyue.setOnClickListener(new View.OnClickListener() {
+        rlYuepay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Choosedyue.isChecked()) {
-                    Choosedweixin.setChecked(false);
-                } else {
-                    Choosedweixin.setChecked(true);
-                }
+                Choosedweixin.setChecked(false);
+                Choosedyue.setChecked(true);
             }
         });
 
-        Choosedlv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Choosedlv.setChecked(true);
-            }
-        });
 
         if ("1".equals(String.valueOf(SpUtil.get(context, "lv", "1")))) {
             rlLv.setVisibility(View.GONE);
@@ -253,9 +245,9 @@ public class PayActivity extends BaseActivity implements View.OnClickListener {
      */
     private void orderWxpay() {
         HashMap<String, String> params = new HashMap<>(3);
-        params.put("id", orderid);
+        params.put("oid", orderid);
         params.put("uid", String.valueOf(SpUtil.get(context, "uid", "")));
-        if (Choosedlv.isChecked()){
+        if (Choosedlv.isChecked()) {
             params.put("type", "200");
         }
         Log.e("orderWxpay", params.toString());
@@ -265,6 +257,27 @@ public class PayActivity extends BaseActivity implements View.OnClickListener {
                 dialog.dismiss();
                 Log.e("orderWxpay", result);
                 try {
+
+                    if (result.contains("msg")) {
+                        PayYueBean payYueBean = new Gson().fromJson(result, PayYueBean.class);
+                        if (1 == payYueBean.getStatus()) {
+                            startActivity(new Intent(context, GoodPayActivity.class)
+                                    .putExtra("type", "good")
+                                    .putExtra("order", orderid)
+                                    .putExtra("orderid", orderid));
+                            finish();
+                        } else {
+                            EasyToast.showShort(context, payYueBean.getMsg());
+                            startActivity(new Intent(context, GoodPayActivity.class)
+                                    .putExtra("order", orderid)
+                                    .putExtra("msg", payYueBean.getMsg())
+                                    .putExtra("orderid", orderid));
+                            finish();
+                        }
+                        return;
+                    }
+
+
                     OrderWxpayBean orderWxpayBean = new Gson().fromJson(result, OrderWxpayBean.class);
                     if (api != null) {
                         PayReq req = new PayReq();
@@ -299,7 +312,7 @@ public class PayActivity extends BaseActivity implements View.OnClickListener {
         HashMap<String, String> params = new HashMap<>(5);
         params.put("uid", String.valueOf(SpUtil.get(context, "uid", "")));
         params.put("oid", oid);
-        if (Choosedlv.isChecked()){
+        if (Choosedlv.isChecked()) {
             params.put("type", "200");
         }
         Log.e("OrderActivity", params.toString());
@@ -321,6 +334,7 @@ public class PayActivity extends BaseActivity implements View.OnClickListener {
                         EasyToast.showShort(context, payYueBean.getMsg());
                         startActivity(new Intent(context, GoodPayActivity.class)
                                 .putExtra("order", oid)
+                                .putExtra("msg", payYueBean.getMsg())
                                 .putExtra("orderid", oid));
                         finish();
                     }
@@ -336,7 +350,6 @@ public class PayActivity extends BaseActivity implements View.OnClickListener {
             }
         });
     }
-
 
     public static boolean isfinish = false;
 

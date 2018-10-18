@@ -1,6 +1,7 @@
 package com.lingqiapp.Utils;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.widget.Toast;
 
 import static android.widget.Toast.makeText;
@@ -25,6 +26,7 @@ public class EasyToast {
         if (isShow) {
             if (toast == null) {
                 toast = makeText(context, message, Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER, 0, 0);
             } else {
                 toast.setText(message);
             }
@@ -42,6 +44,7 @@ public class EasyToast {
         if (isShow) {
             if (toast == null) {
                 toast = makeText(context, message, Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER, 0, 0);
             } else {
                 toast.setText(message);
             }
@@ -59,6 +62,7 @@ public class EasyToast {
         if (isShow) {
             if (toast == null) {
                 toast = makeText(context, message, Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER, 0, 0);
             } else {
                 toast.setText(message);
             }
@@ -76,6 +80,7 @@ public class EasyToast {
         if (isShow) {
             if (toast == null) {
                 toast = makeText(context, message, Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER, 0, 0);
             } else {
                 toast.setText(message);
             }
@@ -94,6 +99,7 @@ public class EasyToast {
         if (isShow) {
             if (toast == null) {
                 toast = Toast.makeText(context, message, duration);
+                toast.setGravity(Gravity.CENTER, 0, 0);
             } else {
                 toast.setText(message);
             }
@@ -112,6 +118,7 @@ public class EasyToast {
         if (isShow) {
             if (toast == null) {
                 toast = makeText(context, message, duration);
+                toast.setGravity(Gravity.CENTER, 0, 0);
             } else {
                 toast.setText(message);
             }

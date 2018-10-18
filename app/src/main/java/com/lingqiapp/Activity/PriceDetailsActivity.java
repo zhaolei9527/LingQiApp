@@ -304,12 +304,12 @@ public class PriceDetailsActivity extends BaseActivity implements View.OnClickLi
                 }
                 if ("0".equals(String.valueOf(goodsDetailBean.getIs_cang()))) {
                     goodsCang();
-                    imgShoucang.setBackground(getResources().getDrawable(R.mipmap.new_sc2));
+                    imgShoucang.setBackground(getResources().getDrawable(R.mipmap.pingjia1));
                     EasyToast.showShort(context, "收藏成功");
                     goodsDetailBean.setIs_cang("1");
                 } else {
                     goodsOnCang();
-                    imgShoucang.setBackground(getResources().getDrawable(R.mipmap.new_sc1));
+                    imgShoucang.setBackground(getResources().getDrawable(R.mipmap.pingjia2));
                     EasyToast.showShort(context, "取消收藏");
                     goodsDetailBean.setIs_cang("0");
                 }
@@ -530,7 +530,7 @@ public class PriceDetailsActivity extends BaseActivity implements View.OnClickLi
                     if ("1".equals(String.valueOf(goodsCangBean.getStatus()))) {
                     } else {
                         goodsDetailBean.setIs_cang("0");
-                        imgShoucang.setBackgroundResource(R.mipmap.new_sc1);
+                        imgShoucang.setBackgroundResource(R.mipmap.pingjia1);
                         EasyToast.showShort(context, "收藏失败");
                     }
                     goodsCangBean = null;
@@ -568,7 +568,7 @@ public class PriceDetailsActivity extends BaseActivity implements View.OnClickLi
                     if ("1".equals(String.valueOf(goodsCangBean.getStatus()))) {
                     } else {
                         goodsDetailBean.setIs_cang("1");
-                        imgShoucang.setBackgroundResource(R.mipmap.new_sc2);
+                        imgShoucang.setBackgroundResource(R.mipmap.pingjia2);
                         EasyToast.showShort(context, "取消失败");
                     }
                     goodsCangBean = null;

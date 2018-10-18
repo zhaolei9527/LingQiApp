@@ -59,7 +59,7 @@ public class TiXianListAdapter extends RecyclerView.Adapter<TiXianListAdapter.Vi
 
         holder.tvMoney.setText(datas.get(position).getTx_money() + "元");
 
-        holder.tvTime.setText(DateUtils.getMillon(Long.parseLong(datas.get(position).getAdd_time()) * 1000));
+        holder.tvTime.setText(DateUtils.getDay(Long.parseLong(datas.get(position).getAdd_time()) * 1000));
 
         if ("1".equals("" + datas.get(position).getStu())) {
             holder.tvMsg.setText("申请成功");

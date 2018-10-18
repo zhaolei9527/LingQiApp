@@ -59,7 +59,7 @@ public class TuiJianRenListAdapter extends RecyclerView.Adapter<TuiJianRenListAd
             holder.tvLv.setText("领七会员");
         }
         holder.tvUsername.setText(datas.get(position).getNi_name());
-        holder.tvTime.setText(DateUtils.getMillon(Long.parseLong(datas.get(position).getAdd_time()) * 1000));
+        holder.tvTime.setText(DateUtils.getDay(Long.parseLong(datas.get(position).getAdd_time()) * 1000));
     }
 
     @Override

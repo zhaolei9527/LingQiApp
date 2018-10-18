@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.lingqiapp.Base.BaseActivity;
 import com.lingqiapp.R;
@@ -22,6 +23,7 @@ public class GoodPayActivity extends BaseActivity implements View.OnClickListene
     private String orderid;
     private String order;
     private String type;
+    private TextView tv_content;
 
     @Override
     protected int setthislayout() {
@@ -37,12 +39,14 @@ public class GoodPayActivity extends BaseActivity implements View.OnClickListene
         btn_abckorder = (Button) findViewById(R.id.btn_abckorder);
         ll_badPay = (LinearLayout) findViewById(R.id.ll_badPay);
         ll_goodPay = (LinearLayout) findViewById(R.id.ll_goodPay);
+        tv_content = (TextView) findViewById(R.id.tv_content);
         rl_back.setOnClickListener(this);
         btn_lookorder.setOnClickListener(this);
         btn_gotomain.setOnClickListener(this);
         btn_repay.setOnClickListener(this);
         btn_abckorder.setOnClickListener(this);
         type = getIntent().getStringExtra("type");
+        tv_content.setText(getIntent().getStringExtra("msg"));
         orderid = getIntent().getStringExtra("orderid");
         order = getIntent().getStringExtra("order");
         if (TextUtils.isEmpty(type)) {

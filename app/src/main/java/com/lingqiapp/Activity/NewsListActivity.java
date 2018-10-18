@@ -71,7 +71,7 @@ public class NewsListActivity extends BaseActivity {
         params.put("title", etSearch.getText().toString().trim());
         params.put("uid", String.valueOf(SpUtil.get(context, "uid", "")));
         Log.e("NewsListFragment", "params:" + params);
-        VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "news/news_sou", "news/news_sou", params, new VolleyInterface(context) {
+        VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "news/index", "news/index", params, new VolleyInterface(context) {
             @Override
             public void onMySuccess(String result) {
                 String decode = result;

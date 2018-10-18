@@ -14,19 +14,20 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x5"
             android:layout_marginLeft="@dimen/x10"
             android:layout_marginRight="@dimen/x10"
-            android:layout_marginTop="@dimen/y13">
+            android:layout_marginTop="@dimen/x5">
 
             <TextView
                 android:id="@+id/tv_order_form_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#777"
-                android:textSize="@dimen/x12"
-                android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:textColor="#777"
+                android:textSize="@dimen/x12" />
 
             <TextView
                 android:id="@+id/tv_order_type"
@@ -39,6 +40,11 @@
 
         </RelativeLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x1"
+            android:background="@color/bgea"></View>
+
         <LinearLayout
             android:id="@+id/ll_oreders"
             android:layout_width="match_parent"
@@ -49,13 +55,19 @@
             android:id="@+id/tv_order_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x5"
             android:layout_marginLeft="@dimen/x10"
             android:layout_marginRight="@dimen/x10"
-            android:layout_marginTop="@dimen/y13"
+            android:layout_marginTop="@dimen/x5"
             android:gravity="end"
             android:text="共2件商品 合计：199.80（含运费¥20.00）"
             android:textColor="@color/text333"
             android:textSize="@dimen/x12" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x1"
+            android:background="@color/bgea"></View>
 
         <LinearLayout
             android:layout_width="match_parent"

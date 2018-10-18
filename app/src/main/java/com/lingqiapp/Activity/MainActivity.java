@@ -8,12 +8,16 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.VolleyError;
 import com.bigkoo.pickerview.TimePickerView;
+import com.google.gson.Gson;
 import com.lingqiapp.Base.BaseActivity;
+import com.lingqiapp.Bean.LoginBean;
 import com.lingqiapp.Fragment.CartFragment;
 import com.lingqiapp.Fragment.HomeFragment;
 import com.lingqiapp.Fragment.KeFuFragment;
@@ -22,12 +26,16 @@ import com.lingqiapp.Fragment.NewsFragment;
 import com.lingqiapp.R;
 import com.lingqiapp.Utils.EasyToast;
 import com.lingqiapp.Utils.SpUtil;
+import com.lingqiapp.Utils.UrlUtils;
 import com.lingqiapp.View.CustomViewPager;
+import com.lingqiapp.Volley.VolleyInterface;
+import com.lingqiapp.Volley.VolleyRequest;
 import com.mylhyl.acp.Acp;
 import com.mylhyl.acp.AcpListener;
 import com.mylhyl.acp.AcpOptions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -140,5 +148,73 @@ public class MainActivity extends BaseActivity {
     protected void initData() {
 
     }
+
+
+    private String account;
+    private String password;
+    private String wxopenid;
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        account = (String) SpUtil.get(context, "tel", "");
+        password = (String) SpUtil.get(context, "password", "");
+        wxopenid = (String) SpUtil.get(context, "wxopenid", "");
+        if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(password)) {
+            getLogin(account, password, "");
+            Log.e("FlashActivity", "常规登录");
+        } else if (!TextUtils.isEmpty(wxopenid)) {
+            getLogin("", "", wxopenid);
+            Log.e("FlashActivity", "wx登录");
+        }
+    }
+
+    /**
+     * 登录获取
+     */
+    private void getLogin(final String tel, final String password, String openid) {
+        HashMap<String, String> params = new HashMap<>(1);
+        params.put("tel", tel);
+        params.put("password", password);
+        if (!TextUtils.isEmpty(openid)) {
+            params.put("openid", openid);
+        }
+        Log.e("LoginActivity", "params:" + params);
+        VolleyRequest.RequestPost(context, UrlUtils.BASE_URL + "login/dologin", "login/dologin", params, new VolleyInterface(context) {
+            @Override
+            public void onMySuccess(String result) {
+                String decode = result;
+                Log.e("LoginActivity", decode);
+                try {
+                    LoginBean loginBean = new Gson().fromJson(decode, LoginBean.class);
+                    if ("1".equals(loginBean.getStatus())) {
+                        SpUtil.putAndApply(context, "uid", loginBean.getUser().getId().toString());
+                        SpUtil.putAndApply(context, "username", loginBean.getUser().getNi_name());
+                        SpUtil.putAndApply(context, "money", loginBean.getUser().getMoney());
+                        SpUtil.putAndApply(context, "img", loginBean.getUser().getImg());
+                        SpUtil.putAndApply(context, "lv", loginBean.getUser().getIs_hui());
+                        SpUtil.putAndApply(context, "password", password);
+                        SpUtil.putAndApply(context, "tel", "" + loginBean.getUser().getTel());
+                        SpUtil.putAndApply(context, "zw_count", "" + loginBean.getZw_count());
+                    } else {
+                        EasyToast.showShort(context, "登录失效，请重新登录");
+                        startActivity(new Intent(context, LoginActivity.class));
+                        finish();
+                    }
+                    decode = null;
+                    loginBean = null;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onMyError(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+    }
+
 
 }

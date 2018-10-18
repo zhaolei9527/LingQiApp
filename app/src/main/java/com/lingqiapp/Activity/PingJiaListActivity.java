@@ -225,6 +225,11 @@ public class PingJiaListActivity extends BaseActivity {
                     GoodsPingBean newsSearchBean = new Gson().fromJson(decode, GoodsPingBean.class);
                     if ("1".equals(String.valueOf(newsSearchBean.getStatus()))) {
                         LLEmpty.setVisibility(View.GONE);
+
+                        btn2.setText("好评（" + newsSearchBean.getHao_ping_num() + "）");
+                        btn3.setText("中评（" + newsSearchBean.getZhong_ping_num() + "）");
+                        btn4.setText("差评（" + newsSearchBean.getCha_ping_num() + "）");
+
                         if (ceShiLv != null) {
                             ceShiLv.setEnabled(true);
                             ceShiLv.loadMoreComplete();

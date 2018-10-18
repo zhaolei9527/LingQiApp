@@ -16,12 +16,19 @@ import java.util.List;
  */
 public class GoodsPingBean {
 
+
     /**
      * status : 1
-     * res : [{"id":"3","uid":"462","oid":null,"star":"2","pcontent":"最差劲的一次购物","gid":"23","aid":"1","hcontent":"不好意思，给你带来了不便","p_img":["/Public/uploads/2018-09-26/5bab22f209c40.png","/Public/uploads/2018-09-26/5bab22f51bd50.jpg","/Public/uploads/2018-09-26/5bab22f9124f8.jpg"],"addtime":"1538014550","ni_name":"火云邪神","img":"/Public/uploads/headimg/default_img.png"},{"id":"5","uid":"465","oid":null,"star":"4","pcontent":"很满意","gid":"23","aid":"1","hcontent":"满意就好，我们会更加努力","p_img":["/Public/uploads/2018-09-26/5bab22f209c40.png","/Public/uploads/2018-09-26/5bab22f51bd50.jpg","/Public/uploads/2018-09-26/5bab22f9124f8.jpg"],"addtime":"1538014520","ni_name":"领七用户","img":"/Public/uploads/headimg/default_img.png"},{"id":"4","uid":"464","oid":null,"star":"5","pcontent":"很满意","gid":"23","aid":"1","hcontent":"满意就好，我们会更加努力","p_img":["/Public/uploads/2018-09-26/5bab22f209c40.png","/Public/uploads/2018-09-26/5bab22f51bd50.jpg","/Public/uploads/2018-09-26/5bab22f9124f8.jpg"],"addtime":"1538014500","ni_name":"靓帝女神2","img":"/Public/uploads/headimg/default_img.png"},{"id":"2","uid":"463","oid":null,"star":"5","pcontent":"很满意","gid":"23","aid":"1","hcontent":"满意就好，我们会更加努力","p_img":["/Public/uploads/2018-09-26/5bab22f209c40.png","/Public/uploads/2018-09-26/5bab22f51bd50.jpg","/Public/uploads/2018-09-26/5bab22f9124f8.jpg"],"addtime":"1538014495","ni_name":"靓帝女神","img":"/Public/uploads/headimg/default_img.png"},{"id":"1","uid":"461","oid":null,"star":"4","pcontent":"很满意","gid":"23","aid":"1","hcontent":"满意就好，我们会更加努力","p_img":["/Public/uploads/2018-09-26/5bab22f209c40.png","/Public/uploads/2018-09-26/5bab22f51bd50.jpg","/Public/uploads/2018-09-26/5bab22f9124f8.jpg"],"addtime":"1538014480","ni_name":"sakura","img":"/Public/uploads/headimg/default_img.png"}]
+     * hao_ping_num : 1
+     * zhong_ping_num : 0
+     * cha_ping_num : 0
+     * res : [{"id":"1","uid":"2","orderid":"20181018092143439862","star":"5","pcontent":"很满意的一次购物","gid":"45","aid":null,"hcontent":null,"p_img":["/Public/uploads/oder_ping/2018-10-18/5bc7e74cbf7fb.jpg","/Public/uploads/oder_ping/2018-10-18/5bc7e74cc1f0c.jpg","/Public/uploads/oder_ping/2018-10-18/5bc7e74cc4235.jpg"],"addtime":"1539827534","stu":"1","hftime":null,"ni_name":"打手","img":"/Public/uploads/touxiang/2018-10-18/5bc7e857526d9.jpg"}]
      */
 
     private String status;
+    private String hao_ping_num;
+    private String zhong_ping_num;
+    private String cha_ping_num;
     private List<ResBean> res;
 
     public static List<GoodsPingBean> arrayGoodsPingBeanFromData(String str) {
@@ -40,6 +47,30 @@ public class GoodsPingBean {
         this.status = status;
     }
 
+    public String getHao_ping_num() {
+        return hao_ping_num;
+    }
+
+    public void setHao_ping_num(String hao_ping_num) {
+        this.hao_ping_num = hao_ping_num;
+    }
+
+    public String getZhong_ping_num() {
+        return zhong_ping_num;
+    }
+
+    public void setZhong_ping_num(String zhong_ping_num) {
+        this.zhong_ping_num = zhong_ping_num;
+    }
+
+    public String getCha_ping_num() {
+        return cha_ping_num;
+    }
+
+    public void setCha_ping_num(String cha_ping_num) {
+        this.cha_ping_num = cha_ping_num;
+    }
+
     public List<ResBean> getRes() {
         return res;
     }
@@ -50,29 +81,33 @@ public class GoodsPingBean {
 
     public static class ResBean {
         /**
-         * id : 3
-         * uid : 462
-         * oid : null
-         * star : 2
-         * pcontent : 最差劲的一次购物
-         * gid : 23
-         * aid : 1
-         * hcontent : 不好意思，给你带来了不便
-         * p_img : ["/Public/uploads/2018-09-26/5bab22f209c40.png","/Public/uploads/2018-09-26/5bab22f51bd50.jpg","/Public/uploads/2018-09-26/5bab22f9124f8.jpg"]
-         * addtime : 1538014550
-         * ni_name : 火云邪神
-         * img : /Public/uploads/headimg/default_img.png
+         * id : 1
+         * uid : 2
+         * orderid : 20181018092143439862
+         * star : 5
+         * pcontent : 很满意的一次购物
+         * gid : 45
+         * aid : null
+         * hcontent : null
+         * p_img : ["/Public/uploads/oder_ping/2018-10-18/5bc7e74cbf7fb.jpg","/Public/uploads/oder_ping/2018-10-18/5bc7e74cc1f0c.jpg","/Public/uploads/oder_ping/2018-10-18/5bc7e74cc4235.jpg"]
+         * addtime : 1539827534
+         * stu : 1
+         * hftime : null
+         * ni_name : 打手
+         * img : /Public/uploads/touxiang/2018-10-18/5bc7e857526d9.jpg
          */
 
         private String id;
         private String uid;
-        private Object oid;
+        private String orderid;
         private String star;
         private String pcontent;
         private String gid;
-        private String aid;
-        private String hcontent;
+        private Object aid;
+        private Object hcontent;
         private String addtime;
+        private String stu;
+        private Object hftime;
         private String ni_name;
         private String img;
         private List<String> p_img;
@@ -101,12 +136,12 @@ public class GoodsPingBean {
             this.uid = uid;
         }
 
-        public Object getOid() {
-            return oid;
+        public String getOrderid() {
+            return orderid;
         }
 
-        public void setOid(Object oid) {
-            this.oid = oid;
+        public void setOrderid(String orderid) {
+            this.orderid = orderid;
         }
 
         public String getStar() {
@@ -133,19 +168,19 @@ public class GoodsPingBean {
             this.gid = gid;
         }
 
-        public String getAid() {
+        public Object getAid() {
             return aid;
         }
 
-        public void setAid(String aid) {
+        public void setAid(Object aid) {
             this.aid = aid;
         }
 
-        public String getHcontent() {
+        public Object getHcontent() {
             return hcontent;
         }
 
-        public void setHcontent(String hcontent) {
+        public void setHcontent(Object hcontent) {
             this.hcontent = hcontent;
         }
 
@@ -155,6 +190,22 @@ public class GoodsPingBean {
 
         public void setAddtime(String addtime) {
             this.addtime = addtime;
+        }
+
+        public String getStu() {
+            return stu;
+        }
+
+        public void setStu(String stu) {
+            this.stu = stu;
+        }
+
+        public Object getHftime() {
+            return hftime;
+        }
+
+        public void setHftime(Object hftime) {
+            this.hftime = hftime;
         }
 
         public String getNi_name() {

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
@@ -106,9 +105,7 @@ public class PingTaiDetailsActivity extends BaseActivity {
 
             }
         });
-
-        forumContext.loadUrl(UrlUtils.BASE_URL + "danye/banquan?id=3");
-
+        forumContext.loadUrl(UrlUtils.BASE_URL + "danye/jieshao?id=2" );
     }
 
     @Override

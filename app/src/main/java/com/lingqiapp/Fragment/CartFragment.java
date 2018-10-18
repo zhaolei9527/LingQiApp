@@ -41,12 +41,10 @@ public class CartFragment extends BaseLazyFragment {
 
     @Override
     protected void onInvisible() {
-
     }
 
     @Override
     protected void initData() {
-
     }
 
     @Override
@@ -55,11 +53,10 @@ public class CartFragment extends BaseLazyFragment {
         View view = inflater.inflate(R.layout.cart_fragment_layout, container, false);
         fragmentList = new ArrayList();
         fragmentList.add(ShopCarFragment.class);
-        initView(view);
         return view;
     }
 
-    private void initView(View view) {
+    private void initView() {
         relaceFrament(0);
     }
 
@@ -89,5 +86,12 @@ public class CartFragment extends BaseLazyFragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initView();
     }
 }
