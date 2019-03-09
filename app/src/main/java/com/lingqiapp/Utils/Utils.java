@@ -7,10 +7,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.ScrollView;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.lingqiapp.App;
@@ -24,10 +29,15 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -158,8 +168,9 @@ public class Utils {
         ConnectivityManager cm = (ConnectivityManager) context
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        if (cm == null)
+        if (cm == null) {
             return false;
+        }
         return cm.getActiveNetworkInfo().getType() == ConnectivityManager.TYPE_WIFI;
 
     }
@@ -364,5 +375,74 @@ public class Utils {
         return "";
     }
 
+    /**
+     * 截取scrollview的屏幕
+     *
+     * @param scrollView
+     * @return
+     */
+    public static Bitmap getBitmapByView(ScrollView scrollView) {
+        int h = 0;
+        Bitmap bitmap = null;
+        // 获取scrollview实际高度
+        for (int i = 0; i < scrollView.getChildCount(); i++) {
+            h += scrollView.getChildAt(i).getHeight();
+           // scrollView.getChildAt(i).setBackgroundColor(
+             //       Color.parseColor("#ffffff"));
+        }
+        // 创建对应大小的bitmap
+        bitmap = Bitmap.createBitmap(scrollView.getWidth(), h,
+                Bitmap.Config.RGB_565);
+        final Canvas canvas = new Canvas(bitmap);
+        scrollView.draw(canvas);
+        return bitmap;
+    }
+
+    /**
+     * 压缩图片
+     *
+     * @param image
+     * @return
+     */
+    public static Bitmap compressImage(Bitmap image) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        // 质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
+        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        int options = 100;
+        // 循环判断如果压缩后图片是否大于100kb,大于继续压缩
+        while (baos.toByteArray().length / 1024 > 100) {
+            // 重置baos
+            baos.reset();
+            // 这里压缩options%，把压缩后的数据存放到baos中
+            image.compress(Bitmap.CompressFormat.JPEG, options, baos);
+            // 每次都减少10
+            options -= 10;
+        }
+        // 把压缩后的数据baos存放到ByteArrayInputStream中
+        ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());
+        // 把ByteArrayInputStream数据生成图片
+        Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);
+        return bitmap;
+    }
+
+    /**
+     * 保存到sdcard
+     *
+     * @param scrollView
+     * @return
+     */
+    public static void savePic(ScrollView scrollView, Context context) {
+
+        Bitmap bitmap = compressImage(getBitmapByView(scrollView));
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss",
+                Locale.US);
+        try {
+            MediaStore.Images.Media.insertImage(context.getContentResolver(), bitmap, sdf.format(new Date()) + ".png", "description");
+            EasyToast.showShort(context,"推广码已保存到相册");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }

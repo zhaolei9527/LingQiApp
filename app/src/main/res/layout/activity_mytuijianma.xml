@@ -45,6 +45,7 @@
 
 
         <ScrollView
+            android:id="@+id/sv_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@mipmap/mytuijianma_bg">
@@ -70,10 +71,21 @@
                 </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/tv_msg"
+                    android:id="@+id/tv_copy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/rl_img"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/x8"
+                    android:text="长按保存推广码"
+                    android:textColor="@color/text666"
+                    android:textSize="@dimen/x13" />
+
+                <TextView
+                    android:id="@+id/tv_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_copy"
                     android:layout_marginLeft="@dimen/x40"
                     android:layout_marginTop="@dimen/x8"
                     android:text="奖励规则"
@@ -85,10 +97,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@id/tv_msg"
-                    android:layout_marginBottom="@dimen/x20"
                     android:layout_marginLeft="@dimen/x40"
-                    android:layout_marginRight="@dimen/x40"
                     android:layout_marginTop="@dimen/x10"
+                    android:layout_marginRight="@dimen/x40"
+                    android:layout_marginBottom="@dimen/x20"
                     android:text="" />
 
             </RelativeLayout>

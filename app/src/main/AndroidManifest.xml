@@ -245,6 +245,7 @@
                 <data android:scheme="wxf01c8a76202a8f4e" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activity.ShareOrderActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

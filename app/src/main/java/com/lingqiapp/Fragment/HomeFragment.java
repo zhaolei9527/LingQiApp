@@ -42,11 +42,11 @@ import me.fangx.haorefresh.LoadMoreListener;
  * 功能描述：
  */
 public class HomeFragment extends BaseLazyFragment {
-    private int page = 1;
     private Context context;
     private WenguoyiRecycleView rv_homelist;
     private SakuraLinearLayoutManager line;
     private HomeListAdapter adapter;
+    private int page = 1;
 
     @Override
     protected void initPrepare() {

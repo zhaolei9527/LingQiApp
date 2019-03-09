@@ -226,11 +226,8 @@ public class PingJiaPriceActivity extends BaseActivity implements View.OnClickLi
                 finish();
                 break;
             case R.id.btn_submit:
-                if (!TextUtils.isEmpty(editText.getText().toString().trim())) {
-                    submit();
-                } else {
-                    EasyToast.showShort(context, "请输入评价内容~");
-                }
+                submit();
+
                 break;
             default:
                 break;
@@ -243,10 +240,10 @@ public class PingJiaPriceActivity extends BaseActivity implements View.OnClickLi
     private void submit() {
         final ArrayList<String> photos = recyclerView.getPhotos();
         Log.e("SubmitReturnPriceActivi", photos.toString());
+        ArrayList<File> datas = new ArrayList<>();
+        ArrayList<String> names = new ArrayList<>();
         if (!photos.isEmpty()) {
             dialog.show();
-            ArrayList<File> datas = new ArrayList<>();
-            ArrayList<String> names = new ArrayList<>();
             for (int i = 0; i < photos.size(); i++) {
                 File file = new File(photos.get(i));
                 names.add("p_img[]");
@@ -254,7 +251,7 @@ public class PingJiaPriceActivity extends BaseActivity implements View.OnClickLi
             }
             orderDoretreat(orderDetailBean.getOrder().getOrderid(), datas, names);
         } else {
-            EasyToast.showShort(context, "请选择图片");
+            orderDoretreat(orderDetailBean.getOrder().getOrderid(), datas, names);
         }
 
     }
@@ -273,7 +270,11 @@ public class PingJiaPriceActivity extends BaseActivity implements View.OnClickLi
         final HashMap<String, String> params = new HashMap<>(6);
         params.put("oid", id);
         params.put("star", start);
-        params.put("pcontent", editText.getText().toString().trim());
+        if (!TextUtils.isEmpty(editText.getText().toString().trim())) {
+            params.put("pcontent", editText.getText().toString().trim());
+        } else {
+            params.put("pcontent", "用户未填写评价内容~");
+        }
         params.put("uid", String.valueOf(SpUtil.get(context, "uid", "")));
         String s = formatUrlMap(params, false, false);
         String s1 = urlmd5(s, UrlUtils.KEY);

@@ -49,6 +49,17 @@ public class AddAdressActivity extends BaseActivity implements View.OnClickListe
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<>();
     private ArrayList<ArrayList<ArrayList<String>>> options3Items = new ArrayList<>();
     private Thread thread;
+    private boolean isLoaded = false;
+    private String name;
+    private String phone;
+    private String addressContent;
+    private String province;
+    private String city;
+    private String country;
+    private Dialog dialog;
+    private String id;
+    private String IsChoosed;
+
     private static final int MSG_LOAD_DATA = 0x0001;
     private static final int MSG_LOAD_SUCCESS = 0x0002;
     private static final int MSG_LOAD_FAILED = 0x0003;
@@ -78,16 +89,7 @@ public class AddAdressActivity extends BaseActivity implements View.OnClickListe
             }
         }
     };
-    private boolean isLoaded = false;
-    private String name;
-    private String phone;
-    private String addressContent;
-    private String province;
-    private String city;
-    private String country;
-    private Dialog dialog;
-    private String id;
-    private String IsChoosed;
+
 
     public ArrayList<JsonBean> parseData(String result) {//Gson 解析
         ArrayList<JsonBean> detail = new ArrayList<>();

@@ -400,7 +400,7 @@ public class PriceDetailsActivity extends BaseActivity implements View.OnClickLi
                         SpUtil.putAndApply(context, "goodsDetail" + String.valueOf(getIntent().getStringExtra("id")), result);
                         tvTitle.setText(goodsDetailBean.getGoods().getTitle());
                         tvPrice.setText("￥" + goodsDetailBean.getGoods().getPrice());
-                        tvXiaoliang.setText("销量：" + goodsDetailBean.getGoods().getXiaoliang());
+                        tvXiaoliang.setText("销量：" + goodsDetailBean.getGoods().getXiaoliang()+"   库存："+goodsDetailBean.getGoods().getKucun());
                         RollPagerView.setAdapter(new GoodsLoopAdapter(RollPagerView, goodsDetailBean.getGoods()));
                         if ("0".equals(String.valueOf(goodsDetailBean.getPj().getCount()))) {
                             tvPingjiaMax.setText("宝贝评价（" + goodsDetailBean.getPj().getCount() + ")");
@@ -489,7 +489,6 @@ public class PriceDetailsActivity extends BaseActivity implements View.OnClickLi
                 } catch (Exception e) {
                     dialog.dismiss();
                     e.printStackTrace();
-                    Toast.makeText(context, getString(R.string.Abnormalserver), Toast.LENGTH_SHORT).show();
                 }
             }
 

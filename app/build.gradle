@@ -21,8 +21,8 @@ android {
         applicationId "com.lingqiapp"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 4
-        versionName "1.4"
+        versionCode 9
+        versionName "1.9"
         useLibrary 'org.apache.http.legacy'
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -49,12 +49,12 @@ MobSDK {
         //平台配置信息
         devInfo {
             Wechat {
-                appId "wxf01c8a76202a8f4e"
-                appSecret "71f99c301d8fc8e1e017538251e155d4"
+                appId "wx5719755289a3acbe"
+                appSecret "76901425fb19b532c43ee3a5464c69fc"
             }
             WechatMoments {
-                appId "wxf01c8a76202a8f4e"
-                appSecret "71f99c301d8fc8e1e017538251e155d4"
+                appId "wx5719755289a3acbe"
+                appSecret "76901425fb19b532c43ee3a5464c69fc"
             }
         }
     }
@@ -85,10 +85,6 @@ dependencies {
     compile 'org.jsoup:jsoup:1.10.2'
     compile 'com.android.support:cardview-v7:24.2.0'
     compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
-    compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
-    //其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.0
-    compile 'com.tencent.bugly:nativecrashreport:latest.release'
-    //其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.2.0
     compile project(':fresco')
     compile project(':picker')
     compile project(':pickerview')

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
@@ -47,6 +48,8 @@ public class MYTuiJianMaActivity extends BaseActivity {
     TextView tvMsg;
     @BindView(R.id.tv_msg_content)
     TextView tvMsgContent;
+    @BindView(R.id.sv_content)
+    ScrollView svContent;
     private Dialog dialog;
 
     @Override
@@ -76,6 +79,14 @@ public class MYTuiJianMaActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+        imgTuijianma.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Utils.savePic(svContent, context);
+                return true;
             }
         });
 

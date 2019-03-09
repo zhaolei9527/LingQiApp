@@ -109,6 +109,7 @@ public class ChangeBankActivity extends BaseActivity implements View.OnClickList
         bitmap = codeUtils.createBitmap();
         code = codeUtils.getCode();
         image.setImageBitmap(bitmap);
+
     }
 
     @Override
@@ -117,6 +118,12 @@ public class ChangeBankActivity extends BaseActivity implements View.OnClickList
         btnGetSMScode.setOnClickListener(this);
         btnSubmit.setOnClickListener(this);
         imgChangecode.setOnClickListener(this);
+        rlBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 

@@ -72,7 +72,6 @@
 
         <include layout="@layout/layout_empty"></include>
 
-
         <com.lingqiapp.View.WenguoyiRecycleView
             android:id="@+id/ce_shi_lv"
             android:layout_width="match_parent"

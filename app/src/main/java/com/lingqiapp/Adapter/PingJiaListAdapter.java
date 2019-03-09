@@ -60,38 +60,46 @@ public class PingJiaListAdapter extends RecyclerView.Adapter<PingJiaListAdapter.
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-        holder.sdvPingjia.setImageURI(UrlUtils.URL + datas.get(position).getImg());
-        holder.tvPingjiaName.setText(datas.get(position).getNi_name());
-        holder.tvPingjiaContent.setText(datas.get(position).getPcontent());
-        holder.tvPingjiaTime.setText(DateUtils.getMillon(Long.parseLong(datas.get(position).getAddtime()) * 1000));
+        try {
 
-        String xing = datas.get(position).getStar();
-        Double i = Double.parseDouble(xing);
-        for (int i1 = 0; i1 < 5; i1++) {
-            ImageView imageView = new ImageView(mContext);
-            imageView.setPadding(PixelUtils.dip2px(mContext, 3), 0, 0, 0);
-            if (i1 < i) {
-                imageView.setBackgroundResource(R.mipmap.pingjia1);
-            } else {
-                imageView.setBackgroundResource(R.mipmap.pingjia2);
-            }
-            holder.llStar.addView(imageView);
-        }
+            holder.sdvPingjia.setImageURI(UrlUtils.URL + datas.get(position).getImg());
+            holder.tvPingjiaName.setText(datas.get(position).getNi_name());
+            holder.tvPingjiaContent.setText(datas.get(position).getPcontent());
+            holder.tvPingjiaTime.setText(DateUtils.getMillon(Long.parseLong(datas.get(position).getAddtime()) * 1000));
 
-        if (!datas.get(position).getP_img().isEmpty()) {
-            holder.llImgs.setVisibility(View.VISIBLE);
-            for (int i1 = 0; i1 < datas.get(position).getP_img().size(); i1++) {
-                if (i1 == 0) {
-                    holder.SimpleDraweeView1.setImageURI(UrlUtils.URL + datas.get(position).getP_img().get(0));
-                } else if (i1 == 1) {
-                    holder.SimpleDraweeView2.setImageURI(UrlUtils.URL + datas.get(position).getP_img().get(1));
+            String xing = datas.get(position).getStar();
+            Double i = Double.parseDouble(xing);
+            for (int i1 = 0; i1 < 5; i1++) {
+                ImageView imageView = new ImageView(mContext);
+                imageView.setPadding(PixelUtils.dip2px(mContext, 3), 0, 0, 0);
+                if (i1 < i) {
+                    imageView.setBackgroundResource(R.mipmap.pingjia1);
                 } else {
-                    holder.SimpleDraweeView3.setImageURI(UrlUtils.URL + datas.get(position).getP_img().get(2));
+                    imageView.setBackgroundResource(R.mipmap.pingjia2);
                 }
+                holder.llStar.addView(imageView);
             }
-        } else {
+
+            if (!datas.get(position).getP_img().isEmpty()) {
+                holder.llImgs.setVisibility(View.VISIBLE);
+                for (int i1 = 0; i1 < datas.get(position).getP_img().size(); i1++) {
+                    if (i1 == 0) {
+                        holder.SimpleDraweeView1.setImageURI(UrlUtils.URL + datas.get(position).getP_img().get(0));
+                    } else if (i1 == 1) {
+                        holder.SimpleDraweeView2.setImageURI(UrlUtils.URL + datas.get(position).getP_img().get(1));
+                    } else {
+                        holder.SimpleDraweeView3.setImageURI(UrlUtils.URL + datas.get(position).getP_img().get(2));
+                    }
+                }
+            } else {
+                holder.llImgs.setVisibility(View.GONE);
+            }
+
+        } catch (Exception e) {
             holder.llImgs.setVisibility(View.GONE);
+            e.printStackTrace();
         }
+
 
     }
 

@@ -56,6 +56,8 @@ public class MyOrderFragment extends BaseLazyFragment {
                 VpNews_context.setCurrentItem(3);
             } else if ("4".equals(MyOrderActivity.cid)) {
                 VpNews_context.setCurrentItem(4);
+            }else if ("5".equals(MyOrderActivity.cid)) {
+                VpNews_context.setCurrentItem(5);
             }
         }
 
@@ -82,6 +84,9 @@ public class MyOrderFragment extends BaseLazyFragment {
                 } else if (position == 4) {
                     context.sendBroadcast(new Intent("OrderContentRefresh").putExtra("stu", "4"));
                     stu = "4";
+                } else if (position == 4) {
+                    context.sendBroadcast(new Intent("OrderContentRefresh").putExtra("stu", "5"));
+                    stu = "5";
                 }
             }
 
@@ -106,6 +111,7 @@ public class MyOrderFragment extends BaseLazyFragment {
         titles.add("待发货");
         titles.add("待收货");
         titles.add("待评价");
+        titles.add("已完成");
         return view;
     }
 

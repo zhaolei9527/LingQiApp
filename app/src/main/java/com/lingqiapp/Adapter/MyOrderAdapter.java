@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.VolleyError;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
@@ -27,7 +26,6 @@ import com.lingqiapp.Utils.Utils;
 import com.lingqiapp.View.CommomDialog;
 import com.lingqiapp.Volley.VolleyInterface;
 import com.lingqiapp.Volley.VolleyRequest;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -47,7 +45,6 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
         return datas;
     }
 
-
     public MyOrderAdapter(Context context, List<OrderListsBean.ListBean> list) {
         this.datas.addAll(list);
         this.mContext = context;
@@ -66,6 +63,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
+
         holder.tv_order_form_time.setText("订单编号：" + datas.get(position).getOrderid());
         holder.tv_order_content.setText("共" + datas.get(position).getNumber() + "件商品 合计:￥" + datas.get(position).getTotalprice());
         holder.ll_oreders.removeAllViews();
@@ -97,7 +95,14 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
             holder.btn_delete_order.setVisibility(View.GONE);
         }
 
+        if ("10".equals(stu)) {
+            ViewGroup.LayoutParams layoutParams = holder.ll_or.getLayoutParams();
+            layoutParams.height = 0;
+            holder.ll_or.setLayoutParams(layoutParams);
+        }
+
         View item_oreder_layout = View.inflate(mContext, R.layout.item_orederlist_layout, null);
+
         SimpleDraweeView SimpleDraweeView = (com.facebook.drawee.view.SimpleDraweeView) item_oreder_layout.findViewById(R.id.SimpleDraweeView);
         SimpleDraweeView.setImageURI(UrlUtils.URL + datas.get(position).getImg_feng());
         TextView tv_title = (TextView) item_oreder_layout.findViewById(R.id.tv_title);
@@ -132,7 +137,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
                         } else {
                             dialog.dismiss();
                             orderCancel(datas.get(position).getId());
-                            datas.get(position).setStatus("-1");
+                            datas.get(position).setStatus("10");
                             notifyDataSetChanged();
                         }
                     }
@@ -143,7 +148,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
         holder.btn_isget_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                datas.get(position).setStatus("4");
+                datas.get(position).setStatus("10");
                 notifyItemChanged(position);
                 orderReceipt(datas.get(position).getId());
             }
@@ -165,6 +170,8 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
         public Button btn_pay_order;
         public Button btn_isget_order;
         public LinearLayout ll_oreders;
+        public LinearLayout ll_or;
+
         public Button btn_delete_order;
 
         public ViewHolder(View itemView) {
@@ -177,6 +184,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
             this.btn_pay_order = (Button) rootView.findViewById(R.id.btn_pay_order);
             this.btn_isget_order = (Button) rootView.findViewById(R.id.btn_isget_order);
             this.ll_oreders = (LinearLayout) rootView.findViewById(R.id.ll_oreders);
+            this.ll_or = (LinearLayout) rootView.findViewById(R.id.ll_or);
         }
     }
 

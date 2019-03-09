@@ -51,15 +51,21 @@ public class TuiJianRenListAdapter extends RecyclerView.Adapter<TuiJianRenListAd
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-        if (datas.get(position).getIs_hui().equals("1")) {
-            holder.imgLv.setBackground(mContext.getResources().getDrawable(R.mipmap.putonghy));
-            holder.tvLv.setText("普通会员");
-        } else {
-            holder.imgLv.setBackground(mContext.getResources().getDrawable(R.mipmap.zuanshihy));
-            holder.tvLv.setText("领七会员");
+        try {
+            if (datas.get(position).getIs_hui().equals("1")) {
+                holder.imgLv.setBackground(mContext.getResources().getDrawable(R.mipmap.putonghy));
+                holder.tvLv.setText("普通会员");
+            } else {
+                holder.imgLv.setBackground(mContext.getResources().getDrawable(R.mipmap.zuanshihy));
+                holder.tvLv.setText("领七会员");
+            }
+
+            holder.tvUsername.setText(datas.get(position).getNi_name());
+            holder.tvTime.setText(DateUtils.getDay(Long.parseLong(datas.get(position).getAdd_time()) * 1000));
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        holder.tvUsername.setText(datas.get(position).getNi_name());
-        holder.tvTime.setText(DateUtils.getDay(Long.parseLong(datas.get(position).getAdd_time()) * 1000));
+
     }
 
     @Override

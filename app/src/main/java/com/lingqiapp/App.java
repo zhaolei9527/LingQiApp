@@ -10,7 +10,6 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.hss01248.frescopicker.FrescoIniter;
 import com.lingqiapp.Utils.PausableThreadPoolExecutor;
 import com.mob.MobSDK;
-import com.tencent.bugly.Bugly;
 import com.tencent.smtt.sdk.QbSdk;
 
 import java.util.concurrent.PriorityBlockingQueue;
@@ -46,11 +45,11 @@ public class App extends MultiDexApplication {
         MobSDK.init(this);
         QbSdk.initX5Environment(this, null);
         MultiDex.install(this);
-        Bugly.init(getApplicationContext(), "b9e3fb47cb", false);
+        //Bugly.init(getApplicationContext(), "b9e3fb47cb", false);
         queues = Volley.newRequestQueue(getApplicationContext());
         Fresco.initialize(this);
         pausableThreadPoolExecutor = new PausableThreadPoolExecutor(1, 1, 0L, TimeUnit.SECONDS, new PriorityBlockingQueue<Runnable>());
-        PhotoPickUtils.init(getApplicationContext(),new FrescoIniter());//第二个参数根据具体依赖库而定
+        PhotoPickUtils.init(getApplicationContext(), new FrescoIniter());//第二个参数根据具体依赖库而定
     }
 
     public static RequestQueue getQueues() {

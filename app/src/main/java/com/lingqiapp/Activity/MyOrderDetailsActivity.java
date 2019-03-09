@@ -250,7 +250,7 @@ public class MyOrderDetailsActivity extends BaseActivity implements View.OnClick
                     } else if ("5".equals(stu)) {
                         //holder.tv_order_type.setText("已评价");
                         rlGotopay.setVisibility(View.GONE);
-                        tvStu.setText("已评价");
+                        tvStu.setText("已经评价过了~");
                     } else {
                         rlGotopay.setVisibility(View.GONE);
                         tvStu.setText("");

@@ -113,27 +113,31 @@ public class NewsFragment extends BaseLazyFragment {
                 String decode = result;
                 Log.e("NewsFragment", decode);
                 try {
-                     NewsListBean newsListBean = new Gson().fromJson(decode, NewsListBean.class);
+                    NewsListBean newsListBean = new Gson().fromJson(decode, NewsListBean.class);
                     //新闻分类处理
-                     List<NewsListBean.CateBean> cate = newsListBean.getCate();
-                     titles.clear();
-                     titleid.clear();
+                    List<NewsListBean.CateBean> cate = newsListBean.getCate();
+                    titles.clear();
+                    titleid.clear();
                     for (int i = 0; i < cate.size(); i++) {
-                        titles.add(cate.get(i).getCate_name());
+                        if (i == 0) {
+                            titles.add("全部");
+                        } else {
+                            titles.add(cate.get(i).getCate_name());
+                        }
                         titleid.add(cate.get(i).getId());
                     }
-                     if (adapter == null) {
-                       adapter = new NewsPageAdapter(getChildFragmentManager(), getActivity(), titles, titleid);
-                      VpNewsContext.setAdapter(adapter);
-                      tabs.setViewPager(VpNewsContext);
+                    if (adapter == null) {
+                        adapter = new NewsPageAdapter(getChildFragmentManager(), getActivity(), titles, titleid);
+                        VpNewsContext.setAdapter(adapter);
+                        tabs.setViewPager(VpNewsContext);
                     } else {
-                      if (p != 1) {
-                           VpNewsContext.setAdapter(adapter);
-                      }
-                     }
+                        if (p != 1) {
+                            VpNewsContext.setAdapter(adapter);
+                        }
+                    }
                     //缓存首页数据
                     SpUtil.putAndApply(getActivity(), "index", decode);
-                     cate = null;
+                    cate = null;
                     decode = null;
                 } catch (Exception e) {
                     e.printStackTrace();
